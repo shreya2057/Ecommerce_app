@@ -81,7 +81,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                 </Link>
                 <Link to={"/"}>
                     <Text>
-                        Stores
+                        Products
                     </Text>
                 </Link>
                 {
@@ -132,7 +132,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                                 px={{"md":2}} 
                                 rounded={{"md": "base"}} 
                                 shadow={{"md":"md"}}
-                                fontSize={{"base":"lg","md":"base"}}
+                                fontSize={{"base":"lg","md":"sm"}}
                             >
                                 <Box display={"flex"} alignSelf={"center"}>
                                     <HiOutlineUserCircle/>

@@ -3,8 +3,7 @@ import {
     Flex, 
     Heading,
     Box,
-    Stack,
-    Button
+    Stack
 } from "@chakra-ui/react";
 
 import { RiShoppingCartFill } from "react-icons/ri"
@@ -33,11 +32,17 @@ function HomeScreen(){
                         <Heading fontSize={"2xl"} textColor={"#4d2f56"}>Ecommerce App</Heading>
                         <Heading fontSize={"lg"} textColor={"#b87c94"}>Easy online shopping</Heading>
                     </Stack>
-                    <Flex align={"center"} gap={10} maxWidth={600}>
+                    <Flex 
+                        direction={{"base":"column", "md": "row"}} 
+                        align={"center"} 
+                        gap={10} 
+                        maxWidth={600}
+                    >
                         <Box>
                             <Text 
                                 fontSize={"md"} 
                                 textColor={"#4d2f56"}
+                                textAlign={{"base": "justify", "md": "left"}}
                             >   
                                 Navigate the Universe of Fashion, Tech, and Lifestyle: 
                                 From Trendsetting Designs to Cutting-Edge Gadgets, 
@@ -48,12 +53,18 @@ function HomeScreen(){
                             </Text>
                         </Box>
                         <Box 
-                            rounded={"full"} bgColor={"#fbd5eb"} width={"fit-content"} textColor={"#4d2f56"} fontSize={60} p={5}>
+                            rounded={"full"} 
+                            bgColor={"#fbd5eb"} 
+                            width={"fit-content"} 
+                            textColor={"#4d2f56"} 
+                            fontSize={60} 
+                            p={5}
+                        >
                             <RiShoppingCartFill/>
                         </Box>
                     </Flex>
-                    <Box display={"flex"}>
-                        <CustomButton label={"Explore our services"}/>
+                    <Box display={"flex"} justifyContent={{"base":"center", "md": "start"}}>
+                        <CustomButton label={"Explore our product"}/>
                     </Box>
                 </Box>                
             </Flex>
