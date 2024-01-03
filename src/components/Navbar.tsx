@@ -109,7 +109,6 @@ function NavBar(pt: {loggedIn: Boolean}){
                     &&
                     <Flex 
                         direction={{"base": "column", "md": "row"}}
-                        flex={1} 
                         gap={{"base": 1,"md":6}}
                         align={{"base":"start","md":"center"}}
                     >
@@ -125,6 +124,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                             <Box 
                                 display={"flex"}
                                 justifyContent={"center"}
+                                alignContent={"center"}
                                 width={130}
                                 gap={1.5}  
                                 bgColor={{"md": "#b87c94"}} 
