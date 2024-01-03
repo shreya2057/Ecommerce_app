@@ -7,14 +7,11 @@ import {
 } from "@chakra-ui/react";
 
 import { RiShoppingCartFill } from "react-icons/ri"
-import NavBar from "../components/Navbar";
-import Footer from "../components/Footer";
 import CustomButton from "../components/CustomButton";
 
 function HomeScreen(){
     return (
-        <Flex direction={"column"} width={"100vw"} height={"100vh"}>
-            <NavBar loggedIn={true}/>
+        <Flex direction={"column"} width={"100%"}>
             <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"}>
                 <Box 
                     borderWidth={1} 
@@ -68,7 +65,6 @@ function HomeScreen(){
                     </Box>
                 </Box>                
             </Flex>
-            <Footer/>
         </Flex>
     );
 }

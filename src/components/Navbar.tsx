@@ -74,14 +74,14 @@ function NavBar(pt: {loggedIn: Boolean}){
                 py={{"base": 3, "md":0}} 
                 align={{"base":"start","md":"center"}}
             >
-                <Link to={"/"}>
+                <Link to={"/shopping"}>
                     <Text>
                         Shopping
                     </Text>
                 </Link>
                 <Link to={"/"}>
                     <Text>
-                        Products
+                        Orders
                     </Text>
                 </Link>
                 {
