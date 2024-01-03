@@ -79,7 +79,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                         Shopping
                     </Text>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/orders"}>
                     <Text>
                         Orders
                     </Text>

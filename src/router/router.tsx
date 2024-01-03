@@ -6,7 +6,7 @@ import {
 import App from "../App";
 import Shopping from "../screen/items/Shopping";
 import Cart from "../screen/items/Cart";
-import FavouriteItems from "../screen/items/Favourite";
+import Orders from "../screen/items/Orders";
 import Login from "../screen/users/Login";
 import SignUp from "../screen/users/Signup";
 import UserDetails from "../screen/users/UserDetails";
@@ -20,9 +20,10 @@ function AppRouter(){
                     <Route path="/" element={<App/>}>
                         <Route path="/" element={<HomeScreen/>}/>
                         <Route path="/shopping" element={<Shopping/>}/>
+                        <Route path="/orders" element={<Orders/>}/>
                     </Route>
                     <Route path="/cart" element={<Cart/>}/>
-                    <Route path="/favourite" element={<FavouriteItems/>}/>
+                    
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/userdetails" element={<UserDetails/>}/>
