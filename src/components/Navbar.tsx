@@ -14,7 +14,7 @@ function NavBar(pt: {loggedIn: Boolean}){
     const username = "harry potter";
     const [showNavMenu, setShowNavMenu] = useState(false)
     const menuVisibility = useBreakpointValue({"base": !showNavMenu, "md": false})
-    const buttonVisibility = useBreakpointValue({"sm": false, "md": true})
+    const buttonVisibility = useBreakpointValue({"base": false, "md": true})
     const toggleMenu = ()=>{
         if(showNavMenu){
             setShowNavMenu(false);
@@ -60,8 +60,8 @@ function NavBar(pt: {loggedIn: Boolean}){
                 </Link>
             </Flex>
             <Flex 
-                flex={{"sm": 1, "md":0}}
-                width={{"sm": "100%"}}
+                flex={{"base": 1, "md":0}}
+                width={{"base": "100%"}}
                 hidden= {menuVisibility}
                 bgColor={{"base": "#b87c94", "md": "inherit"}}
                 direction={{"base": "column", "md": "row"}} 
@@ -70,8 +70,8 @@ function NavBar(pt: {loggedIn: Boolean}){
                 fontSize={"xl"} 
                 fontWeight={"bold"} 
                 textColor={"#fffdf0"}
-                px={{"sm": 10, "md":10}} 
-                py={{"sm": 3, "md":0}} 
+                px={{"base": 10, "md":10}} 
+                py={{"base": 3, "md":0}} 
                 align={{"base":"start","md":"center"}}
             >
                 <Link to={"/"}>
@@ -132,7 +132,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                                 px={{"md":2}} 
                                 rounded={{"md": "base"}} 
                                 shadow={{"md":"md"}}
-                                fontSize={{"base":"lg","md":"sm"}}
+                                fontSize={{"base":"lg","md":"base"}}
                             >
                                 <Box display={"flex"} alignSelf={"center"}>
                                     <HiOutlineUserCircle/>
