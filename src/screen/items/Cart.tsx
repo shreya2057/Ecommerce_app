@@ -21,9 +21,6 @@ function Carts(){
             >
                 <Banner/>   
                 <Flex direction={"column"} my={4}>
-                    <Flex direction={"row"} align={"center"} justifyContent={"space-between"}>
-                        <Heading fontSize={"lg"} >Ordered Products</Heading>
-                    </Flex>
                     <Flex width={"100%"} direction={"column"} gap={5} m={4}>
                         <Box 
                             display={"flex"}
@@ -35,6 +32,7 @@ function Carts(){
                             gap={5}
                             shadow={"lg"}
                         >
+                            <Heading fontSize={"lg"} >Ordered Products</Heading>
                             <Flex 
                                 direction={"column"} 
                                 align={"center"} 
