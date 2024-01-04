@@ -30,7 +30,9 @@ function Shopping(){
 
     const addItemToCart = useCartStore((state:any)=>state.addItemToCart);
     const updateCartQuantity = useCartStore((state:any)=>state.updateCartQuantity);
-    const items = useCartStore((state:any)=>state.items)
+    const items = useCartStore((state:any)=>state.items);
+    const orderNumber = useCartStore((state:any)=>state.orderNumber);
+    const generateOrderNumber = useCartStore((state:any)=>state.generateOrderNumber);
 
     const toast = useToast();
 
@@ -39,18 +41,18 @@ function Shopping(){
         const itemExits = (items.find((product:any)=>product.id===item.id))
         if(itemExits){
            const newQuantity = itemExits.quantity + 1;
-           const test = items.map((product:any)=>{
-            if(product.id===itemExits.id){
-                return {...product, ["quantity"]: newQuantity}
-            } else {return{...product}}
-           })
-
-           console.log(test);
-            // const itemToBeAdded = {...item, quantity: newQuantity }
-            updateCartQuantity(itemExits.id, newQuantity);
+           console.log(itemExits);
+            updateCartQuantity(itemExits.id, newQuantity, orderNumber);
         }else{
-            const itemToBeAdded = {...item, quantity: 1 }
-            addItemToCart(itemToBeAdded);
+            if(orderNumber===0){
+                const randomNumber = Math.floor(Math.random()*(400000000-100000000+1))+100000000;
+                generateOrderNumber(randomNumber);
+                const itemToBeAdded = {...item, quantity: 1, orderNumber: randomNumber }
+                addItemToCart(itemToBeAdded);
+            }else{
+                const itemToBeAdded = {...item, quantity: 1, orderNumber: orderNumber }
+                addItemToCart(itemToBeAdded);
+            }
         }
         toast({
             title: `${item.title} added to cart.`,

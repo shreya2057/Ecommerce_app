@@ -10,9 +10,21 @@ import useCartStore from "../../stores/cartStore";
 function Carts(){
     const items = useCartStore((state:any)=>state.items);
     const removeItemFromCart = useCartStore((state:any)=>state.removeItemFromCart);
-    console.log(items);
     const buyItems = ()=>{
+            const products = [];
+            const productData:any = localStorage.getItem("products")
+            if(productData !== null){
+                const currentData:Array<string>|null = JSON.parse(productData);
+                currentData?.forEach((item)=>products.push(item));
+                products.push(items);
+                console.log(products)
+                localStorage.setItem("products", JSON.stringify(products));
+            } else {
+                products.push(items);
+                console.log(products)
 
+                localStorage.setItem("products", JSON.stringify(products));
+            }
     }
 
     const removeItems = (item:any)=>{
@@ -69,7 +81,7 @@ function Carts(){
                         <Box width={"100%"} display={"flex"} justifyContent={"end"}>
                             <CustomButton 
                                 label="Buy Items" 
-                                // onClickFunction={()=>console.log("test")}
+                                onClickFunction={buyItems()}
                             />  
                         </Box>              
                     </Flex>
