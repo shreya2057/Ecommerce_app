@@ -15,10 +15,14 @@ import CategoryList from "../../components/CategoryList"
 import ItemCard from "../../components/ItemCard";
 import Banner from "../../components/Banner";
 import { SearchIcon } from "@chakra-ui/icons";
+import { useQuery } from "react-query";
+import { getAllProducts } from "../../services/crud";
 
 function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
-    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"})
+    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"});
+    const {data}= useQuery("products", getAllProducts);
+    console.log(data)
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
