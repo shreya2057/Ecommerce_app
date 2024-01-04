@@ -9,7 +9,9 @@ import {
     Text 
 } from "@chakra-ui/react"
 
-function ItemCard(pt:{title:string, price: number}){
+function ItemCard(pt:{title:string, price: number, thumbnail: string}){
+    const title = pt.title.substring(0, 15) + "..."
+    console.log(title)
     return (
         <Card 
             width={"min-content"}
@@ -25,11 +27,13 @@ function ItemCard(pt:{title:string, price: number}){
                     width={200} 
                     height={200} 
                     display={"flex"}
-                    bgColor={"#fdcee5"}
+                    bgColor={"#f8efe7"}
+                    alignContent={"center"}
+                    justifyContent={"center"}
                 >
                     <Image 
-                        objectFit={"fill"} 
-                        src="https://imgs.search.brave.com/FF_Tnpj_zgXjoUPLm_qV84uQ8vZy6VM63ar5LLGZSlU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTg1/MjQ2NzQ0L3Bob3Rv/L3Nwb3J0cy1zaG9l/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1kM0tLaW9VNlRM/T19peVVkQTBmLTFC/eEt4QkJ5Ul84dFUw/STZGcE1aelg4PQ"
+                        objectFit={"contain"} 
+                        src={pt.thumbnail}
                     />
                 </Box>
                 <Heading 
@@ -39,7 +43,7 @@ function ItemCard(pt:{title:string, price: number}){
                     mb={1}
                     textColor={"#4d2f56"}
                 >
-                    {pt.title}
+                    {title}
                 </Heading>
                 <Text 
                     textColor={"#b87c94"} 
@@ -48,7 +52,7 @@ function ItemCard(pt:{title:string, price: number}){
                     mx={6} 
                     mb={1}
                 >
-                    {pt.price}
+                    ${pt.price}
                 </Text>
             </CardBody>
             <CardFooter display={"flex"} alignContent={"center"} px={6} py={2}>

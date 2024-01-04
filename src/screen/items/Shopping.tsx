@@ -17,12 +17,26 @@ import Banner from "../../components/Banner";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
 import { getAllProducts } from "../../services/crud";
+import { useState } from "react";
 
 function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
     const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"});
-    const {data}= useQuery("products", getAllProducts);
-    console.log(data)
+    const [products, setProducts] = useState<Array<any>>()
+    const {data}= useQuery(
+        "products", 
+        getAllProducts,
+        {
+            onSuccess: (responseData)=>{
+                if(responseData.status===200 && typeof(responseData.message)==="object"){
+                    setProducts(responseData.message);
+                    console.log(products)
+                }
+            }
+            
+        }
+    );
+    
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -68,12 +82,18 @@ function Shopping(){
                     </Flex>
                     <Flex my={4}>
                         <SimpleGrid templateColumns={columns} gap={6}>
-                            <ItemCard title={"test"} price={200}/> 
-                            <ItemCard title={"test"} price={200}/> 
-                            <ItemCard title={"test"} price={200}/> 
-                            <ItemCard title={"test"} price={200}/> 
-                            <ItemCard title={"test"} price={200}/> 
-                            <ItemCard title={"test"} price={200}/> 
+                        {
+                            (data?.status===200)
+                            &&
+                            products?.map((items:any, index: number)=>
+                                <ItemCard 
+                                    title={items.title} 
+                                    price={items.price}
+                                    thumbnail={items.thumbnail} 
+                                    key= {index}
+                                />
+                            )
+                        }
                         </SimpleGrid>
                     </Flex>
                 </Flex>

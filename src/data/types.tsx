@@ -1,5 +1,5 @@
 export interface Response{
     status: number,
-    message: string | object
+    message: string | Array<any>
 }
 
