@@ -11,6 +11,7 @@ import SignUp from "../screen/users/Signup";
 import UserDetails from "../screen/users/UserDetails";
 import HomeScreen from "../screen/Home";
 import Carts from "../screen/items/Cart";
+import Test from "../screen/users/Test";
 
 function AppRouter(){
     return (
@@ -22,11 +23,14 @@ function AppRouter(){
                         <Route path="/shopping" element={<Shopping/>}/>
                         <Route path="/orders" element={<Orders/>}/>
                         <Route path="/cart" element={<Carts/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/signup" element={<SignUp/>}/>
+                        <Route path="/test" element={<Test/>}/>
                     </Route>
                     
                     
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/signup" element={<SignUp/>}/>
+                   
+                    
                     <Route path="/userdetails" element={<UserDetails/>}/>
                 </Routes>
             </Router>

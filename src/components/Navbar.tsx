@@ -97,7 +97,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                                 Login
                             </Text>
                         </Link>
-                        <Link to={"/"}>
+                        <Link to={"/signup"}>
                             <Text>
                                 Signup
                             </Text>
