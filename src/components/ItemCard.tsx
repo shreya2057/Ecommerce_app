@@ -10,8 +10,7 @@ import {
 } from "@chakra-ui/react"
 
 function ItemCard(pt:{title:string, price: number, thumbnail: string}){
-    const title = pt.title.substring(0, 15) + "..."
-    console.log(title)
+    const title = pt.title.substring(0, 15) + "...";
     return (
         <Card 
             width={"min-content"}

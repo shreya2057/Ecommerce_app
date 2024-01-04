@@ -10,4 +10,22 @@ const getAllProducts = async (): Promise<Response>=>{
     }
 }
 
-export {getAllProducts};
+const getCategorywiseProduct =async (category:string) => {
+    try{
+        const response = await instance.get(`/products/category/${category}?limit=100`);
+        return {status: response.status, message: response.data};
+    } catch(error:any){
+        return {status: 404, message: error.message}
+    }
+}
+
+const productCategory = async (): Promise<Response>=>{
+    try{
+        const response = await instance.get("/product/categories");
+        return {status: response.status, message: response.data};
+    }catch(error:any){
+        return {status: 404, message: error.message};
+    }
+}
+
+export {getAllProducts, getCategorywiseProduct , productCategory};

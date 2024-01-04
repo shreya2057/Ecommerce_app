@@ -16,26 +16,50 @@ import ItemCard from "../../components/ItemCard";
 import Banner from "../../components/Banner";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
-import { getAllProducts } from "../../services/crud";
-import { useState } from "react";
+import { getCategorywiseProduct, productCategory } from "../../services/crud";
+import { useEffect, useState } from "react";
 
 function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
     const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"});
-    const [products, setProducts] = useState<Array<any>>()
-    const {data}= useQuery(
+    const [products, setProducts] = useState<Array<any>>();
+    const [categories, setCategories] = useState<Array<string>>();
+    const [selectedCategory, setCategory] = useState<string>("smartphones");
+    const selectCategory = (category: string)=>{
+        setCategory(()=> category);
+        console.log("clicked")
+    }
+
+    console.log(selectedCategory)
+
+    const productQuery = useQuery(
         "products", 
-        getAllProducts,
+        () => getCategorywiseProduct(selectedCategory),
         {
             onSuccess: (responseData)=>{
                 if(responseData.status===200 && typeof(responseData.message)==="object"){
-                    setProducts(responseData.message);
-                    console.log(products)
+                    setProducts(responseData.message.products);
+                }
+            }
+        }
+    );
+
+    const categoryQuery= useQuery(
+        "categories", 
+        productCategory,
+        {
+            onSuccess: (responseData)=>{
+                if(responseData.status===200 && typeof(responseData.message)==="object"){
+                    setCategories(responseData.message);
                 }
             }
             
         }
     );
+
+    useEffect(()=>{
+        productQuery.refetch();
+    },[selectedCategory])
     
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
@@ -55,9 +79,18 @@ function Shopping(){
                     </Box>
                 </Flex>
                 <Divider borderColor={"#df9fd1"}/>
-                <CategoryList category="smartphones"/>
-                <CategoryList category="furniture"/>
-                <CategoryList category="lighting"/>
+                {
+                    (categoryQuery.data?.status===200)
+                    &&
+                    categories?.map((items:any, index: number)=>
+                        <CategoryList 
+                            category={items} 
+                            onClickFunction={()=>selectCategory(items)}
+                            selected={selectedCategory}
+                            key={index}
+                        />
+                    )
+                }
             </Flex>
             <Flex 
                 direction={"column"}
@@ -83,7 +116,7 @@ function Shopping(){
                     <Flex my={4}>
                         <SimpleGrid templateColumns={columns} gap={6}>
                         {
-                            (data?.status===200)
+                            (productQuery.data?.status===200)
                             &&
                             products?.map((items:any, index: number)=>
                                 <ItemCard 
