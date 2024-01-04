@@ -1,4 +1,5 @@
 import { 
+    useToast,
     Box,
     Divider,
     Flex, 
@@ -18,6 +19,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
 import { getCategorywiseProduct, productCategory } from "../../services/crud";
 import { useEffect, useState } from "react";
+import useCartStore from "../../stores/cartStore";
 
 function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
@@ -25,12 +27,24 @@ function Shopping(){
     const [products, setProducts] = useState<Array<any>>();
     const [categories, setCategories] = useState<Array<string>>();
     const [selectedCategory, setCategory] = useState<string>("smartphones");
+
+    const addItemToCart = useCartStore((state:any)=>state.addItemToCart);
+
+    const toast = useToast();
+
+    const itemAddToCart = (item:any)=>{
+        addItemToCart(item);
+        toast({
+            title: `${item.title} added to cart.`,
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+        })
+    }
+    
     const selectCategory = (category: string)=>{
         setCategory(()=> category);
-        console.log("clicked")
     }
-
-    console.log(selectedCategory)
 
     const productQuery = useQuery(
         "products", 
@@ -123,6 +137,7 @@ function Shopping(){
                                     title={items.title} 
                                     price={items.price}
                                     thumbnail={items.thumbnail} 
+                                    addToCart={()=>itemAddToCart(items)}
                                     key= {index}
                                 />
                             )

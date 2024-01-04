@@ -6,7 +6,9 @@ import {
 import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
 import CustomButton from "../../components/CustomButton";
+import useCartStore from "../../stores/cartStore";
 function Carts(){
+    const items = useCartStore((state:any)=>state.items);
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -30,7 +32,6 @@ function Carts(){
                             rounded={"base"}
                             py={7}
                             px={{"md":20}}
-                            // bgColor={"#fff6f9"}
                             gap={5}
                             shadow={"lg"}
                         >
@@ -40,9 +41,19 @@ function Carts(){
                                 gap={5} 
                                 maxWidth={{"md":600}}
                             >
-                                <CartItems title="testshbjdsb" price={49387}/>
-                                <CartItems title="testshbjdsb" price={49387}/>
-                                <CartItems title="testshbjdsb" price={49387}/>
+                                {
+                                    items
+                                    &&
+                                    items.map((item:any,key:number)=>
+                                        <CartItems 
+                                        thumbnail={item.thumbnail}
+                                            title={item.title} 
+                                            price={item.price} 
+                                            brand={item.brand}
+                                            discount={item.discountPercentage}
+                                            key={key}
+                                        />)
+                                }
                             </Flex>
                         </Box>
                         <Box width={"100%"} display={"flex"} justifyContent={"end"}>
