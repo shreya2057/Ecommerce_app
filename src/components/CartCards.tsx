@@ -1,9 +1,7 @@
 import { 
     Box, 
-    Button, 
     Card, 
     CardBody, 
-    CardFooter, 
     Flex, 
     Heading, 
     Image, 
@@ -13,7 +11,7 @@ import {
 function CartItems(pt:{title:string, price: number}){
     return (
         <Card 
-            width={"500px"}
+            width={{"md":"500px"}}
             height={"min-content"}
             borderWidth={1} 
             borderColor={"#ffd5e5"}

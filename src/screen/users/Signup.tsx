@@ -11,7 +11,8 @@ import {
     Heading,
     InputGroup,
     InputRightElement,
-    IconButton
+    IconButton,
+    useBreakpointValue
     // Container 
 } from "@chakra-ui/react";
 // import { useNavigate } from "react-router-dom";
@@ -20,8 +21,10 @@ import CustomButton from "../../components/CustomButton";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 function SignUp(){    
-    const [showPassword, setshowPassword] = useState(false)
-    const passwordVisibility = () => setshowPassword(!showPassword)
+    const [showPassword, setshowPassword] = useState(false);
+    const passwordVisibility = () => setshowPassword(!showPassword);
+    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
+
 
     return (
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
@@ -30,7 +33,7 @@ function SignUp(){
                 height={"100%"}
                 bgColor={"#c691a4"}
                 direction={"column"}
-                // hidden = {hidden}
+                hidden = {hidden}
             >   
                 <Image src={Signup} height={"100%"}/>
             </Flex>
@@ -59,7 +62,7 @@ function SignUp(){
                                 >
                                     <FormLabel htmlFor="name">Email</FormLabel>
                                     <Input 
-                                        width={350}
+                                        width={{"base":220,"md":350}}
                                         placeholder="Enter your email" 
                                         bgColor={"white"}
                                         type="text"
@@ -83,9 +86,9 @@ function SignUp(){
                                 >
                                     <FormLabel htmlFor="name">Password</FormLabel>
                                     
-                                    <InputGroup size='md' backgroundColor={"white"} display={"flex"}>
+                                    <InputGroup size='md' backgroundColor={"white"} display={"flex"}  width={{"base":220,"md":350}}>
                                         <Input 
-                                            width={350}
+                                           
                                             borderColor={"#ffd5e5"}
                                             placeholder="Enter your password" 
                                             bgColor={"white"}
@@ -101,9 +104,10 @@ function SignUp(){
                                             //     )
                                             // }
                                         />
-                                        <InputRightElement width='4.5rem' alignSelf={"center"}>
+                                        <InputRightElement width={{"base": "2rem", "md":'4.5rem'}} alignSelf={"center"}>
                                             <IconButton 
-                                                h='1.75rem' 
+                                                width={{"base": "1rem", "md":'4.5rem'}}
+                                                h={{"base": "0.75rem", "md":'1.75rem'}} 
                                                 size='sm' 
                                                 aria-label="Password"
                                                 backgroundColor={"inherit"}

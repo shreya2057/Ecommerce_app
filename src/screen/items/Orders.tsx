@@ -7,7 +7,8 @@ import {
     Th, 
     Thead,
     Tr,
-    Heading
+    Heading,
+    Box
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
 function Orders(){
@@ -26,9 +27,8 @@ function Orders(){
                     <Flex direction={"row"} align={"center"} justifyContent={"space-between"}>
                         <Heading fontSize={"lg"} >Ordered Products</Heading>
                     </Flex>
-                    <Flex width={"100%"} align={"center"} m={4}>
+                    <Box width={{"base":300,"md":700, "lg": "100%"}} display={"flex"} alignContent={"center"} m={4} overflowX={"auto"}>
                         <TableContainer  
-                            width={"min-content"}  
                             borderWidth={1} 
                             borderColor={"#ffd5e5"}
                             rounded={"base"}
@@ -69,7 +69,7 @@ function Orders(){
                                 </Tbody>
                             </Table>
                         </TableContainer>
-                    </Flex>
+                    </Box>
                 </Flex>
             </Flex>
         </Flex>

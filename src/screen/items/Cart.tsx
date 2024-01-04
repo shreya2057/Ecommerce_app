@@ -1,8 +1,7 @@
 import {
     Flex,
     Heading,
-    Box,
-    Text
+    Box
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
@@ -25,13 +24,12 @@ function Carts(){
                     </Flex>
                     <Flex width={"100%"} direction={"column"} gap={5} m={4}>
                         <Box 
-                            // borderWidth={1} 
                             display={"flex"}
                             flexDirection={"column"}
                             borderColor={"#ffd5e5"}
                             rounded={"base"}
                             py={7}
-                            px={20}
+                            px={{"md":20}}
                             // bgColor={"#fff6f9"}
                             gap={5}
                             shadow={"lg"}
@@ -40,7 +38,7 @@ function Carts(){
                                 direction={"column"} 
                                 align={"center"} 
                                 gap={5} 
-                                maxWidth={600}
+                                maxWidth={{"md":600}}
                             >
                                 <CartItems title="testshbjdsb" price={49387}/>
                                 <CartItems title="testshbjdsb" price={49387}/>

@@ -8,12 +8,24 @@ import {
     Center, 
     FormLabel, 
     Stack,
-    Heading
+    Heading,
+    InputGroup,
+    InputRightElement,
+    IconButton,
+    useBreakpointValue
+    // Container 
 } from "@chakra-ui/react";
 // import { useNavigate } from "react-router-dom";
 import Signup from "../../app-images/signup.jpg"
 import CustomButton from "../../components/CustomButton";
+import { useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 function Login(){    
+    const [showPassword, setshowPassword] = useState(false)
+    const passwordVisibility = () => setshowPassword(!showPassword)
+    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
+
+
     return (
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -21,7 +33,7 @@ function Login(){
                 height={"100%"}
                 bgColor={"#c691a4"}
                 direction={"column"}
-                // hidden = {hidden}
+                hidden = {hidden}
             >   
                 <Image src={Signup} height={"100%"}/>
             </Flex>
@@ -44,13 +56,13 @@ function Login(){
                             // onSubmit={handleSubmit(submit_data)}
                         >
                             <Stack spacing={5}>
-                                <Heading fontSize={"xl"}>Login</Heading>
+                                <Heading fontSize={"xl"}>Create account</Heading>
                                 <FormControl 
                                     // isInvalid={!!errors.name}
                                 >
                                     <FormLabel htmlFor="name">Email</FormLabel>
                                     <Input 
-                                        width={350}
+                                        width={{"base":220,"md":350}}
                                         placeholder="Enter your email" 
                                         bgColor={"white"}
                                         type="text"
@@ -73,29 +85,45 @@ function Login(){
                                     // isInvalid={!!errors.start}
                                 >
                                     <FormLabel htmlFor="name">Password</FormLabel>
-                                    <Input 
-                                        width={350}
-                                        borderColor={"#ffd5e5"}
-                                        placeholder="*****" 
-                                        bgColor={"white"}
-                                        type="password"
-                                        shadow={"md"}
-                                        // {
-                                        //     ...register(
-                                        //         "start",
-                                        //         {
-                                        //             required: "Start Date cannot be empty"
-                                        //         }
-                                        //     )
-                                        // }
-                                    />
+                                    
+                                    <InputGroup size='md' backgroundColor={"white"} display={"flex"}  width={{"base":220,"md":350}}>
+                                        <Input 
+                                           
+                                            borderColor={"#ffd5e5"}
+                                            placeholder="Enter your password" 
+                                            bgColor={"white"}
+                    
+                                            type={showPassword ? "text" : "password"}
+                                            shadow={"md"}
+                                            // {
+                                            //     ...register(
+                                            //         "start",
+                                            //         {
+                                            //             required: "Start Date cannot be empty"
+                                            //         }
+                                            //     )
+                                            // }
+                                        />
+                                        <InputRightElement width={{"base": "2rem", "md":'4.5rem'}} alignSelf={"center"}>
+                                            <IconButton 
+                                                width={{"base": "1rem", "md":'4.5rem'}}
+                                                h={{"base": "0.75rem", "md":'1.75rem'}} 
+                                                size='sm' 
+                                                aria-label="Password"
+                                                backgroundColor={"inherit"}
+                                                _hover={{bgColor: "white"}}
+                                                icon={showPassword ? <ViewIcon/> : <ViewOffIcon/>}
+                                                onClick={passwordVisibility}
+                                            />
+                                        </InputRightElement>
+                                    </InputGroup>
                                     <FormErrorMessage>
                                         {/* {errors.start?.message} */}
                                     </FormErrorMessage>
                                 </FormControl>    
                                 <Center>
                                     <Box p={0} borderColor={"#653059"} borderWidth={1} rounded={"md"}>
-                                        <CustomButton label="SignUp"/>
+                                        <CustomButton label="Login"/>
                                     </Box>
                                 </Center>                 
                             </Stack>

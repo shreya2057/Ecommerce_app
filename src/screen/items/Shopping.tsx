@@ -17,8 +17,8 @@ import Banner from "../../components/Banner";
 import { SearchIcon } from "@chakra-ui/icons";
 
 function Shopping(){
-    const hidden = useBreakpointValue({"base": true, "xl": false});
-    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "lg": "repeat(4, 1fr)"})
+    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
+    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"})
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -49,10 +49,10 @@ function Shopping(){
             >
                 <Banner/>   
                 <Flex direction={"column"} width={"min-content"} alignSelf={"center"}>
-                    <Flex direction={"row"} align={"center"} justifyContent={"space-between"}>
+                    <Flex direction={"row"} gap = {{"base": 6, "md":0}} align={"center"} justifyContent={"space-between"}>
                         <form>
                             <FormControl>
-                                <InputGroup width={400}>
+                                <InputGroup width={{"base":200,"md":400}}>
                                     <InputLeftElement pointerEvents='none'>
                                         <SearchIcon color='gray.300' />
                                     </InputLeftElement>

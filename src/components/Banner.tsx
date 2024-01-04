@@ -2,27 +2,33 @@ import {
     Box, 
     Flex, 
     Heading,
-    Text
+    Text,
+    useBreakpointValue
 } from "@chakra-ui/react";
 import {  RiShoppingBag2Line } from "react-icons/ri";
 
 function Banner(){
+    const hideText = useBreakpointValue({"base": true, "md":false}) 
     return(
         <Box 
             width={"100%"}
+            maxW={{"base": 800, "md": 900, "lg": "100%"}}
             display={"flex"}
-            flexDirection={"row"}
+            flexDirection={{"base":"column","md": "row"}}
             py={4}
             px={14}
             bgColor={"#fff6f9"}
-            justifyContent={"space-between"}
-            alignContent={"center"}
+            justifyContent={{"base": "center","md":"space-between"}}
+            alignItems={"center"}
         >
             <Flex 
                 direction={"column"}
                 flex={1}
+                width={"100%"}
+                alignItems={{"base": "center", "md": "start"}}
                 alignSelf={"center"} 
-                maxWidth={600}
+                maxWidth={{"lg":600}}
+                
                 gap={1}
             >
                 <Heading fontSize={"lg"} textColor={"#4d2f56"}>Ecommerce App</Heading>
@@ -30,7 +36,8 @@ function Banner(){
                     <Text 
                         fontSize={"md"} 
                         textColor={"#4d2f56"}
-                        textAlign={{"base": "justify", "md": "left"}}
+                        textAlign={"left"}
+                        hidden={hideText}
                     >   
                         Seamless Shopping, Boundless Selections: Dive into the Retail Odyssey.
                     </Text>
