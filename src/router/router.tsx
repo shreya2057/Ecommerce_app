@@ -8,7 +8,6 @@ import Shopping from "../screen/items/Shopping";
 import Orders from "../screen/items/Orders";
 import Login from "../screen/users/Login";
 import SignUp from "../screen/users/Signup";
-import UserDetails from "../screen/users/UserDetails";
 import HomeScreen from "../screen/Home";
 import Carts from "../screen/items/Cart";
 
@@ -25,11 +24,6 @@ function AppRouter(){
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/signup" element={<SignUp/>}/>
                     </Route>
-                    
-                    
-                   
-                    
-                    <Route path="/userdetails" element={<UserDetails/>}/>
                 </Routes>
             </Router>
         </>
