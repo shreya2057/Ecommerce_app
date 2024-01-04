@@ -112,7 +112,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                         gap={{"base": 1,"md":6}}
                         align={{"base":"start","md":"center"}}
                     >
-                        <Link to={"/"}>
+                        <Link to={"/cart"}>
                             <Box display={"flex"} gap={2}>
                                 <Box display={"flex"} alignSelf={"center"}>
                                     <HiOutlineShoppingCart/>

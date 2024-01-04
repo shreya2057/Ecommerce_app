@@ -5,12 +5,12 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import Shopping from "../screen/items/Shopping";
-import Cart from "../screen/items/Cart";
 import Orders from "../screen/items/Orders";
 import Login from "../screen/users/Login";
 import SignUp from "../screen/users/Signup";
 import UserDetails from "../screen/users/UserDetails";
 import HomeScreen from "../screen/Home";
+import Carts from "../screen/items/Cart";
 
 function AppRouter(){
     return (
@@ -21,8 +21,9 @@ function AppRouter(){
                         <Route path="/" element={<HomeScreen/>}/>
                         <Route path="/shopping" element={<Shopping/>}/>
                         <Route path="/orders" element={<Orders/>}/>
+                        <Route path="/cart" element={<Carts/>}/>
                     </Route>
-                    <Route path="/cart" element={<Cart/>}/>
+                    
                     
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
