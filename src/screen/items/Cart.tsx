@@ -9,6 +9,16 @@ import CustomButton from "../../components/CustomButton";
 import useCartStore from "../../stores/cartStore";
 function Carts(){
     const items = useCartStore((state:any)=>state.items);
+    const removeItemFromCart = useCartStore((state:any)=>state.removeItemFromCart);
+    console.log(items);
+    const buyItems = ()=>{
+
+    }
+
+    const removeItems = (item:any)=>{
+        console.log(item.id);
+        removeItemFromCart(item.id);
+    }
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -49,13 +59,18 @@ function Carts(){
                                             price={item.price} 
                                             brand={item.brand}
                                             discount={item.discountPercentage}
+                                            quantity={item.quantity}
+                                            removeItem={()=>removeItems(item)}
                                             key={key}
                                         />)
                                 }
                             </Flex>
                         </Box>
                         <Box width={"100%"} display={"flex"} justifyContent={"end"}>
-                            <CustomButton label="Buy Items"/>  
+                            <CustomButton 
+                                label="Buy Items" 
+                                // onClickFunction={()=>console.log("test")}
+                            />  
                         </Box>              
                     </Flex>
                 </Flex>

@@ -29,11 +29,29 @@ function Shopping(){
     const [selectedCategory, setCategory] = useState<string>("smartphones");
 
     const addItemToCart = useCartStore((state:any)=>state.addItemToCart);
+    const updateCartQuantity = useCartStore((state:any)=>state.updateCartQuantity);
+    const items = useCartStore((state:any)=>state.items)
 
     const toast = useToast();
 
     const itemAddToCart = (item:any)=>{
-        addItemToCart(item);
+       
+        const itemExits = (items.find((product:any)=>product.id===item.id))
+        if(itemExits){
+           const newQuantity = itemExits.quantity + 1;
+           const test = items.map((product:any)=>{
+            if(product.id===itemExits.id){
+                return {...product, ["quantity"]: newQuantity}
+            } else {return{...product}}
+           })
+
+           console.log(test);
+            // const itemToBeAdded = {...item, quantity: newQuantity }
+            updateCartQuantity(itemExits.id, newQuantity);
+        }else{
+            const itemToBeAdded = {...item, quantity: 1 }
+            addItemToCart(itemToBeAdded);
+        }
         toast({
             title: `${item.title} added to cart.`,
             status: 'success',

@@ -2,13 +2,23 @@ import {
     Box, 
     Card, 
     CardBody, 
+    CloseButton, 
     Flex, 
     Heading, 
     Image, 
     Text 
 } from "@chakra-ui/react"
 
-function CartItems(pt:{thumbnail:string, title:string, price: number, brand: string, discount: number}){
+function CartItems(
+    pt:{
+        thumbnail:string, 
+        title:string, 
+        price: number, 
+        brand: string, 
+        discount: number,
+        quantity: string
+        removeItem: ()=>void
+    }){
     return (
         <Card 
             width={{"md":"500px"}}
@@ -20,7 +30,8 @@ function CartItems(pt:{thumbnail:string, title:string, price: number, brand: str
             
            
         >
-            <CardBody display={"flex"} flexDirection={"row"} m={0} p={0} alignContent={"center"}>
+            <CardBody display={"flex"} flexDirection={"row"} m={0} p={0} alignContent={"center"} justifyContent={"space-between"}>
+                <Flex direction={"row"}>
                 <Box 
                     width={36} 
                     height={36} 
@@ -66,6 +77,18 @@ function CartItems(pt:{thumbnail:string, title:string, price: number, brand: str
                     >
                         <b>Discount: </b>{pt.discount}%
                     </Text>
+                    <Text 
+                        textColor={"#b87c94"} 
+                        fontSize={"sm"} 
+                        mx={6} 
+                        mb={1}
+                    >
+                        <b>Quantity: </b>{pt.quantity}
+                    </Text>
+                </Flex>
+                </Flex>
+                <Flex m={3}>
+                    <CloseButton size='sm' onClick={pt.removeItem}/>
                 </Flex>
             </CardBody>
         </Card>
