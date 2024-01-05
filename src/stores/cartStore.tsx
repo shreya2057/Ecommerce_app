@@ -40,6 +40,15 @@ const useCartStore = create((set)=>({
           items: state.items.filter((item:any)=>item.id!==id)
         }
       ))
+    },
+    clearStates: 
+    ()=>{
+      set((state:any)=>(
+        {
+          items: [],
+          orderNumber: 0
+        }
+      ))
     }
 }))
 

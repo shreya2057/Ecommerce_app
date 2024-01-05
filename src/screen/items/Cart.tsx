@@ -7,24 +7,27 @@ import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
 import CustomButton from "../../components/CustomButton";
 import useCartStore from "../../stores/cartStore";
+import { useNavigate } from "react-router-dom";
 function Carts(){
     const items = useCartStore((state:any)=>state.items);
+    const clearStates = useCartStore((state:any)=>state.clearStates);
     const removeItemFromCart = useCartStore((state:any)=>state.removeItemFromCart);
+    const naviagte = useNavigate();
     const buyItems = ()=>{
-            const products = [];
+        if(items.length!==0){
+            var products = []
             const productData:any = localStorage.getItem("products")
             if(productData !== null){
-                const currentData:Array<string>|null = JSON.parse(productData);
-                currentData?.forEach((item)=>products.push(item));
-                products.push(items);
-                console.log(products)
+                const currentData:Array<string> = JSON.parse(productData);
+                products = [...currentData,...items];
                 localStorage.setItem("products", JSON.stringify(products));
             } else {
-                products.push(items);
-                console.log(products)
-
-                localStorage.setItem("products", JSON.stringify(products));
+                localStorage.setItem("products", JSON.stringify(items));
             }
+        }
+        naviagte("/orders");  
+        clearStates();
+        
     }
 
     const removeItems = (item:any)=>{
@@ -81,7 +84,7 @@ function Carts(){
                         <Box width={"100%"} display={"flex"} justifyContent={"end"}>
                             <CustomButton 
                                 label="Buy Items" 
-                                onClickFunction={buyItems()}
+                                onClickFunction={()=>buyItems()}
                             />  
                         </Box>              
                     </Flex>

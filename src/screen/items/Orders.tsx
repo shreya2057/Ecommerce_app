@@ -11,7 +11,14 @@ import {
     Box
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
+import { useEffect, useState } from "react";
 function Orders(){
+    const [orderedProducts, setOrderedProducts] = useState<Array<string>>()
+    useEffect(()=>{
+        const orderData:any = localStorage.getItem("products");
+        const orders:Array<string> = JSON.parse(orderData);
+        setOrderedProducts(orders);
+    },[]);
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
             <Flex 
@@ -37,35 +44,28 @@ function Orders(){
                             <Table variant='simple'>
                                 <Thead>
                                     <Tr>
-                                    <Th>Order No</Th>
-                                    <Th>Product Name</Th>
-                                    <Th>Category</Th>
-                                    <Th>Product Price</Th>
-                                    <Th>Delivery status</Th>
+                                        <Th>Order No</Th>
+                                        <Th>Product Name</Th>
+                                        <Th>Category</Th>
+                                        <Th>Product Price</Th>
+                                        <Th>Quantity</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
-                                    <Tr>
-                                        <Td>457856985</Td>
-                                        <Td>Samsung</Td>
-                                        <Td>Smartphones</Td>
-                                        <Td>254</Td>
-                                        <Td>Shipped</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>487548569</Td>
-                                        <Td>Moterbike</Td>
-                                        <Td>Vehicles</Td>
-                                        <Td>254</Td>
-                                        <Td>Shipped</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>487548569</Td>
-                                        <Td>Moterbike</Td>
-                                        <Td>Smartphones</Td>
-                                        <Td>254</Td>
-                                        <Td>Shipped</Td>
-                                    </Tr>
+                                    {
+                                        orderedProducts?.length!==0
+                                        &&
+                                        orderedProducts?.map(
+                                            (item:any, key: number)=>
+                                            <Tr key={key}>
+                                                <Td>{item.orderNumber}</Td>
+                                                <Td>{item.title}</Td>
+                                                <Td>{item.category}</Td>
+                                                <Td>${item.price}</Td>
+                                                <Td>{item.quantity}</Td>
+                                            </Tr>
+                                        )
+                                    }
                                 </Tbody>
                             </Table>
                         </TableContainer>
