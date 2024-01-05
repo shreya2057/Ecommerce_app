@@ -128,7 +128,8 @@ function Shopping(){
                 direction={"column"}
                 hidden = {hidden}
             >   
-                <Flex px={5} py={3} display={"flex"} gap={1} flexDirection={"row"} height={"min-content"}>
+                
+                <Flex px={5} py={3} display={"flex"} gap={1} flexDirection={"row"} height={"min-content"} overflow={"hidden"}>
                     <Box alignSelf={"center"} fontSize={"xl"} textColor={"#653059"}>
                         <BiListUl/>
                     </Box>
@@ -137,18 +138,28 @@ function Shopping(){
                     </Box>
                 </Flex>
                 <Divider borderColor={"#df9fd1"}/>
-                {
-                    (categoryQuery.data?.status===200)
-                    &&
-                    categories?.map((items:any, index: number)=>
-                        <CategoryList 
-                            category={items} 
-                            onClickFunction={(event)=>{selectCategory(event,items)}}
-                            selected={selectedCategory}
-                            key={index}
-                        />
-                    )
-                }
+                <Flex 
+                    height={"55%"} 
+                    direction={"column"} 
+                    overflowY={"scroll"}  
+                    sx={{
+                    '&::-webkit-scrollbar': {
+                    width: '0px',
+                    }
+                }}>
+                    {
+                        (categoryQuery.data?.status===200)
+                        &&
+                        categories?.map((items:any, index: number)=>
+                            <CategoryList 
+                                category={items} 
+                                onClickFunction={(event)=>{selectCategory(event,items)}}
+                                selected={selectedCategory}
+                                key={index}
+                            />
+                        )
+                    }
+                </Flex>
             </Flex>
             <Flex 
                 direction={"column"}
