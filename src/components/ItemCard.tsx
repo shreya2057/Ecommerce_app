@@ -9,7 +9,7 @@ import {
     Text 
 } from "@chakra-ui/react"
 
-function ItemCard(pt:{title:string, price: number, thumbnail: string, addToCart: ()=>void}){
+function ItemCard(pt:{title:string, price: number, thumbnail: string, addToCart: (event:any)=>void}){
     const title = pt.title.substring(0, 15) + "...";
     return (
         <Card 
@@ -60,7 +60,7 @@ function ItemCard(pt:{title:string, price: number, thumbnail: string, addToCart:
                     px={4} 
                     _hover={{bgColor: "#f8efe7"}}
                     textColor={"#b87c94"}
-                    onClick={pt.addToCart}
+                    onClick={(event)=>pt.addToCart(event)}
                 >
                     Add to cart
                 </Button>

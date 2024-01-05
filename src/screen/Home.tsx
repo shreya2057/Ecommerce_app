@@ -3,11 +3,11 @@ import {
     Flex, 
     Heading,
     Box,
-    Stack
+    Stack,
+    Button
 } from "@chakra-ui/react";
 
-import { RiShoppingCartFill } from "react-icons/ri"
-import CustomButton from "../components/CustomButton";
+import { RiShoppingCartFill } from "react-icons/ri";
 
 function HomeScreen(){
     return (
@@ -61,7 +61,7 @@ function HomeScreen(){
                         </Box>
                     </Flex>
                     <Box display={"flex"} justifyContent={{"base":"center", "md": "start"}}>
-                        <CustomButton label={"Explore our product"}/>
+                        <Button>Explore our product</Button>
                     </Box>
                 </Box>                
             </Flex>

@@ -3,7 +3,6 @@ import {
     Box,
     Divider,
     Flex, 
-    FormControl,
     Heading,
     Input,
     InputGroup,
@@ -18,18 +17,16 @@ import ItemCard from "../../components/ItemCard";
 import Banner from "../../components/Banner";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useQuery } from "react-query";
-import { getCategorywiseProduct, productCategory } from "../../services/crud";
-import { useEffect, useState } from "react";
+import { getCategorywiseProduct, productCategory, searchOperation } from "../../services/crud";
+import { useState } from "react";
 import useCartStore from "../../stores/cartStore";
 import { useNavigate } from "react-router-dom";
 
 function Shopping(){
-    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
-    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": "repeat(3, 1fr)", "xl": "repeat(4, 1fr)"});
-    const [products, setProducts] = useState<Array<any>>();
-    const [categories, setCategories] = useState<Array<string>>();
+    const [products, setProducts] = useState<Array<object>>([]);
+    const [searchText, setSearchText] = useState("");
+    const [categories, setCategories] = useState<any>();
     const [selectedCategory, setCategory] = useState<string>("smartphones");
-
     const addItemToCart = useCartStore((state:any)=>state.addItemToCart);
     const updateCartQuantity = useCartStore((state:any)=>state.updateCartQuantity);
     const items = useCartStore((state:any)=>state.items);
@@ -37,13 +34,14 @@ function Shopping(){
     const generateOrderNumber = useCartStore((state:any)=>state.generateOrderNumber);
     const naviagte = useNavigate();
     const toast = useToast();
-
-    const itemAddToCart = (item:any)=>{
-       
+    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
+    const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": `repeat(${(products?.length>=3)?3:products?.length}, 1fr)`, "xl": `repeat(${(products?.length>=4)?4:products?.length}, 1fr)`});
+    
+    const itemAddToCart = (event:any, item:any)=>{
+       event.preventDefault();
         const itemExits = (items.find((product:any)=>product.id===item.id))
         if(itemExits){
            const newQuantity = itemExits.quantity + 1;
-           console.log(itemExits);
             updateCartQuantity(itemExits.id, newQuantity, orderNumber);
         }else{
             if(orderNumber===0){
@@ -64,38 +62,62 @@ function Shopping(){
         })
     }
     
-    const selectCategory = (category: string)=>{
-        setCategory(()=> category);
-    }
-
     const productQuery = useQuery(
         "products", 
-        () => getCategorywiseProduct(selectedCategory),
+        () => getCategorywiseProduct(selectedCategory!=="" ? selectedCategory: "smartphones"),
         {
             onSuccess: (responseData)=>{
                 if(responseData.status===200 && typeof(responseData.message)==="object"){
-                    setProducts(responseData.message.products);
+                    if(searchText===""){
+                        setProducts(responseData.message.products);
+                    }
                 }
             }
         }
     );
+
+    const searchProductsQuery = useQuery(
+        "search",
+        ()=>searchOperation(searchText),
+        {
+            onSuccess: (responseData)=>{
+                if(responseData.status===200 && typeof(responseData.message)==="object"){
+                    if(searchText!==""){
+                        setProducts(responseData.message.products);
+                    }
+                }
+            }
+        }
+    )
 
     const categoryQuery= useQuery(
         "categories", 
         productCategory,
         {
             onSuccess: (responseData)=>{
-                if(responseData.status===200 && typeof(responseData.message)==="object"){
+                if(responseData.status===200 ){
                     setCategories(responseData.message);
                 }
             }
-            
         }
     );
 
-    useEffect(()=>{
+    const selectCategory = async(event:any,category: string)=>{
+        event.preventDefault();
+        await updateCategory(category);
         productQuery.refetch();
-    },[selectedCategory])
+    }
+
+    const updateCategory = async(category:string)=>{
+        setCategory(category);
+        setSearchText("");
+    }
+    
+    const searchFunction = async(event:any)=>{
+        event.preventDefault();
+        setCategory("");
+        searchProductsQuery.refetch();
+    }
     
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
@@ -121,7 +143,7 @@ function Shopping(){
                     categories?.map((items:any, index: number)=>
                         <CategoryList 
                             category={items} 
-                            onClickFunction={()=>selectCategory(items)}
+                            onClickFunction={(event)=>{selectCategory(event,items)}}
                             selected={selectedCategory}
                             key={index}
                         />
@@ -135,39 +157,43 @@ function Shopping(){
                 gap={4} 
             >
                 <Banner/>   
-                <Flex direction={"column"} width={"min-content"} alignSelf={"center"}>
-                    <Flex direction={"row"} gap = {{"base": 6, "md":0}} align={"center"} justifyContent={"space-between"}>
-                        <form>
-                            <FormControl>
-                                <InputGroup 
-                                    width={{"base":200,"md":400}} 
-                                    borderColor={"#ffd5e5"} 
-                                    _hover={{
-                                        borderColor: "#ffd5e5"
-                                    }}
+                <Flex direction={"column"} flex={1} alignSelf={"center"} width={"100%"}>
+                    <Flex direction={"row"} width={"100%"}  gap = {{"base": 6, "md":0}} align={"center"} justifyContent={"space-between"} px={28}>
+                        <form 
+                            onSubmit={(event)=>searchFunction(event)}
+                        >
+                            <InputGroup 
+                                width={{"base":200,"md":400}}
+                                borderColor={"#ffd5e5"} 
+                                _hover={{
+                                    borderColor: "#ffd5e5"
+                                }}
+                                _active={{
+                                    borderColor: "#ffd5e5"
+                                }}
+                            >
+                                <InputLeftElement pointerEvents='none'>
+                                    <SearchIcon color='gray.300' />
+                                </InputLeftElement>
+                                <Input 
+                                    type='text' 
+                                    placeholder='Search products' 
                                     _active={{
                                         borderColor: "#ffd5e5"
                                     }}
-                                >
-                                    <InputLeftElement pointerEvents='none'>
-                                        <SearchIcon color='gray.300' />
-                                    </InputLeftElement>
-                                    <Input 
-                                        type='text' 
-                                        placeholder='Search products' 
-                                        _active={{
-                                            borderColor: "#ffd5e5"
-                                        }}
-                                        _hover={{
-                                            borderColor: "#ffd5e5"
-                                        }}/>
-                                </InputGroup>
-                            </FormControl>
+                                    value={searchText}
+                                    _hover={{
+                                        borderColor: "#ffd5e5"
+                                    }}
+                                    onChange={(event)=>setSearchText(event.target.value)}
+                                />
+                            </InputGroup>
                         </form>
                         <Button 
                             bgColor={"inherit"}
+                            textColor={"brand.900"}
                             _hover={{
-                                backgroundColor: "#f8efe7"
+                                backgroundColor: "brand.300"
                             }}
                             fontSize={"lg"}
                             fontWeight={"bold"}
@@ -179,8 +205,8 @@ function Shopping(){
                             <u>Carts</u>
                         </Button>
                     </Flex>
-                    <Flex my={4}>
-                        <SimpleGrid templateColumns={columns} gap={6}>
+                    <Flex my={4} width={"100%"} justifyContent={"center"}>
+                        <SimpleGrid templateColumns={columns} gap={6} width={"min-content"} alignItems={"center"} justifyItems={"center"}>
                         {
                             (productQuery.data?.status===200)
                             &&
@@ -189,7 +215,7 @@ function Shopping(){
                                     title={items.title} 
                                     price={items.price}
                                     thumbnail={items.thumbnail} 
-                                    addToCart={()=>itemAddToCart(items)}
+                                    addToCart={(event)=>itemAddToCart(event,items)}
                                     key= {index}
                                 />
                             )

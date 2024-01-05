@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 import { BiRightArrow } from "react-icons/bi";
 
-function CategoryList(pt:{category:string, onClickFunction: ()=>void, selected: String}){
+function CategoryList(pt:{category:string, onClickFunction: (event:any)=>void, selected: String}){
     const activeStatus = pt.category===pt.selected
     return (
         <Flex direction={"column"}>
@@ -9,7 +9,7 @@ function CategoryList(pt:{category:string, onClickFunction: ()=>void, selected: 
             justifyContent={"start"} 
             rounded={"none"} 
             backgroundColor={"inherit"}
-            onClick={pt.onClickFunction}
+            onClick={(event:any)=>pt.onClickFunction(event)}
             id={pt.category}
             _active={{
                 backgroundColor: "#eda6c8"

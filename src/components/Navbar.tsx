@@ -26,7 +26,7 @@ function NavBar(pt: {loggedIn: Boolean}){
         <Flex 
             direction={{"base": "column", "md": "row"}} 
             width={"100%"} 
-            bgColor={"#653059"}
+            bgColor={"brand.900"}
             py={{"md":2}}            
             justifyContent={"space-between"} 
             align={{"base":"start","md":"center"}}
@@ -34,19 +34,9 @@ function NavBar(pt: {loggedIn: Boolean}){
             <Flex gap={2} px={10} py={{"base":3, "md":0}} >
                 <IconButton 
                     hidden={buttonVisibility}
-                    bgColor={"#b87c94"} 
-                    textColor={"#fffdf0"} 
+                    variant={"iconButton"}
                     aria-label="Toggle Navigation" 
                     icon={<HamburgerIcon/>}
-                    _focus={{
-                        backgroundColor: "#b87c94"
-                    }}  
-                    _active={{
-                        backgroundColor: "#b87c94"
-                    }}  
-                    _hover={{
-                        backgroundColor: "#b87c94"
-                    }}  
                     onClick={toggleMenu}
                 />
                 <Link to={"/"}>
@@ -63,7 +53,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                 flex={{"base": 1, "md":0}}
                 width={{"base": "100%"}}
                 hidden= {menuVisibility}
-                bgColor={{"base": "#b87c94", "md": "inherit"}}
+                bgColor={{"base": "brand.800", "md": "inherit"}}
                 direction={{"base": "column", "md": "row"}} 
                 gap={{"base": 1,"md":6}} 
                 height={"100%"} 
@@ -127,7 +117,7 @@ function NavBar(pt: {loggedIn: Boolean}){
                                 alignContent={"center"}
                                 width={130}
                                 gap={1.5}  
-                                bgColor={{"md": "#b87c94"}} 
+                                bgColor={{"md": "brand.800"}} 
                                 py={{"md":1}} 
                                 px={{"md":2}} 
                                 rounded={{"md": "base"}} 

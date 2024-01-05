@@ -28,4 +28,13 @@ const productCategory = async (): Promise<Response>=>{
     }
 }
 
-export {getAllProducts, getCategorywiseProduct , productCategory};
+const searchOperation = async(text:string):Promise<Response>=>{
+    try{
+        const response = await instance.get(`https://dummyjson.com/products/search?q=${text}`);
+        return {status: response.status, message: response.data};
+    }catch(error:any){
+        return {status: 404, message: error.message};
+    }
+}
+
+export {getAllProducts, getCategorywiseProduct , productCategory, searchOperation};

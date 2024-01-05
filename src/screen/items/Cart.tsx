@@ -1,11 +1,11 @@
 import {
     Flex,
     Heading,
-    Box
+    Box,
+    Button
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
-import CustomButton from "../../components/CustomButton";
 import useCartStore from "../../stores/cartStore";
 import { useNavigate } from "react-router-dom";
 function Carts(){
@@ -31,7 +31,6 @@ function Carts(){
     }
 
     const removeItems = (item:any)=>{
-        console.log(item.id);
         removeItemFromCart(item.id);
     }
     return(
@@ -69,7 +68,7 @@ function Carts(){
                                     &&
                                     items.map((item:any,key:number)=>
                                         <CartItems 
-                                        thumbnail={item.thumbnail}
+                                            thumbnail={item.thumbnail}
                                             title={item.title} 
                                             price={item.price} 
                                             brand={item.brand}
@@ -82,10 +81,9 @@ function Carts(){
                             </Flex>
                         </Box>
                         <Box width={"100%"} display={"flex"} justifyContent={"end"}>
-                            <CustomButton 
-                                label="Buy Items" 
-                                onClickFunction={()=>buyItems()}
-                            />  
+                            <Button variant={"primary"} onClick={()=>buyItems()}>
+                                Buy Items
+                            </Button>  
                         </Box>              
                     </Flex>
                 </Flex>

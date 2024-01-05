@@ -12,12 +12,12 @@ import {
     InputGroup,
     InputRightElement,
     IconButton,
-    useBreakpointValue
+    useBreakpointValue,
+    Button
     // Container 
 } from "@chakra-ui/react";
 // import { useNavigate } from "react-router-dom";
-import Signup from "../../app-images/signup.jpg"
-import CustomButton from "../../components/CustomButton";
+import Signup from "../../app-images/signup.jpg";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 function Login(){    
@@ -123,7 +123,7 @@ function Login(){
                                 </FormControl>    
                                 <Center>
                                     <Box p={0} borderColor={"#653059"} borderWidth={1} rounded={"md"}>
-                                        <CustomButton label="Login"/>
+                                        <Button>Login</Button>
                                     </Box>
                                 </Center>                 
                             </Stack>
