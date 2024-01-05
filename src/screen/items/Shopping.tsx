@@ -9,9 +9,10 @@ import {
     InputGroup,
     InputLeftElement,
     SimpleGrid,
-    useBreakpointValue
+    useBreakpointValue,
+    Button
 } from "@chakra-ui/react";
-import { BiListUl } from "react-icons/bi";
+import { BiCart, BiListUl } from "react-icons/bi";
 import CategoryList from "../../components/CategoryList"
 import ItemCard from "../../components/ItemCard";
 import Banner from "../../components/Banner";
@@ -20,6 +21,7 @@ import { useQuery } from "react-query";
 import { getCategorywiseProduct, productCategory } from "../../services/crud";
 import { useEffect, useState } from "react";
 import useCartStore from "../../stores/cartStore";
+import { useNavigate } from "react-router-dom";
 
 function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
@@ -33,7 +35,7 @@ function Shopping(){
     const items = useCartStore((state:any)=>state.items);
     const orderNumber = useCartStore((state:any)=>state.orderNumber);
     const generateOrderNumber = useCartStore((state:any)=>state.generateOrderNumber);
-
+    const naviagte = useNavigate();
     const toast = useToast();
 
     const itemAddToCart = (item:any)=>{
@@ -145,7 +147,20 @@ function Shopping(){
                                 </InputGroup>
                             </FormControl>
                         </form>
-                        <Heading fontSize={"lg"} >Categories</Heading>
+                        <Button 
+                            bgColor={"inherit"}
+                            _hover={{
+                                backgroundColor: "#f8efe7"
+                            }}
+                            fontSize={"lg"}
+                            fontWeight={"bold"}
+                            display={"flex"}
+                            flexDirection={"row"}
+                            onClick={()=>naviagte('/cart')}
+                        >
+                            <BiCart/>
+                            <u>Carts</u>
+                        </Button>
                     </Flex>
                     <Flex my={4}>
                         <SimpleGrid templateColumns={columns} gap={6}>

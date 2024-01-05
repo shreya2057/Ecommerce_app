@@ -58,7 +58,7 @@ function ItemCard(pt:{title:string, price: number, thumbnail: string, addToCart:
                 <Button 
                     bgColor={"#f6e4ed"} 
                     px={4} 
-                    _hover={{bgColor: "inherit"}}
+                    _hover={{bgColor: "#f8efe7"}}
                     textColor={"#b87c94"}
                     onClick={pt.addToCart}
                 >

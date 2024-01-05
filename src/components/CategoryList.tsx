@@ -11,6 +11,12 @@ function CategoryList(pt:{category:string, onClickFunction: ()=>void, selected: 
             backgroundColor={"inherit"}
             onClick={pt.onClickFunction}
             id={pt.category}
+            _active={{
+                backgroundColor: "#eda6c8"
+            }}
+            _hover={{
+                backgroundColor: "#eda6c8"
+            }}
             isActive= {activeStatus?true:false}
         >
             <Box display={"flex"} gap={1} flexDirection={"row"} my={2} mx={10} fontWeight={"bold"} textColor={"#653059"}>
