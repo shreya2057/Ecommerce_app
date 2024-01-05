@@ -139,11 +139,28 @@ function Shopping(){
                     <Flex direction={"row"} gap = {{"base": 6, "md":0}} align={"center"} justifyContent={"space-between"}>
                         <form>
                             <FormControl>
-                                <InputGroup width={{"base":200,"md":400}}>
+                                <InputGroup 
+                                    width={{"base":200,"md":400}} 
+                                    borderColor={"#ffd5e5"} 
+                                    _hover={{
+                                        borderColor: "#ffd5e5"
+                                    }}
+                                    _active={{
+                                        borderColor: "#ffd5e5"
+                                    }}
+                                >
                                     <InputLeftElement pointerEvents='none'>
                                         <SearchIcon color='gray.300' />
                                     </InputLeftElement>
-                                    <Input type='text' placeholder='Search products' />
+                                    <Input 
+                                        type='text' 
+                                        placeholder='Search products' 
+                                        _active={{
+                                            borderColor: "#ffd5e5"
+                                        }}
+                                        _hover={{
+                                            borderColor: "#ffd5e5"
+                                        }}/>
                                 </InputGroup>
                             </FormControl>
                         </form>

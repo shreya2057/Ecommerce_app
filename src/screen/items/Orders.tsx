@@ -44,11 +44,11 @@ function Orders(){
                             <Table variant='simple'>
                                 <Thead>
                                     <Tr>
-                                        <Th>Order No</Th>
-                                        <Th>Product Name</Th>
-                                        <Th>Category</Th>
-                                        <Th>Product Price</Th>
-                                        <Th>Quantity</Th>
+                                        <Th borderColor= {"#ffd5e5"} borderBottomWidth={1}>Order No</Th>
+                                        <Th borderColor= {"#ffd5e5"} borderBottomWidth={1}>Product Name</Th>
+                                        <Th borderColor= {"#ffd5e5"} borderBottomWidth={1}>Category</Th>
+                                        <Th borderColor= {"#ffd5e5"} borderBottomWidth={1}>Product Price</Th>
+                                        <Th borderColor= {"#ffd5e5"} borderBottomWidth={1}>Quantity</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
@@ -58,11 +58,11 @@ function Orders(){
                                         orderedProducts?.map(
                                             (item:any, key: number)=>
                                             <Tr key={key}>
-                                                <Td>{item.orderNumber}</Td>
-                                                <Td>{item.title}</Td>
-                                                <Td>{item.category}</Td>
-                                                <Td>${item.price}</Td>
-                                                <Td>{item.quantity}</Td>
+                                                <Td borderColor= {"#ffd5e5"} borderBottomWidth={1}>{item.orderNumber}</Td>
+                                                <Td borderColor= {"#ffd5e5"} borderBottomWidth={1}>{item.title}</Td>
+                                                <Td borderColor= {"#ffd5e5"} borderBottomWidth={1}>{item.category}</Td>
+                                                <Td borderColor= {"#ffd5e5"} borderBottomWidth={1}>${item.price}</Td>
+                                                <Td borderColor= {"#ffd5e5"} borderBottomWidth={1}>{item.quantity}</Td>
                                             </Tr>
                                         )
                                     }

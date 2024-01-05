@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function CustomButton(pt:{label: string, onClickFunction:()=>void}){
+function CustomButton(pt:{label: string, onClickFunction?:()=>void}){
     return (
         <Button 
             bgColor={"#eda6c8"} 
