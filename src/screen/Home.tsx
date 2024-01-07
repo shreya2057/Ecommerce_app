@@ -61,7 +61,7 @@ function HomeScreen(){
                         </Box>
                     </Flex>
                     <Box display={"flex"} justifyContent={{"base":"center", "md": "start"}}>
-                        <Button>Explore our product</Button>
+                        <Button backgroundColor={"brand.700"}>Explore our product</Button>
                     </Box>
                 </Box>                
             </Flex>

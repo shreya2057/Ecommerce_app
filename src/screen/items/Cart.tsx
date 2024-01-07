@@ -2,7 +2,8 @@ import {
     Flex,
     Heading,
     Box,
-    Button
+    Button,
+    Text
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
@@ -63,6 +64,11 @@ function Carts(){
                                 gap={5} 
                                 maxWidth={{"md":600}}
                             >
+                                {
+                                   items.length===0
+                                   &&
+                                   <Text>No items added to cart</Text> 
+                                }
                                 {
                                     items
                                     &&
