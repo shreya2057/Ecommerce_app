@@ -29,6 +29,7 @@ function Shopping(){
     const [searchText, setSearchText] = useState("");
     const [categories, setCategories] = useState<any>();
     const [selectedCategory, setCategory] = useState<string>("smartphones");
+    const [disabled, setDisable] = useState(false);
     const addItemToCart = useCartStore((state:any)=>state.addItemToCart);
     const updateCartQuantity = useCartStore((state:any)=>state.updateCartQuantity);
     const items = useCartStore((state:any)=>state.items);
@@ -39,7 +40,7 @@ function Shopping(){
     const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
     const columns = useBreakpointValue({"base":"repeat(1, 1fr)", "md": `repeat(${(products?.length>=3)?3:products?.length}, 1fr)`, "xl": `repeat(${(products?.length>=4)?4:products?.length}, 1fr)`});
     
-    const itemAddToCart = (event:any, item:any)=>{
+    const itemAddToCart = async(event:any, item:any)=>{
        event.preventDefault();
         const itemExits = (items.find((product:any)=>product.id===item.id))
         if(itemExits){
@@ -61,7 +62,11 @@ function Shopping(){
             status: 'success',
             duration: 2000,
             isClosable: true,
-        })
+        });
+        setDisable(true);
+        setTimeout(()=>{
+            setDisable(false)
+        },1000)
     }
     
     const productQuery = useQuery(
@@ -253,6 +258,7 @@ function Shopping(){
                                         price={items.price}
                                         thumbnail={items.thumbnail} 
                                         addToCart={(event)=>itemAddToCart(event,items)}
+                                        disabled={disabled}
                                         key= {index}
                                     />
                                 )
