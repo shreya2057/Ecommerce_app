@@ -9,7 +9,9 @@ import {
     InputLeftElement,
     SimpleGrid,
     useBreakpointValue,
-    Button
+    Button,
+    Spinner,
+    Text
 } from "@chakra-ui/react";
 import { BiCart, BiListUl } from "react-icons/bi";
 import CategoryList from "../../components/CategoryList"
@@ -75,6 +77,9 @@ function Shopping(){
             }
         }
     );
+
+    console.log(productQuery.isFetched);
+    console.log(productQuery.data)
 
     const searchProductsQuery = useQuery(
         "search",
@@ -148,6 +153,15 @@ function Shopping(){
                     }
                 }}>
                     {
+                        (!categoryQuery.isFetched)
+                        &&
+                        <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"} gap={2}>
+                            <Spinner size={"lg"} color="brand.700"/>
+                            <Text fontWeight={"bold"} textColor={"brand.900"}>Loading...</Text>
+                        </Flex>
+                        
+                    }
+                    {
                         (categoryQuery.data?.status===200)
                         &&
                         categories?.map((items:any, index: number)=>
@@ -216,23 +230,37 @@ function Shopping(){
                             <u>Carts</u>
                         </Button>
                     </Flex>
-                    <Flex my={4} width={"100%"} justifyContent={"center"}>
-                        <SimpleGrid templateColumns={columns} gap={6} width={"min-content"} alignItems={"center"} justifyItems={"center"}>
-                        {
-                            (productQuery.data?.status===200)
-                            &&
-                            products?.map((items:any, index: number)=>
-                                <ItemCard 
-                                    title={items.title} 
-                                    price={items.price}
-                                    thumbnail={items.thumbnail} 
-                                    addToCart={(event)=>itemAddToCart(event,items)}
-                                    key= {index}
-                                />
-                            )
-                        }
-                        </SimpleGrid>
-                    </Flex>
+                    {
+                        (!productQuery.isFetched || !searchProductsQuery.isFetched)
+                        &&
+                        <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"} gap={2}>
+                            <Spinner size={"lg"} color="brand.700"/>
+                            <Text fontWeight={"bold"} textColor={"brand.800"}>Loading...</Text>
+                        </Flex>
+                        
+                    }
+                    {   
+                        (productQuery.isFetched || searchProductsQuery.isFetched)
+                        &&
+                        <Flex my={4} width={"100%"} justifyContent={"center"}>
+                            <SimpleGrid templateColumns={columns} gap={6} width={"min-content"} alignItems={"center"} justifyItems={"center"}>
+                            {
+                                (productQuery.data?.status===200)
+                                &&
+                                products?.map((items:any, index: number)=>
+                                    <ItemCard 
+                                        title={items.title} 
+                                        price={items.price}
+                                        thumbnail={items.thumbnail} 
+                                        addToCart={(event)=>itemAddToCart(event,items)}
+                                        key= {index}
+                                    />
+                                )
+                            }
+                            </SimpleGrid>
+                        </Flex>
+                    }
+                    
                 </Flex>
             </Flex>
         </Flex>
