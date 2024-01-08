@@ -6,10 +6,12 @@ import {
     Stack,
     Button
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 import { RiShoppingCartFill } from "react-icons/ri";
 
 function HomeScreen(){
+    const navigate = useNavigate();
     return (
         <Flex direction={"column"} width={"100%"}>
             <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"}>
@@ -61,7 +63,12 @@ function HomeScreen(){
                         </Box>
                     </Flex>
                     <Box display={"flex"} justifyContent={{"base":"center", "md": "start"}}>
-                        <Button backgroundColor={"brand.700"}>Explore our product</Button>
+                        <Button 
+                            variant={"primary"}
+                            onClick={()=>navigate('/shopping')}
+                            >
+                                Explore our product
+                            </Button>
                     </Box>
                 </Box>                
             </Flex>

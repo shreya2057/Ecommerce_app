@@ -158,7 +158,7 @@ function Shopping(){
                     }
                 }}>
                     {
-                        (!categoryQuery.isFetched)
+                        (!categoryQuery.isFetchedAfterMount)
                         &&
                         <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"} gap={2}>
                             <Spinner size={"lg"} color="brand.700"/>
@@ -236,7 +236,7 @@ function Shopping(){
                         </Button>
                     </Flex>
                     {
-                        (!productQuery.isFetched || !searchProductsQuery.isFetched)
+                        (!productQuery.isFetchedAfterMount || !searchProductsQuery.isFetchedAfterMount)
                         &&
                         <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"} gap={2}>
                             <Spinner size={"lg"} color="brand.700"/>
