@@ -32,6 +32,7 @@ function ItemCard(pt:{title:string, price: number, thumbnail: string, addToCart:
                 >
                     <Image 
                         objectFit={"contain"} 
+                        rounded={"md"}
                         src={pt.thumbnail}
                     />
                 </Box>
