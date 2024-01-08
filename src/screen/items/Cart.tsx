@@ -3,13 +3,15 @@ import {
     Heading,
     Box,
     Button,
-    Text
+    Text,
+    useToast
 } from "@chakra-ui/react";
 import Banner from "../../components/Banner";
 import CartItems from "../../components/CartCards";
 import useCartStore from "../../stores/cartStore";
 import { useNavigate } from "react-router-dom";
 function Carts(){
+    const toast =  useToast();
     const items = useCartStore((state:any)=>state.items);
     const clearStates = useCartStore((state:any)=>state.clearStates);
     const removeItemFromCart = useCartStore((state:any)=>state.removeItemFromCart);
@@ -33,6 +35,12 @@ function Carts(){
 
     const removeItems = (item:any)=>{
         removeItemFromCart(item.id);
+        toast({
+            title: `${item.title} removed`,
+            status: "success",
+            isClosable: true,
+            duration:1000
+        })
     }
     return(
         <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
