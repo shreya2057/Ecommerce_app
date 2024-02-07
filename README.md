@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+<h1 align="center">
+    <img src="src/app-images/logo.svg" width=120px/>
+</h1>
+<h3 align="center">
+    <b>Ecommerce app - Easy online shopping</b>
+</h3>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
 
-Currently, two official plugins are available:
+<h1></h1>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Ecommerce app](https://event-trace.vercel.app/home) is the ecommerce plaform that allows user to find and buy the item of there choice.
 
-## Expanding the ESLint configuration
+## Key Features 🧑‍💻
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Searching and exploring the items
+- Adding the items to the cart
+- View items according to the category
+- View the past orders
 
-- Configure the top-level `parserOptions` property like this:
+## Run Locally (Development Environment) ⚒️
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+#### Clone the repository and navigate to the project root directory.
+
+Make sure you have [npm and Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed on your machine.
+
+```bash
+# Get packages
+$ npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```bash
+# Run the applicaton
+$ npm start
+```
+
+```bash
+# To build apk and ios bundle:
+$ npm build
+```
+
+## Tech Used 💻
+
+- Frontend : Chakra UI, React.js
+- State management : Zustand
+- Backend as a Service : dummyJSON
+
+## Screenshots
+
+<div align="center">
+  <img src="src/app-images/screenshot/shopping.png" height=450 />
+  <img src="src/app-images/screenshot/cart.png" height=450 />
+  <img src="src/app-images/screenshot/orders.png" height=400 />
+</div>
+
+## Contributions
+
+Contributions are highly appreciated. Please send a Pull Request with suggested changes or open an Issue to get things started!
