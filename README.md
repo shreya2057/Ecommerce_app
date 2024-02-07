@@ -9,7 +9,7 @@
 
 <h1></h1>
 
-[Ecommerce app](https://event-trace.vercel.app/home) is the ecommerce plaform that allows user to find and buy the item of there choice.
+[Ecommerce app](https://ecommerceapp-personalproject.netlify.app/) is the ecommerce plaform that allows user to find and buy the item of there choice.
 
 ## Key Features 🧑‍💻
 
