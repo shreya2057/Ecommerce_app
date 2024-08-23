@@ -16,6 +16,7 @@ function Footer() {
       textColor={"#fffdf0"}
       gap={6}
       px={10}
+      zIndex={1}
     >
       <Link to={"/"}>
         <Box display={"flex"} height={"100%"} alignContent={"center"}>

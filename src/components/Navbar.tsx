@@ -30,7 +30,8 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
       py={{ md: 3 }}
       justifyContent={"space-between"}
       align={{ base: "start", md: "center" }}
-      position={"relative"}
+      position={"fixed"}
+      zIndex={1}
     >
       <Flex gap={4} px={10} py={{ base: 4, md: 0 }} alignItems={"center"}>
         <IconButton

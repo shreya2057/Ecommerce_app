@@ -11,7 +11,7 @@ function App() {
       minHeight={"100vh"}
     >
       <NavBar isLoggedIn={true} />
-      <Flex flex={1} height={"100%"}>
+      <Flex flex={1} height={"100%"} pt={{ base: 16, md: 12 }}>
         <Outlet />
       </Flex>
       <Footer />

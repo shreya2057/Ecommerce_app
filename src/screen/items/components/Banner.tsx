@@ -6,7 +6,6 @@ function Banner() {
   return (
     <Box
       width={"100%"}
-      maxW={{ base: 800, md: 900, lg: "100%" }}
       display={"flex"}
       flexDirection={{ base: "column", md: "row" }}
       py={4}

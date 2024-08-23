@@ -24,12 +24,6 @@ function Shopping() {
   // const [searchText, setSearchText] = useState("");
 
   const naviagte = useNavigate();
-  const hidden = useBreakpointValue({
-    base: true,
-    sm: true,
-    md: true,
-    xl: false,
-  });
   const columns = useBreakpointValue({
     base: "repeat(1, 1fr)",
     md: `repeat(${products?.length >= 3 ? 3 : products?.length}, 1fr)`,
@@ -57,13 +51,21 @@ function Shopping() {
   // }
 
   return (
-    <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
+    <Flex
+      direction={"row"}
+      minHeight={"100%"}
+      width={"100%"}
+      justifyContent={{ base: "center", lg: "end" }}
+    >
       <Flex
-        width={"18%"}
+        width={{ lg: "20%", xl: "18%" }}
         height={"100%"}
         bgColor={"brand.600"}
         direction={"column"}
-        hidden={hidden}
+        display={{ base: "none", lg: "flex" }}
+        position={{ lg: "fixed" }}
+        left={0}
+        top={12}
       >
         <Heading fontSize={"lg"} px={5} textColor={"brand.800"} py={3}>
           Categories
@@ -106,7 +108,13 @@ function Shopping() {
           )}
         </Flex>
       </Flex>
-      <Flex direction={"column"} flex={1} height={"100%"} gap={4}>
+      <Flex
+        direction={"column"}
+        height={"100%"}
+        width={{ base: "100%", lg: "80%", xl: "82%" }}
+        gap={4}
+        alignSelf={"end"}
+      >
         <Banner />
         <Flex direction={"column"} flex={1} alignSelf={"center"} width={"100%"}>
           <Flex
