@@ -1,16 +1,12 @@
 import { create } from "zustand";
+import { CartItemsType, CartStoreType } from "../type";
 
-const useCartStore = create((set) => ({
+const useCartStore = create<CartStoreType>((set) => ({
   items: [],
   orderNumber: 0,
-  addItemToCart: (product: any) => {
-    set((state: any) => ({
+  addItemToCart: (product: CartItemsType) => {
+    set((state: CartStoreType) => ({
       items: [...state.items, product],
-    }));
-  },
-  generateOrderNumber: (randomNumber: number) => {
-    set(() => ({
-      orderNumber: randomNumber,
     }));
   },
   updateCartQuantity: (
@@ -18,13 +14,13 @@ const useCartStore = create((set) => ({
     newQuantity: number,
     orderNumBer: number
   ) => {
-    set((state: any) => ({
-      items: state.items.map((product: any) => {
+    set((state: CartStoreType) => ({
+      items: state.items.map((product: CartItemsType) => {
         if (product.id === id) {
           return {
             ...product,
-            ["quantity"]: newQuantity,
-            ["orderNumber"]: orderNumBer,
+            quantity: newQuantity,
+            orderNumber: orderNumBer,
           };
         } else {
           return { ...product };
@@ -33,8 +29,8 @@ const useCartStore = create((set) => ({
     }));
   },
   removeItemFromCart: (id: number) => {
-    set((state: any) => ({
-      items: state.items.filter((item: any) => item.id !== id),
+    set((state: CartStoreType) => ({
+      items: state.items.filter((item: CartItemsType) => item.id !== id),
     }));
   },
   clearStates: () => {

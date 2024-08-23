@@ -4,16 +4,19 @@ import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 
 function App() {
-
   return (
-    <Flex direction={"column"} justifyContent={"space-between"} minHeight={"100vh"}>
-      <NavBar loggedIn={true}/>
+    <Flex
+      direction={"column"}
+      justifyContent={"space-between"}
+      minHeight={"100vh"}
+    >
+      <NavBar isLoggedIn={true} />
       <Flex flex={1} height={"100%"}>
-        <Outlet/>
+        <Outlet />
       </Flex>
-      <Footer/>
+      <Footer />
     </Flex>
   );
 }
 
-export default App
+export default App;
