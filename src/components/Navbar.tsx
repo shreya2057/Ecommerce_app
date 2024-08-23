@@ -91,16 +91,16 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
             <Link to={"/"}>
               <Box
                 display={"flex"}
-                justifyContent={"center"}
+                justifyContent={{ md: "center" }}
                 alignContent={"center"}
                 width={130}
                 gap={1.5}
-                bgColor={{ md: "brand.800" }}
-                py={{ md: 1 }}
-                px={{ md: 2 }}
+                bgColor={{ md: "brand.700" }}
+                py={{ base: 0, md: 1 }}
+                px={{ base: 0, md: 2 }}
                 rounded={{ md: "base" }}
                 shadow={{ md: "md" }}
-                fontSize={{ base: "lg", md: "sm" }}
+                fontSize={{ base: "md", md: "sm" }}
               >
                 <Box display={"flex"} alignSelf={"center"}>
                   <HiOutlineUserCircle />

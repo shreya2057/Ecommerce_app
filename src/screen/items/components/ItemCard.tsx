@@ -15,6 +15,7 @@ import { useAddToCart } from "../../../hooks/useAddToCart";
 function ItemCard({ items }: { items: ItemsType }) {
   const [disabled, setDisable] = useState(false);
   const { itemAddToCart } = useAddToCart({ setDisable });
+  const regex = /^https:\/\/i\.imgur\.com\/[A-Za-z0-9]{7}\.(jpeg|jpg|png|gif)$/;
   return (
     <Card
       width={{ base: "100%", md: "min-content" }}
@@ -41,7 +42,13 @@ function ItemCard({ items }: { items: ItemsType }) {
           alignContent={"center"}
           justifyContent={"center"}
         >
-          <Image objectFit={"contain"} rounded={"md"} src={items?.images[0]} />
+          {regex.test(items?.images[0]) && (
+            <Image
+              objectFit={"contain"}
+              rounded={"md"}
+              src={items?.images[0]}
+            />
+          )}
         </Box>
         <Heading size={"sm"} mx={6} mt={3} mb={1} textColor={"#4d2f56"}>
           {items?.title?.substring(0, 15) + "..."}
