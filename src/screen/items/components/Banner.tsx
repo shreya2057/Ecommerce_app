@@ -28,7 +28,7 @@ function Banner() {
         </Heading>
         <Box>
           <Text
-            fontSize={"md"}
+            fontSize={"sm"}
             textColor={"brand.800"}
             textAlign={"left"}
             hidden={hideText}
