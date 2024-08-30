@@ -1,5 +1,7 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Button,
+  CloseButton,
   Flex,
   Heading,
   SimpleGrid,
@@ -7,21 +9,42 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { BiCart } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FormControl } from "../../components/form/FormControl";
+import { useAddSearchParams } from "../../hooks/useAddSearchParams";
 import { useCategoryQuery, useProductQuery } from "../../services/product";
 import { CategoryType, ItemsType } from "../../type";
+import { parseQueryString } from "../../utils/parseQueryString";
 import Banner from "./components/Banner";
 import CategoryList from "./components/CategoryList";
 import ItemCard from "./components/ItemCard";
 
+const initialValues = {
+  product: "",
+};
+
 function Shopping() {
-  const [selectedCategory, setCategory] = useState(1);
-  const { data: products, isLoading } = useProductQuery(selectedCategory);
   const { data: categories, isLoading: isCategoriesLoading } =
     useCategoryQuery();
-  // const [searchText, setSearchText] = useState("");
+
+  const [selectedCategory, setCategory] = useState<number>(0);
+
+  const location = useLocation();
+  const searchValue = parseQueryString(location.search) as typeof initialValues;
+
+  const { data: products, isLoading } = useProductQuery({
+    category: selectedCategory,
+    title: searchValue?.product,
+  });
+
+  const { control, handleSubmit, reset } = useForm<typeof initialValues>({
+    defaultValues: initialValues,
+  });
+
+  const { addSearchParams, deleteSearchParams } = useAddSearchParams();
 
   const naviagte = useNavigate();
   const columns = useBreakpointValue({
@@ -30,26 +53,11 @@ function Shopping() {
     xl: `repeat(${products?.length >= 4 ? 4 : products?.length}, 1fr)`,
   });
 
-  // const searchProductsQuery = useQuery(
-  //     "search",
-  //     ()=>searchOperation(searchText),
-  //     {
-  //         onSuccess: (responseData)=>{
-  //             if(responseData.status===200 && typeof(responseData.message)==="object"){
-  //                 if(searchText!==""){
-  //                     setProducts(responseData.message.products);
-  //                 }
-  //             }
-  //         }
-  //     }
-  // )
-
-  // const searchFunction = async(event:any)=>{
-  //     event.preventDefault();
-  //     setCategory("");
-  //     searchProductsQuery.refetch();
-  // }
-
+  useEffect(() => {
+    if (categories) {
+      setCategory(categories[0]?.id);
+    }
+  }, [categories]);
   return (
     <Flex
       direction={"row"}
@@ -100,8 +108,9 @@ function Shopping() {
                 categoryName={items?.name}
                 onClickFunction={() => {
                   setCategory(items?.id);
+                  deleteSearchParams("product");
                 }}
-                selected={selectedCategory}
+                selected={searchValue?.product ? 0 : selectedCategory}
                 key={index}
               />
             ))
@@ -125,34 +134,32 @@ function Shopping() {
             justifyContent={"space-between"}
             px={{ base: 16, sm: 28, md: 28 }}
           >
-            {/* <form onSubmit={(event) => searchFunction(event)}>
-              <InputGroup
-                width={{ base: 200, md: 400 }}
-                borderColor={"#ffd5e5"}
-                _hover={{
-                  borderColor: "#ffd5e5",
-                }}
+            <form onChange={handleSubmit(addSearchParams)}>
+              <FormControl
+                type="text"
+                control={control}
+                name="product"
+                inputControl="input"
+                placeholder="Search products"
                 _active={{
                   borderColor: "#ffd5e5",
                 }}
-              >
-                <InputLeftElement pointerEvents="none">
-                  <SearchIcon color="gray.300" />
-                </InputLeftElement>
-                <Input
-                  type="text"
-                  placeholder="Search products"
-                  _active={{
-                    borderColor: "#ffd5e5",
-                  }}
-                  value={searchText}
-                  _hover={{
-                    borderColor: "#ffd5e5",
-                  }}
-                  onChange={(event) => setSearchText(event.target.value)}
-                />
-              </InputGroup>
-            </form> */}
+                _hover={{
+                  borderColor: "#ffd5e5",
+                }}
+                leftElement={<SearchIcon color="gray.300" />}
+                rightElement={
+                  searchValue?.product && (
+                    <CloseButton
+                      onClick={() => {
+                        deleteSearchParams("product");
+                        reset({});
+                      }}
+                    />
+                  )
+                }
+              />
+            </form>
             <Button
               bgColor={"inherit"}
               textColor={"brand.900"}

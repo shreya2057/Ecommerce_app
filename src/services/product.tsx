@@ -1,33 +1,38 @@
 import { useQuery } from "react-query";
 import { API_ENDPOINTS } from "../api";
 import instance from "../axios/instance";
-import { Response } from "../data/types";
+import { CategoryType } from "../type";
 
-const getAllProducts = async (): Promise<Response> => {
-  try {
-    const response = await instance.get("/products");
-    return { status: response.status, message: response.data.products };
-  } catch (error: any) {
-    return { status: 404, message: error.message };
-  }
-};
-
-const getCategorywiseProduct = (category: string) => {
+const getCategorywiseProduct = ({
+  category,
+  title,
+}: {
+  category: string;
+  title?: string;
+}) => {
   return instance.get(API_ENDPOINTS.GET_CATEGORYWISE_PRODUCTS, {
-    params: { categoryId: category },
+    params: { categoryId: category, title },
   });
 };
 
-export const useProductQuery = (category: number) => {
+export const useProductQuery = ({
+  category,
+  title,
+}: {
+  category: number;
+  title?: string;
+}) => {
   return useQuery({
-    queryKey: ["products", category],
-    queryFn: () => getCategorywiseProduct(category.toString()),
+    queryKey: ["products", category, title],
+    queryFn: () =>
+      getCategorywiseProduct({ category: category.toString(), title }),
     select: (response) => response?.data,
+    enabled: !!category,
   });
 };
 
 const productCategory = () => {
-  return instance.get(API_ENDPOINTS.GET_CATEGORIES);
+  return instance.get<CategoryType[]>(API_ENDPOINTS.GET_CATEGORIES);
 };
 
 export const useCategoryQuery = () => {
@@ -38,20 +43,4 @@ export const useCategoryQuery = () => {
   });
 };
 
-const searchOperation = async (text: string): Promise<Response> => {
-  try {
-    const response = await instance.get(
-      `https://dummyjson.com/products/search?q=${text}`
-    );
-    return { status: response.status, message: response.data };
-  } catch (error: any) {
-    return { status: 404, message: error.message };
-  }
-};
-
-export {
-  getAllProducts,
-  getCategorywiseProduct,
-  productCategory,
-  searchOperation,
-};
+export { getCategorywiseProduct, productCategory };
