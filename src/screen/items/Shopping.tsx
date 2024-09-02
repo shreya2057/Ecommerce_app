@@ -144,6 +144,7 @@ function Shopping() {
                 _active={{
                   borderColor: "#ffd5e5",
                 }}
+                _focusVisible={{ borderColor: "#ffd5e5" }}
                 _hover={{
                   borderColor: "#ffd5e5",
                 }}

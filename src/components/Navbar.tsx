@@ -69,8 +69,11 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
         py={{ base: 3, md: 0 }}
         align={{ base: "start", md: "center" }}
       >
+        <Link to={"/"}>
+          <Text>Home</Text>
+        </Link>
         <Link to={"/shopping"}>
-          <Text>Shopping</Text>
+          <Text>Products</Text>
         </Link>
         <Link to={"/orders"}>
           <Text>Orders</Text>
