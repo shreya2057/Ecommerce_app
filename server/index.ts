@@ -11,6 +11,6 @@ dotenv.config();
 mongodb_connection();
 
 app.listen(port, () => {
-  console.log(`Backend: Running in port ${5000}`);
-  console.log(`Front-end:  http://localhost:${5000}/`);
+  console.log(`Backend: Running in port ${port}`);
+  console.log(`Front-end:  http://localhost:${port}/`);
 });
