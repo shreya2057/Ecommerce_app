@@ -1,9 +1,8 @@
 import axios from "axios";
-
-const url = "https://dummyjson.com";
+import { API_URL } from "../constants";
 
 const instance = axios.create({
-    baseURL: url
+  baseURL: API_URL,
 });
 
 export default instance;

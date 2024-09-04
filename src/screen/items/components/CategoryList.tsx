@@ -7,9 +7,9 @@ function CategoryList({
   selected,
   categoryName,
 }: {
-  category: number;
+  category: string;
   onClickFunction: () => void;
-  selected: number;
+  selected: string;
   categoryName: string;
 }) {
   const activeStatus = category === selected;
@@ -27,8 +27,8 @@ function CategoryList({
           textColor: "white",
         }}
         _hover={{
-          backgroundColor: "brand.700",
-          textColor: "white",
+          backgroundColor: "brand.200",
+          textColor: "brand.800",
         }}
         isActive={activeStatus ? true : false}
       >

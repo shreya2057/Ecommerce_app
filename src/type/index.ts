@@ -1,14 +1,12 @@
 export type ItemsType = {
-  id: number;
+  _id: string;
   title: string;
   price: number;
   description: string;
-  images: string[];
-  category: {
-    id: number;
-    name: string;
-    image: string;
-  };
+  image: string;
+  discount: string;
+  category_id: string;
+  category_name: string;
 };
 
 export type CartStoreType = {
@@ -40,9 +38,15 @@ export type CartItemsType = {
 };
 
 export type CategoryType = {
-  id: number;
+  _id: string;
   name: string;
   image: string;
   creationAt: string;
   updatedAt: string;
+};
+
+export type APIResponseType<T> = {
+  message: "Categories data fetch successfully";
+  status: 200;
+  data: T;
 };

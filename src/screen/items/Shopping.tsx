@@ -30,7 +30,7 @@ function Shopping() {
   const { data: categories, isLoading: isCategoriesLoading } =
     useCategoryQuery();
 
-  const [selectedCategory, setCategory] = useState<number>(0);
+  const [selectedCategory, setCategory] = useState<string>("");
 
   const location = useLocation();
   const searchValue = parseQueryString(location.search) as typeof initialValues;
@@ -49,13 +49,13 @@ function Shopping() {
   const naviagte = useNavigate();
   const columns = useBreakpointValue({
     base: "repeat(1, 1fr)",
-    md: `repeat(${products?.length >= 3 ? 3 : products?.length}, 1fr)`,
-    xl: `repeat(${products?.length >= 4 ? 4 : products?.length}, 1fr)`,
+    md: `repeat(${(products?.length ?? 0) >= 3 ? 3 : products?.length}, 1fr)`,
+    xl: `repeat(${(products?.length ?? 0) >= 4 ? 4 : products?.length}, 1fr)`,
   });
 
   useEffect(() => {
     if (categories) {
-      setCategory(categories[0]?.id);
+      setCategory(categories[0]?._id);
     }
   }, [categories]);
   return (
@@ -104,13 +104,13 @@ function Shopping() {
           ) : (
             categories?.map((items: CategoryType, index: number) => (
               <CategoryList
-                category={items?.id}
+                category={items?._id}
                 categoryName={items?.name}
                 onClickFunction={() => {
-                  setCategory(items?.id);
+                  setCategory(items?._id);
                   deleteSearchParams("product");
                 }}
-                selected={searchValue?.product ? 0 : selectedCategory}
+                selected={searchValue?.product ? "" : selectedCategory}
                 key={index}
               />
             ))

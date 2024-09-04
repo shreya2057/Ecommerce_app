@@ -5,16 +5,16 @@ import {
   CardBody,
   CardFooter,
   Heading,
+  Image,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useAddToCart } from "../../../hooks/useAddToCart";
+// import { useState } from "react";
+// import { useAddToCart } from "../../../hooks/useAddToCart";
 import { ItemsType } from "../../../type";
-import { ProductImage } from "./ProductImage";
 
 function ItemCard({ items }: { items: ItemsType }) {
-  const [disabled, setDisable] = useState(false);
-  const { itemAddToCart } = useAddToCart({ setDisable });
+  // const [disabled, setDisable] = useState(false);
+  // const { itemAddToCart } = useAddToCart({ setDisable });
 
   return (
     <Card
@@ -32,7 +32,7 @@ function ItemCard({ items }: { items: ItemsType }) {
         display={"flex"}
         width={"100%"}
         flexDirection="column"
-        alignItems={"center"}
+        alignItems={"start"}
       >
         <Box
           width={{ base: "100%", md: 200 }}
@@ -42,19 +42,26 @@ function ItemCard({ items }: { items: ItemsType }) {
           alignContent={"center"}
           justifyContent={"center"}
         >
-          {<ProductImage image={items?.images[0]} />}
+          <Image objectFit={"cover"} rounded={"md"} src={items?.image} />
         </Box>
-        <Heading size={"sm"} mx={6} mt={3} mb={1} textColor={"#4d2f56"}>
-          {items?.title?.substring(0, 15) + "..."}
+        <Heading
+          size={"sm"}
+          mx={6}
+          mt={3}
+          mb={1}
+          textColor={"#4d2f56"}
+          noOfLines={1}
+        >
+          {items?.title}
         </Heading>
         <Text
           textColor={"#b87c94"}
           fontSize={"md"}
-          alignSelf={"center"}
+          alignSelf={"start"}
           mx={6}
           mb={1}
         >
-          ${items?.price}
+          <b>Price: </b>${items?.price}
         </Text>
       </CardBody>
       <CardFooter
@@ -68,8 +75,8 @@ function ItemCard({ items }: { items: ItemsType }) {
         <Button
           variant={"primary"}
           px={4}
-          isDisabled={disabled}
-          onClick={() => itemAddToCart(items)}
+          // isDisabled={disabled}
+          // onClick={() => itemAddToCart(items)}
           type="button"
         >
           Add to cart
