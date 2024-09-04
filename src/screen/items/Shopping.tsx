@@ -194,8 +194,8 @@ function Shopping() {
             <Flex
               my={4}
               width={"100%"}
-              justifyContent={"center"}
-              px={{ base: 16, sm: 28, md: "unset" }}
+              justifyContent={"start"}
+              px={{ base: 16, sm: 28, md: 28 }}
             >
               <SimpleGrid
                 templateColumns={columns}
