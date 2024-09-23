@@ -18,6 +18,12 @@ const getProduct = ({
   );
 };
 
+export const getFeaturedProduct = () => {
+  return instance.get<APIResponseType<ItemsType[]>>(
+    API_ENDPOINTS.FEATURED_PRODUCTS
+  );
+};
+
 export const useProductQuery = ({
   category,
   title,
@@ -25,11 +31,12 @@ export const useProductQuery = ({
   category: string;
   title?: string;
 }) => {
+  console.log(!category);
   return useQuery({
     queryKey: ["products", category, title],
-    queryFn: () => getProduct({ category, title }),
+    queryFn: () =>
+      !category ? getFeaturedProduct() : getProduct({ category, title }),
     select: (response) => response?.data?.data,
-    enabled: !!category,
   });
 };
 

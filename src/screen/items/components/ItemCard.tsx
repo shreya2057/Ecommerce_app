@@ -18,7 +18,7 @@ function ItemCard({ items }: { items: ItemsType }) {
 
   return (
     <Card
-      width={{ base: "100%", md: "min-content" }}
+      width={{ base: "100%", md: "100%" }}
       display={"flex"}
       height={"min-content"}
       borderWidth={1}
@@ -35,7 +35,7 @@ function ItemCard({ items }: { items: ItemsType }) {
         alignItems={"start"}
       >
         <Box
-          width={{ base: "100%", md: 200 }}
+          width={"100%"}
           height={200}
           display={"flex"}
           bgColor={"#f8efe7"}

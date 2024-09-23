@@ -7,6 +7,7 @@ export type ItemsType = {
   discount: string;
   category_id: string;
   category_name: string;
+  is_featured: boolean;
 };
 
 export type CartStoreType = {

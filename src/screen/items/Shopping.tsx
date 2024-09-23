@@ -28,8 +28,6 @@ const initialValues = {
 };
 
 function Shopping() {
-  const { data: categories } = useCategoryQuery();
-
   const location = useLocation();
   const searchValue = parseQueryString(location.search) as typeof initialValues;
 
@@ -38,6 +36,8 @@ function Shopping() {
       defaultValues: initialValues,
     }
   );
+
+  const { data: categories } = useCategoryQuery();
 
   const { data: products, isLoading } = useProductQuery({
     category: watch("category"),
@@ -48,8 +48,12 @@ function Shopping() {
 
   const columns = useBreakpointValue({
     base: "repeat(1, 1fr)",
+    sm: `repeat(${(products?.length ?? 0) >= 2 ? 2 : products?.length}, 1fr)`,
     md: `repeat(${(products?.length ?? 0) >= 3 ? 3 : products?.length}, 1fr)`,
-    xl: `repeat(${(products?.length ?? 0) >= 4 ? 4 : products?.length}, 1fr)`,
+    lg: `repeat(${(products?.length ?? 0) >= 4 ? 4 : products?.length}, 1fr)`,
+    "2xl": `repeat(${
+      (products?.length ?? 0) >= 5 ? 5 : products?.length
+    }, 1fr)`,
   });
 
   const categoriesList = selectOptions({
@@ -72,7 +76,7 @@ function Shopping() {
         gap={{ base: 6, md: 0 }}
         align={"center"}
         justifyContent={"space-between"}
-        px={{ base: 16, sm: 28, md: 28 }}
+        px={{ base: 10, sm: 16, xl: 28 }}
       >
         <form onChange={handleSubmit(addSearchParams)}>
           <FormControl
@@ -108,7 +112,7 @@ function Shopping() {
       <Flex
         width={"100%"}
         justifyContent={"start"}
-        px={{ base: 16, sm: 28, md: 28 }}
+        px={{ base: 16, sm: 16, lg: 16, xl: 28 }}
       >
         {isLoading ? (
           <HStack gap={2} width={"100%"} justifyContent={"center"}>
@@ -121,7 +125,7 @@ function Shopping() {
           <SimpleGrid
             templateColumns={columns}
             gap={6}
-            width={{ base: "100%", md: "min-content" }}
+            width={{ base: "100%", md: "100%" }}
             alignItems={"center"}
             justifyItems={"center"}
           >
