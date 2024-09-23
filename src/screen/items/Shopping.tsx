@@ -49,11 +49,9 @@ function Shopping() {
   const columns = useBreakpointValue({
     base: "repeat(1, 1fr)",
     sm: `repeat(${(products?.length ?? 0) >= 2 ? 2 : products?.length}, 1fr)`,
-    md: `repeat(${(products?.length ?? 0) >= 3 ? 3 : products?.length}, 1fr)`,
-    lg: `repeat(${(products?.length ?? 0) >= 4 ? 4 : products?.length}, 1fr)`,
-    "2xl": `repeat(${
-      (products?.length ?? 0) >= 5 ? 5 : products?.length
-    }, 1fr)`,
+    md: `repeat(3, 1fr)`,
+    lg: `repeat(4, 1fr)`,
+    "2xl": `repeat(5, 1fr)`,
   });
 
   const categoriesList = selectOptions({
@@ -66,7 +64,7 @@ function Shopping() {
     <VStack
       minHeight={"100%"}
       width={"100%"}
-      justifyContent={{ base: "center", lg: "start" }}
+      justifyContent={"start"}
       gap={6}
       pb={6}
     >
