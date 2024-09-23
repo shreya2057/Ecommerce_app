@@ -8,9 +8,9 @@ function Banner() {
       width={"100%"}
       display={"flex"}
       flexDirection={{ base: "column", md: "row" }}
-      py={4}
-      px={14}
-      bgColor={"brand.100"}
+      py={8}
+      px={{ base: 16, sm: 28, md: 28 }}
+      bgColor={"brand.300"}
       justifyContent={{ base: "center", md: "space-between" }}
       alignItems={"center"}
     >
@@ -21,20 +21,22 @@ function Banner() {
         alignItems={{ base: "center", md: "start" }}
         alignSelf={"center"}
         maxWidth={{ lg: 600 }}
-        gap={1}
+        gap={3}
       >
-        <Heading fontSize={"lg"} textColor={"brand.800"}>
+        <Heading fontSize={"2xl"} textColor={"brand.800"}>
           Ecommerce App
         </Heading>
         <Box>
           <Text
             fontSize={"sm"}
             textColor={"brand.800"}
+            opacity={0.8}
             textAlign={"left"}
             hidden={hideText}
           >
-            Seamless Shopping, Boundless Selections: Dive into the Retail
-            Odyssey.
+            Embark on a seamless shopping journey where boundless selections
+            meet effortless convenience. Discover a retail odyssey crafted to
+            inspire, elevate, and delight every purchase.
           </Text>
         </Box>
       </Flex>

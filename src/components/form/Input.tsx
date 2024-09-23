@@ -7,6 +7,7 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
+import { colors } from "../../theme/colors";
 
 export const Input = <TFieldValues extends FieldValues>({
   control,
@@ -24,7 +25,19 @@ export const Input = <TFieldValues extends FieldValues>({
     <FormWrapper error={error}>
       <InputGroup>
         <InputLeftElement>{leftElement}</InputLeftElement>
-        <ChakraInput {...restFields} onChange={onChange} value={value} />
+        <ChakraInput
+          borderColor={colors.brand[400]}
+          _active={{
+            borderColor: colors.brand[400],
+          }}
+          _focusVisible={{ borderColor: colors.brand[400] }}
+          _hover={{
+            borderColor: colors.brand[400],
+          }}
+          onChange={onChange}
+          value={value}
+          {...restFields}
+        />
         <InputRightElement>{rightElement}</InputRightElement>
       </InputGroup>
     </FormWrapper>

@@ -51,9 +51,9 @@ export const SingleSelect = <TFieldValues extends FieldValues>({
             background: "transparent",
             boxShadow: "none",
             borderRadius: "6px",
-            borderColor: colors.brand[500],
+            borderColor: colors.brand[400],
             "&:hover": {
-              borderColor: colors.brand[500],
+              borderColor: colors.brand[400],
             },
           }),
         }}
