@@ -4,6 +4,7 @@ import {
   CloseButton,
   Flex,
   Heading,
+  HStack,
   SimpleGrid,
   Spinner,
   Text,
@@ -21,9 +22,11 @@ import { parseQueryString } from "../../utils/parseQueryString";
 import Banner from "./components/Banner";
 import CategoryList from "./components/CategoryList";
 import ItemCard from "./components/ItemCard";
+import { colors } from "../../theme/colors";
 
 const initialValues = {
   product: "",
+  category: "",
 };
 
 function Shopping() {
@@ -134,33 +137,45 @@ function Shopping() {
             justifyContent={"space-between"}
             px={{ base: 16, sm: 28, md: 28 }}
           >
-            <form onChange={handleSubmit(addSearchParams)}>
-              <FormControl
-                type="text"
-                control={control}
-                name="product"
-                inputControl="input"
-                placeholder="Search products"
-                _active={{
-                  borderColor: "#ffd5e5",
-                }}
-                _focusVisible={{ borderColor: "#ffd5e5" }}
-                _hover={{
-                  borderColor: "#ffd5e5",
-                }}
-                leftElement={<SearchIcon color="gray.300" />}
-                rightElement={
-                  searchValue?.product && (
-                    <CloseButton
-                      onClick={() => {
-                        deleteSearchParams("product");
-                        reset({});
-                      }}
-                    />
-                  )
-                }
-              />
-            </form>
+            <HStack width={"100%"} gap={4}>
+              <HStack w={"20%"}>
+                <FormControl
+                  control={control}
+                  name="category"
+                  options={[{ value: "Tets", label: "tes" }]}
+                  inputControl="single-select"
+                  placeholder="Categories"
+                  placeholderColor={colors.brand[800]}
+                />
+              </HStack>
+              <form onChange={handleSubmit(addSearchParams)}>
+                <FormControl
+                  type="text"
+                  control={control}
+                  name="product"
+                  inputControl="input"
+                  placeholder="Search products"
+                  _active={{
+                    borderColor: "#ffd5e5",
+                  }}
+                  _focusVisible={{ borderColor: "#ffd5e5" }}
+                  _hover={{
+                    borderColor: "#ffd5e5",
+                  }}
+                  leftElement={<SearchIcon color="gray.300" />}
+                  rightElement={
+                    searchValue?.product && (
+                      <CloseButton
+                        onClick={() => {
+                          deleteSearchParams("product");
+                          reset({});
+                        }}
+                      />
+                    )
+                  }
+                />
+              </form>
+            </HStack>
             <Button
               bgColor={"inherit"}
               textColor={"brand.900"}
