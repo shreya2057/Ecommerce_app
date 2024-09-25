@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { API_ENDPOINTS } from "../api";
 import instance from "../axios/instance";
 import { APIResponseType, CategoryType, ItemsType } from "../type";
+import { generateApiPath } from "../utils/generateApiPath";
 
 const getProduct = ({
   category,
@@ -31,7 +32,6 @@ export const useProductQuery = ({
   category: string;
   title?: string;
 }) => {
-  console.log(!category);
   return useQuery({
     queryKey: ["products", category, title],
     queryFn: () =>
@@ -50,6 +50,20 @@ export const useCategoryQuery = () => {
   return useQuery({
     queryKey: ["categories"],
     queryFn: () => productCategory(),
+    select: (response) => response?.data?.data,
+  });
+};
+
+const getProductDetail = ({ id }: { id: string }) => {
+  return instance.get<APIResponseType<ItemsType>>(
+    generateApiPath(API_ENDPOINTS.GET_PRODUCT_DETAIL, { id })
+  );
+};
+
+export const useGetProductDetail = ({ id }: { id: string }) => {
+  return useQuery({
+    queryKey: ["product-detail", id],
+    queryFn: () => getProductDetail({ id }),
     select: (response) => response?.data?.data,
   });
 };

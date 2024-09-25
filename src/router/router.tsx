@@ -6,6 +6,7 @@ import Login from "../screen/users/Login";
 import SignUp from "../screen/users/Signup";
 import HomeScreen from "../screen/Home";
 import Carts from "../screen/items/Cart";
+import { ItemDetail } from "../screen/items/ItemDetail";
 
 function AppRouter() {
   return (
@@ -19,6 +20,7 @@ function AppRouter() {
             <Route path="/cart" element={<Carts />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/product-detail/:id" element={<ItemDetail />} />
           </Route>
         </Routes>
       </Router>

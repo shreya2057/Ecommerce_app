@@ -9,8 +9,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ItemsType } from "../../../type";
+import { generatePath, useNavigate } from "react-router-dom";
 
 function ItemCard({ items }: { items: ItemsType }) {
+  const navigate = useNavigate();
   return (
     <Card
       width={"100%"}
@@ -71,7 +73,9 @@ function ItemCard({ items }: { items: ItemsType }) {
           size={"sm"}
           fontSize={"sm"}
           px={4}
-          // onClick={() => itemAddToCart(items)}
+          onClick={() =>
+            navigate(generatePath("/product-detail/:id", { id: items?._id }))
+          }
           type="button"
         >
           View Details
