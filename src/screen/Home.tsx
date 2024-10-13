@@ -2,9 +2,11 @@ import { Text, Flex, Heading, Box, Stack, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 import { RiShoppingCartFill } from "react-icons/ri";
+import { ROUTES } from "../routes/routes";
 
 function HomeScreen() {
   const navigate = useNavigate();
+  console.log("test");
   return (
     <Flex direction={"column"} width={"100%"}>
       <Flex
@@ -65,7 +67,10 @@ function HomeScreen() {
             display={"flex"}
             justifyContent={{ base: "center", md: "start" }}
           >
-            <Button variant={"primary"} onClick={() => navigate("/shopping")}>
+            <Button
+              variant={"primary"}
+              onClick={() => navigate(ROUTES.PRODUCTS)}
+            >
               Explore our product
             </Button>
           </Box>

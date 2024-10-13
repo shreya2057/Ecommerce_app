@@ -9,6 +9,7 @@ import { HiOutlineUserCircle, HiOutlineShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { ROUTES } from "../routes/routes";
 
 function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
   const username = "harry potter";
@@ -69,13 +70,13 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
         py={{ base: 3, md: 0 }}
         align={{ base: "start", md: "center" }}
       >
-        <Link to={"/"}>
+        <Link to={ROUTES.LANDING}>
           <Text>Home</Text>
         </Link>
-        <Link to={"/shopping"}>
+        <Link to={ROUTES.PRODUCTS}>
           <Text>Products</Text>
         </Link>
-        <Link to={"/orders"}>
+        <Link to={ROUTES.ORDERS}>
           <Text>Orders</Text>
         </Link>
         {isLoggedIn ? (
@@ -84,7 +85,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
             gap={{ base: 1, md: 6 }}
             align={{ base: "start", md: "center" }}
           >
-            <Link to={"/cart"}>
+            <Link to={ROUTES.CARTS}>
               <Box display={"flex"} gap={2}>
                 <Box display={"flex"} alignSelf={"center"}>
                   <HiOutlineShoppingCart />
@@ -119,10 +120,10 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
             gap={{ base: 2, md: 6 }}
             align={{ base: "start", md: "center" }}
           >
-            <Link to={"/"}>
+            <Link to={ROUTES.LOGIN}>
               <Text>Login</Text>
             </Link>
-            <Link to={"/signup"}>
+            <Link to={ROUTES.SIGNUP}>
               <Text>Signup</Text>
             </Link>
           </Flex>

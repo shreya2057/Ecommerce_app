@@ -14,6 +14,7 @@ export const Input = <TFieldValues extends FieldValues>({
   leftElement,
   rightElement,
   name,
+  label,
   ...restFields
 }: InputProps<TFieldValues>) => {
   const {
@@ -22,9 +23,9 @@ export const Input = <TFieldValues extends FieldValues>({
   } = useController({ name, control });
   const { onChange, value } = field;
   return (
-    <FormWrapper error={error}>
+    <FormWrapper error={error} label={label}>
       <InputGroup>
-        <InputLeftElement>{leftElement}</InputLeftElement>
+        {leftElement && <InputLeftElement>{leftElement}</InputLeftElement>}
         <ChakraInput
           borderColor={colors.brand[400]}
           _active={{
@@ -36,9 +37,13 @@ export const Input = <TFieldValues extends FieldValues>({
           }}
           onChange={onChange}
           value={value}
+          _placeholder={{
+            color: "brand.800",
+            opacity: 0.5,
+          }}
           {...restFields}
         />
-        <InputRightElement>{rightElement}</InputRightElement>
+        {rightElement && <InputRightElement>{rightElement}</InputRightElement>}
       </InputGroup>
     </FormWrapper>
   );
@@ -49,4 +54,5 @@ export type InputProps<TFieldValues extends FieldValues> = {
   leftElement?: React.ReactNode;
   rightElement?: React.ReactNode;
   name: Path<TFieldValues>;
+  label?: string;
 } & ChakraInputProps;

@@ -1,3 +1,8 @@
+export type ErrorType = {
+  message: string;
+  status: number;
+};
+
 export type ItemsType = {
   _id: string;
   title: string;
