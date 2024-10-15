@@ -7,7 +7,7 @@ function Footer() {
     <Flex
       direction={"row"}
       width={"100%"}
-      bgColor={"brand.800"}
+      // bgColor={"brand.800"}
       py={3}
       justifyContent={"end"}
       alignContent={"center"}

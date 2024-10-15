@@ -5,6 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css";
 // import useCartStore from './stores/cartStore.tsx';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

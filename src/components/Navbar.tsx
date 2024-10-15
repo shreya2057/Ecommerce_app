@@ -27,7 +27,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
     <Flex
       direction={{ base: "column", md: "row" }}
       width={"100%"}
-      bgColor={"brand.800"}
+      // bgColor={"brand.800"}
       py={{ md: 3 }}
       justifyContent={"space-between"}
       align={{ base: "start", md: "center" }}
