@@ -1,5 +1,3 @@
-import { Control, FieldValues, Path, useController } from "react-hook-form";
-import { FormWrapper } from "./FormWrapper";
 import {
   Input as ChakraInput,
   InputProps as ChakraInputProps,
@@ -7,7 +5,8 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import { colors } from "../../theme/colors";
+import { Control, FieldValues, Path, useController } from "react-hook-form";
+import { FormWrapper } from "./FormWrapper";
 
 export const Input = <TFieldValues extends FieldValues>({
   control,
@@ -27,18 +26,19 @@ export const Input = <TFieldValues extends FieldValues>({
       <InputGroup>
         {leftElement && <InputLeftElement>{leftElement}</InputLeftElement>}
         <ChakraInput
-          borderColor={colors.brand[400]}
+          borderColor={"gray.200"}
           _active={{
-            borderColor: colors.brand[400],
+            borderColor: "gray.300",
           }}
-          _focusVisible={{ borderColor: colors.brand[400] }}
+          _focusVisible={{ borderColor: "gray.300" }}
           _hover={{
-            borderColor: colors.brand[400],
+            borderColor: "gray.300",
           }}
+          bg={"white"}
           onChange={onChange}
           value={value}
           _placeholder={{
-            color: "brand.800",
+            color: "gray.500",
             opacity: 0.5,
           }}
           {...restFields}

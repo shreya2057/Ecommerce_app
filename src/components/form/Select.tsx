@@ -39,7 +39,7 @@ export const SingleSelect = <TFieldValues extends FieldValues>({
           }),
           placeholder: (baseStyles) => ({
             ...baseStyles,
-            color: placeholderColor ?? colors.brand[700],
+            color: placeholderColor ?? colors.gray[500],
             fontSize: "16px",
           }),
           control: (baseStyles) => ({
@@ -48,12 +48,12 @@ export const SingleSelect = <TFieldValues extends FieldValues>({
             paddingRight: 4,
             width: "100%",
             height: "40px",
-            background: "transparent",
+            background: "white",
             boxShadow: "none",
             borderRadius: "6px",
-            borderColor: colors.brand[400],
+            borderColor: colors.gray[200],
             "&:hover": {
-              borderColor: colors.brand[400],
+              borderColor: colors.gray[300],
             },
           }),
         }}

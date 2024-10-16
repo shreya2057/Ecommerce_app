@@ -67,6 +67,7 @@ function Shopping() {
       justifyContent={"start"}
       gap={6}
       pb={6}
+      bg={"gray.40"}
     >
       <Banner />
       <HStack
@@ -103,7 +104,7 @@ function Shopping() {
             options={categoriesList}
             inputControl="single-select"
             placeholder="Categories"
-            placeholderColor={colors.brand[800]}
+            placeholderColor={colors.gray[500]}
           />
         </Flex>
       </HStack>
@@ -114,8 +115,8 @@ function Shopping() {
       >
         {isLoading ? (
           <HStack gap={2} width={"100%"} justifyContent={"center"}>
-            <Spinner size={"lg"} color="brand.700" />
-            <Text fontWeight={"bold"} textColor={"brand.800"}>
+            <Spinner size={"lg"} color="gray.500" />
+            <Text fontWeight={"bold"} textColor={"gray.600"}>
               Loading...
             </Text>
           </HStack>

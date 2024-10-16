@@ -8,11 +8,12 @@ function Banner() {
       width={"100%"}
       display={"flex"}
       flexDirection={{ base: "column", md: "row" }}
-      py={8}
+      py={20}
       px={{ base: 16, sm: 28, md: 28 }}
-      bgColor={"brand.300"}
+      background={"gradientGrayLight"}
       justifyContent={{ base: "center", md: "space-between" }}
       alignItems={"center"}
+      gap={40}
     >
       <Flex
         direction={"column"}
@@ -20,33 +21,37 @@ function Banner() {
         width={"100%"}
         alignItems={{ base: "center", md: "start" }}
         alignSelf={"center"}
-        maxWidth={{ lg: 600 }}
         gap={3}
       >
-        <Heading fontSize={"2xl"} textColor={"brand.800"}>
+        <Heading fontSize={"4xl"} as={"i"} textColor={"gray.500"}>
           Ecommerce App
         </Heading>
         <Box>
           <Text
-            fontSize={"sm"}
-            textColor={"brand.800"}
+            fontSize={"md"}
+            textColor={"gray.500"}
             opacity={0.8}
             textAlign={"left"}
             hidden={hideText}
           >
-            Embark on a seamless shopping journey where boundless selections
-            meet effortless convenience. Discover a retail odyssey crafted to
-            inspire, elevate, and delight every purchase.
+            Embark on a seamless shopping journey where endless selections meet
+            effortless convenience. Discover everything from the latest fashion
+            trends to unique artisanal finds, all just a click away. Enjoy a
+            user-friendly interface, personalized recommendations, and quick,
+            secure transactions. With timely delivery and dedicated support,
+            every purchase enhances your lifestyle. Experience the joy of
+            shopping, where inspiration and convenience come together for a
+            delightful experience.
           </Text>
         </Box>
       </Flex>
       <Box
         rounded={"full"}
-        bgColor={"brand.700"}
+        bgColor={"gray.100"}
         width={"fit-content"}
-        textColor={"brand.800"}
-        fontSize={50}
-        p={5}
+        textColor={"gray.300"}
+        fontSize={"100px"}
+        p={8}
       >
         <RiShoppingBag2Line />
       </Box>

@@ -27,7 +27,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
     <Flex
       direction={{ base: "column", md: "row" }}
       width={"100%"}
-      // bgColor={"brand.800"}
+      bgColor={"white"}
       py={{ md: 3 }}
       justifyContent={"space-between"}
       align={{ base: "start", md: "center" }}
@@ -47,7 +47,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
           <Text
             fontSize={"xl"}
             fontWeight={"bold"}
-            textColor={"brand.200"}
+            textColor={"gray.600"}
             whiteSpace={"nowrap"}
           >
             Ecommerce App
@@ -65,7 +65,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
         direction={{ base: "column", md: "row" }}
         gap={{ base: 2, md: 6 }}
         fontWeight={"bold"}
-        textColor={{ base: "brand.800", md: "brand.200" }}
+        textColor={{ base: "brand.800", md: "gray.600" }}
         px={{ base: 10, md: 10 }}
         py={{ base: 3, md: 0 }}
         align={{ base: "start", md: "center" }}
@@ -98,11 +98,10 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 display={"flex"}
                 justifyContent={{ md: "center" }}
                 alignContent={"center"}
-                width={130}
                 gap={1.5}
-                bgColor={{ md: "brand.700" }}
+                bgColor={{ md: "gray.100" }}
                 py={{ base: 0, md: 1 }}
-                px={{ base: 0, md: 2 }}
+                px={{ base: 0, md: 6 }}
                 rounded={{ md: "base" }}
                 shadow={{ md: "md" }}
                 fontSize={{ base: "md", md: "sm" }}

@@ -14,10 +14,18 @@ const theme = extendTheme({
       },
       variants: {
         primary: {
-          bg: "brand.800",
+          bg: "gray.700",
           color: "brand.100",
           _hover: {
-            bg: "brand.700",
+            bg: "gray.500",
+          },
+        },
+        light: {
+          bg: "gray.200",
+          color: "gray.700",
+          _hover: {
+            bg: "gray.500",
+            color: "gray.100",
           },
         },
         iconButton: {

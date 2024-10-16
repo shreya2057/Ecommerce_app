@@ -32,7 +32,7 @@ function HomeScreen() {
   return (
     <Flex direction={"column"} width={"100%"}>
       <Flex
-        bg={"brand.600"}
+        bg={"gradientGray"}
         width={"100%"}
         height={"100%"}
         justifyContent={"center"}
@@ -43,7 +43,7 @@ function HomeScreen() {
           alignItems={"center"}
           gap={20}
           width={"100%"}
-          px={40}
+          px={{ base: 10, md: 40 }}
           py={32}
         >
           <VStack
@@ -52,21 +52,28 @@ function HomeScreen() {
             gap={5}
             textColor={"white"}
           >
-            <Text fontWeight={900} fontSize={"6xl"} as={"i"}>
+            <Text
+              fontWeight={900}
+              fontSize={{ base: "2xl", md: "4xl", lg: "5xl", xl: "6xl" }}
+              as={"i"}
+            >
               Ecommerce App
             </Text>
-            <Heading fontSize={"2xl"}>Easy online shopping</Heading>
-            <Text fontSize={"md"} textColor={"white"} textAlign={"justify"}>
+            <Heading fontSize={{ base: "md", md: "2xl" }}>
+              Easy online shopping
+            </Heading>
+            <Text
+              fontSize={{ base: "sm", md: "md" }}
+              textColor={"white"}
+              textAlign={"justify"}
+            >
               Navigate the Universe of Fashion, Tech, and Lifestyle: From
               Trendsetting Designs to Cutting-Edge Gadgets, Ecommerce App Guides
               You Through a Seamless Shopping Odyssey. Discover, Click, and
               Redefine Your World - Because Choices Should Be Boundless, Just
               Like Your Dreams!
             </Text>
-            <Button
-              variant={"primary"}
-              onClick={() => navigate(ROUTES.PRODUCTS)}
-            >
+            <Button variant={"light"} onClick={() => navigate(ROUTES.PRODUCTS)}>
               Explore our product
             </Button>
           </VStack>
@@ -74,27 +81,30 @@ function HomeScreen() {
           <Box
             rounded={"full"}
             bgColor={"white"}
-            textColor={"brand.700"}
+            textColor={"gray.400"}
             fontSize={"160px"}
             p={10}
+            display={{ base: "none", lg: "flex" }}
           >
             <RiShoppingCartFill />
           </Box>
         </HStack>
       </Flex>
-      <VStack py={10} px={40} alignItems={"start"}>
-        <Text fontSize={"lg"} fontWeight={"bold"} color={"brand.800"}>
+      <VStack
+        py={10}
+        px={{ base: 10, md: 40 }}
+        gap={5}
+        alignItems={"start"}
+        bg={"gray.40"}
+      >
+        <Text fontSize={"lg"} fontWeight={"bold"} color={"gray.700"}>
           Featured products
         </Text>
-        <Flex
-          width={"100%"}
-          justifyContent={"start"}
-          px={{ base: 16, sm: 16, lg: 16, xl: 28 }}
-        >
+        <Flex width={"100%"} justifyContent={"start"}>
           {isLoading ? (
             <HStack gap={2} width={"100%"} justifyContent={"center"}>
-              <Spinner size={"lg"} color="brand.700" />
-              <Text fontWeight={"bold"} textColor={"brand.800"}>
+              <Spinner size={"lg"} color="gray.500" />
+              <Text fontWeight={"bold"} textColor={"gray.600"}>
                 Loading...
               </Text>
             </HStack>

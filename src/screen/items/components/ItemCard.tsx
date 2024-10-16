@@ -18,8 +18,8 @@ function ItemCard({ items }: { items: ItemsType }) {
       width={"100%"}
       display={"flex"}
       height={"min-content"}
-      bgColor={"brand.200"}
       shadow={"lg"}
+      rounded={"md"}
     >
       <CardBody
         m={0}
@@ -33,9 +33,10 @@ function ItemCard({ items }: { items: ItemsType }) {
           width={"100%"}
           height={200}
           display={"flex"}
-          bgColor={"brand.300"}
+          bgColor={"gray.200"}
           alignContent={"center"}
           justifyContent={"center"}
+          roundedTop={"md"}
         >
           <Image objectFit={"cover"} rounded={"md"} src={items?.image} />
         </Box>
@@ -44,13 +45,13 @@ function ItemCard({ items }: { items: ItemsType }) {
           mx={6}
           mt={3}
           mb={1}
-          textColor={"brand.800"}
+          textColor={"gray.800"}
           noOfLines={1}
         >
           {items?.title}
         </Heading>
         <Text
-          textColor={"brand.800"}
+          textColor={"gray.700"}
           fontSize={"md"}
           alignSelf={"start"}
           opacity={0.7}
