@@ -1,3 +1,4 @@
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -5,14 +6,13 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { HiOutlineUserCircle, HiOutlineShoppingCart } from "react-icons/hi";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { ROUTES } from "../routes/routes";
+import { Profile } from "./Profile";
 
 function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
-  const username = "harry potter";
   const [showNavMenu, setShowNavMenu] = useState(false);
   const menuVisibility = useBreakpointValue({ base: !showNavMenu, md: false });
   const buttonVisibility = useBreakpointValue({ base: false, md: true });
@@ -93,25 +93,7 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 <Text>Cart</Text>
               </Box>
             </Link>
-            <Link to={"/"}>
-              <Box
-                display={"flex"}
-                justifyContent={{ md: "center" }}
-                alignContent={"center"}
-                gap={1.5}
-                bgColor={{ md: "gray.100" }}
-                py={{ base: 0, md: 1 }}
-                px={{ base: 0, md: 6 }}
-                rounded={{ md: "base" }}
-                shadow={{ md: "md" }}
-                fontSize={{ base: "md", md: "sm" }}
-              >
-                <Box display={"flex"} alignSelf={"center"}>
-                  <HiOutlineUserCircle />
-                </Box>
-                <Text fontSize={"base"}>{username}</Text>
-              </Box>
-            </Link>
+            <Profile />
           </Flex>
         ) : (
           <Flex

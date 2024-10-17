@@ -1,25 +1,24 @@
-import { Box, Flex, Heading, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { RiShoppingBag2Line } from "react-icons/ri";
 
 function Banner() {
-  const hideText = useBreakpointValue({ base: true, md: false });
   return (
     <Box
       width={"100%"}
       display={"flex"}
-      flexDirection={{ base: "column", md: "row" }}
+      flexDirection={{ base: "column", lg: "row" }}
       py={20}
-      px={{ base: 16, sm: 28, md: 28 }}
+      px={{ base: 16, md: 28 }}
       background={"gradientGrayLight"}
       justifyContent={{ base: "center", md: "space-between" }}
       alignItems={"center"}
-      gap={40}
+      gap={{ base: 10, lg: 40 }}
     >
       <Flex
         direction={"column"}
         flex={1}
         width={"100%"}
-        alignItems={{ base: "center", md: "start" }}
+        alignItems={{ base: "center", lg: "start" }}
         alignSelf={"center"}
         gap={3}
       >
@@ -32,7 +31,6 @@ function Banner() {
             textColor={"gray.500"}
             opacity={0.8}
             textAlign={"left"}
-            hidden={hideText}
           >
             Embark on a seamless shopping journey where endless selections meet
             effortless convenience. Discover everything from the latest fashion
@@ -50,7 +48,7 @@ function Banner() {
         bgColor={"gray.100"}
         width={"fit-content"}
         textColor={"gray.300"}
-        fontSize={"100px"}
+        fontSize={{ base: "160px", lg: "150px", xl: "100px" }}
         p={8}
       >
         <RiShoppingBag2Line />

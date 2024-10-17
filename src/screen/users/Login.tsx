@@ -1,8 +1,8 @@
-import { Button, Flex, Heading, Image, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, VStack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { RiShoppingCartFill } from "react-icons/ri";
 import { z } from "zod";
-import Signup from "../../app-images/signup.jpg";
 import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
 import { loginSchema } from "../../schema/loginSchema";
@@ -25,37 +25,50 @@ function Login() {
   };
 
   return (
-    <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
-      <Flex
-        width={"25%"}
+    <Flex
+      direction={"row"}
+      minHeight={"100%"}
+      width={"100%"}
+      background={"gradientGray"}
+    >
+      <VStack
+        flex={"45%"}
         height={"100%"}
-        bgColor={"#c691a4"}
-        direction={"column"}
+        justifyContent={"center"}
         display={{ base: "none", xl: "flex" }}
       >
-        <Image src={Signup} height={"100%"} />
-      </Flex>
+        <Box
+          background={"gradientGrayLight"}
+          p={10}
+          rounded={"full"}
+          color={"gray.600"}
+        >
+          <RiShoppingCartFill fontSize={"160px"} />
+        </Box>
+      </VStack>
       <VStack
-        direction={"column"}
-        flex={1}
-        height={"100%"}
+        my={1}
+        flex={"65%"}
         gap={4}
         justifyContent={"center"}
-        color={"brand.800"}
+        px={48}
+        rounded={"xl"}
+        shadow={"lg"}
+        color={"gray.600"}
+        backgroundColor={"gray.40"}
       >
         <VStack
+          width={"100%"}
+          gap={6}
+          justifyContent={"center"}
           as={"form"}
-          borderWidth={1}
-          borderColor={"brand.300"}
           p={10}
-          w={"420px"}
-          rounded={"md"}
-          shadow={"md"}
-          backgroundColor={"brand.200"}
-          gap={5}
+          rounded={"xl"}
+          shadow={"lg"}
+          backgroundColor={"gray.100"}
           onSubmit={handleSubmit(onLogin)}
         >
-          <Heading fontSize={"xl"}>Create account</Heading>
+          <Heading fontSize={"xl"}>Welcome to Ecommerce app</Heading>
           <FormControl
             inputControl="input"
             name="email"
@@ -63,6 +76,7 @@ function Login() {
             label="Email"
             bg={"white"}
             shadow={"md"}
+            borderWidth={0}
             placeholder="Enter your email"
           />
           <Password
@@ -71,12 +85,19 @@ function Login() {
             label="Password"
             bg={"white"}
             shadow={"md"}
+            borderWidth={0}
             placeholder="Enter password"
           />
-
-          <Button variant={"primary"} type="submit" isLoading={isLoading}>
-            Login
-          </Button>
+          <Flex width={"100%"}>
+            <Button
+              variant={"primary"}
+              type="submit"
+              isLoading={isLoading}
+              w={"100%"}
+            >
+              Login
+            </Button>
+          </Flex>
         </VStack>
       </VStack>
     </Flex>

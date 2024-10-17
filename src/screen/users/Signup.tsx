@@ -1,138 +1,153 @@
-import { 
-    Image, 
-    Input, 
-    FormControl, 
-    Flex, 
-    Box, 
-    FormErrorMessage, 
-    Center, 
-    FormLabel, 
-    Stack,
-    Heading,
-    InputGroup,
-    InputRightElement,
-    IconButton,
-    useBreakpointValue,
-    Button
-    // Container 
-} from "@chakra-ui/react";
-// import { useNavigate } from "react-router-dom";
-import Signup from "../../app-images/signup.jpg"
-import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-function SignUp(){    
-    const [showPassword, setshowPassword] = useState(false);
-    const passwordVisibility = () => setshowPassword(!showPassword);
-    const hidden = useBreakpointValue({"base": true, "sm": true, "md": true, "xl": false});
+import { Box, Button, Flex, Heading, HStack, VStack } from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { RiShoppingCartFill } from "react-icons/ri";
+import { z } from "zod";
+import { FormControl } from "../../components/form/FormControl";
+import { Password } from "../../components/form/Password";
+import { loginSchema } from "../../schema/loginSchema";
+import { useLoginQuery } from "../../services/auth";
 
+const initialValues = {
+  email: "",
+  password: "",
+};
+function Signup() {
+  const { control, handleSubmit } = useForm<z.infer<typeof loginSchema>>({
+    defaultValues: initialValues,
+    resolver: zodResolver(loginSchema),
+  });
 
-    return (
-        <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
-            <Flex 
-                width={"25%"}
-                height={"100%"}
-                bgColor={"#c691a4"}
-                direction={"column"}
-                hidden = {hidden}
-            >   
-                <Image src={Signup} height={"100%"}/>
-            </Flex>
-            <Flex 
-                direction={"column"}
-                flex={1}
-                height={"100%"} 
-                gap={4} 
-            >   
-                <Flex width={"100%"} height={"100%"} justifyContent={"center"} align={"center"}>
-                    <Box 
-                        borderWidth={1} 
-                        borderColor={"#ffd5e5"}
-                        p={10} 
-                        rounded={"md"} 
-                        shadow={"md"} 
-                        backgroundColor={"#fff6f9"}
-                    >                        
-                        <form 
-                            // onSubmit={handleSubmit(submit_data)}
-                        >
-                            <Stack spacing={5}>
-                                <Heading fontSize={"xl"}>Create account</Heading>
-                                <FormControl 
-                                    // isInvalid={!!errors.name}
-                                >
-                                    <FormLabel htmlFor="name">Email</FormLabel>
-                                    <Input 
-                                        width={{"base":220,"md":350}}
-                                        placeholder="Enter your email" 
-                                        bgColor={"white"}
-                                        type="text"
-                                        shadow={"md"}
-                                        borderColor={"#ffd5e5"}
-                                        // {
-                                        //     ...register(
-                                        //         "name",
-                                        //         {
-                                        //             required: "Task name cannot be empty"
-                                        //         }
-                                        //     )
-                                        // }
-                                    />
-                                    <FormErrorMessage>
-                                        {/* {errors.name?.message} */}
-                                    </FormErrorMessage>
-                                </FormControl>
-                                <FormControl 
-                                    // isInvalid={!!errors.start}
-                                >
-                                    <FormLabel htmlFor="name">Password</FormLabel>
-                                    
-                                    <InputGroup size='md' backgroundColor={"white"} display={"flex"}  width={{"base":220,"md":350}}>
-                                        <Input 
-                                           
-                                            borderColor={"#ffd5e5"}
-                                            placeholder="Enter your password" 
-                                            bgColor={"white"}
-                    
-                                            type={showPassword ? "text" : "password"}
-                                            shadow={"md"}
-                                            // {
-                                            //     ...register(
-                                            //         "start",
-                                            //         {
-                                            //             required: "Start Date cannot be empty"
-                                            //         }
-                                            //     )
-                                            // }
-                                        />
-                                        <InputRightElement width={{"base": "2rem", "md":'4.5rem'}} alignSelf={"center"}>
-                                            <IconButton 
-                                                width={{"base": "1rem", "md":'4.5rem'}}
-                                                h={{"base": "0.75rem", "md":'1.75rem'}} 
-                                                size='sm' 
-                                                aria-label="Password"
-                                                backgroundColor={"inherit"}
-                                                _hover={{bgColor: "white"}}
-                                                icon={showPassword ? <ViewIcon/> : <ViewOffIcon/>}
-                                                onClick={passwordVisibility}
-                                            />
-                                        </InputRightElement>
-                                    </InputGroup>
-                                    <FormErrorMessage>
-                                        {/* {errors.start?.message} */}
-                                    </FormErrorMessage>
-                                </FormControl>    
-                                <Center>
-                                    <Box p={0} borderColor={"#653059"} borderWidth={1} rounded={"md"}>
-                                        <Button>Signup</Button>
-                                    </Box>
-                                </Center>                 
-                            </Stack>
-                        </form>
-                    </Box>                
-                </Flex>
-            </Flex>
-        </Flex>
-    );
+  const { mutateAsync: login, isLoading } = useLoginQuery();
+
+  const onLogin = (data: z.infer<typeof loginSchema>) => {
+    login(data);
+  };
+
+  return (
+    <Flex
+      direction={"row"}
+      minHeight={"100%"}
+      width={"100%"}
+      background={"gradientGray"}
+    >
+      <VStack
+        flex={"35%"}
+        height={"100%"}
+        justifyContent={"center"}
+        display={{ base: "none", xl: "flex" }}
+      >
+        <Box
+          background={"gradientGrayLight"}
+          p={10}
+          rounded={"full"}
+          color={"gray.600"}
+        >
+          <RiShoppingCartFill fontSize={"100px"} />
+        </Box>
+      </VStack>
+      <VStack
+        my={1}
+        flex={"75%"}
+        gap={4}
+        justifyContent={"center"}
+        px={32}
+        rounded={"xl"}
+        shadow={"lg"}
+        color={"gray.600"}
+        backgroundColor={"gray.40"}
+      >
+        <VStack
+          width={"100%"}
+          gap={6}
+          justifyContent={"center"}
+          as={"form"}
+          p={10}
+          rounded={"xl"}
+          shadow={"lg"}
+          background={"gradientGrayLight"}
+          onSubmit={handleSubmit(onLogin)}
+        >
+          <Heading fontSize={"xl"}>Create an account</Heading>
+          <HStack gap={6} width={"100%"}>
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+          </HStack>
+          <HStack gap={6} width={"100%"}>
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+          </HStack>
+          <HStack gap={6} width={"100%"}>
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+            <Password
+              name="password"
+              control={control}
+              label="Password"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter password"
+            />
+          </HStack>
+          <Flex width={"100%"}>
+            <Button
+              variant={"primary"}
+              type="submit"
+              isLoading={isLoading}
+              w={"100%"}
+            >
+              Create account
+            </Button>
+          </Flex>
+        </VStack>
+      </VStack>
+    </Flex>
+  );
 }
 
-export default SignUp;
+export default Signup;
