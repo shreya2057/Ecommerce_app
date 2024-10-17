@@ -12,4 +12,20 @@ const removeToken = (tokenName: string) => {
   return Cookie.remove(tokenName);
 };
 
-export const TokenService = { getToken, setToken, removeToken };
+const getTokenDetails = (tokenName: string) => {
+  try {
+    const token = getToken(tokenName);
+    if (!token) return {};
+    const decoded = JSON.parse(window.atob(token?.split(".")[1]));
+    return decoded;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const TokenService = {
+  getToken,
+  setToken,
+  removeToken,
+  getTokenDetails,
+};
