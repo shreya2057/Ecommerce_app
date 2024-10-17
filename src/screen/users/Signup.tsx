@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, HStack, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { RiShoppingCartFill } from "react-icons/ri";
@@ -7,6 +15,8 @@ import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
 import { loginSchema } from "../../schema/loginSchema";
 import { useLoginQuery } from "../../services/auth";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../routes/routes";
 
 const initialValues = {
   email: "",
@@ -30,32 +40,35 @@ function Signup() {
       minHeight={"100%"}
       width={"100%"}
       background={"gradientGray"}
+      px={{ base: 5, sm: 16, md: 14, lg: 0 }}
+      py={{ base: 10, md: 0 }}
     >
       <VStack
-        flex={"35%"}
+        flex={{ lg: "20%", xl: "25%" }}
         height={"100%"}
         justifyContent={"center"}
-        display={{ base: "none", xl: "flex" }}
+        display={{ base: "none", lg: "flex" }}
       >
         <Box
           background={"gradientGrayLight"}
           p={10}
           rounded={"full"}
           color={"gray.600"}
+          fontSize={{ lg: "70px", xl: "100px" }}
         >
-          <RiShoppingCartFill fontSize={"100px"} />
+          <RiShoppingCartFill />
         </Box>
       </VStack>
       <VStack
         my={1}
-        flex={"75%"}
+        flex={{ base: "100%", lg: "80%", xl: "75%" }}
         gap={4}
         justifyContent={"center"}
-        px={32}
+        px={{ md: 10, lg: 24, xl: 32 }}
         rounded={"xl"}
         shadow={"lg"}
         color={"gray.600"}
-        backgroundColor={"gray.40"}
+        backgroundColor={{ md: "gray.40" }}
       >
         <VStack
           width={"100%"}
@@ -69,7 +82,11 @@ function Signup() {
           onSubmit={handleSubmit(onLogin)}
         >
           <Heading fontSize={"xl"}>Create an account</Heading>
-          <HStack gap={6} width={"100%"}>
+          <HStack
+            gap={6}
+            width={"100%"}
+            flexDirection={{ base: "column", md: "row" }}
+          >
             <FormControl
               inputControl="input"
               name="email"
@@ -91,7 +108,11 @@ function Signup() {
               placeholder="Enter your email"
             />
           </HStack>
-          <HStack gap={6} width={"100%"}>
+          <HStack
+            gap={6}
+            width={"100%"}
+            flexDirection={{ base: "column", md: "row" }}
+          >
             <FormControl
               inputControl="input"
               name="email"
@@ -113,7 +134,11 @@ function Signup() {
               placeholder="Enter your email"
             />
           </HStack>
-          <HStack gap={6} width={"100%"}>
+          <HStack
+            gap={6}
+            width={"100%"}
+            flexDirection={{ base: "column", md: "row" }}
+          >
             <FormControl
               inputControl="input"
               name="email"
@@ -144,6 +169,14 @@ function Signup() {
               Create account
             </Button>
           </Flex>
+          <Text
+            as={Link}
+            textDecoration={"underline"}
+            to={ROUTES.LOGIN}
+            fontSize={"sm"}
+          >
+            Already have an account?
+          </Text>
         </VStack>
       </VStack>
     </Flex>

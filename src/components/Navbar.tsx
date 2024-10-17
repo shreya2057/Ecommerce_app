@@ -76,15 +76,15 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
         <Link to={ROUTES.PRODUCTS}>
           <Text>Products</Text>
         </Link>
-        <Link to={ROUTES.ORDERS}>
-          <Text>Orders</Text>
-        </Link>
         {isLoggedIn ? (
           <Flex
             direction={{ base: "column", md: "row" }}
             gap={{ base: 1, md: 6 }}
             align={{ base: "start", md: "center" }}
           >
+            <Link to={ROUTES.ORDERS}>
+              <Text>Orders</Text>
+            </Link>
             <Link to={ROUTES.CARTS}>
               <Box display={"flex"} gap={2}>
                 <Box display={"flex"} alignSelf={"center"}>

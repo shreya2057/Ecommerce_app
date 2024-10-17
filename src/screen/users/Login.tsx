@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { RiShoppingCartFill } from "react-icons/ri";
@@ -7,6 +7,8 @@ import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
 import { loginSchema } from "../../schema/loginSchema";
 import { useLoginQuery } from "../../services/auth";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../routes/routes";
 
 const initialValues = {
   email: "",
@@ -30,45 +32,49 @@ function Login() {
       minHeight={"100%"}
       width={"100%"}
       background={"gradientGray"}
+      p={{ base: 8, sm: 10, md: 0 }}
     >
       <VStack
-        flex={"45%"}
+        flex={{ md: "35%", lg: "45%" }}
         height={"100%"}
         justifyContent={"center"}
-        display={{ base: "none", xl: "flex" }}
+        display={{ base: "none", md: "flex" }}
       >
         <Box
           background={"gradientGrayLight"}
           p={10}
           rounded={"full"}
           color={"gray.600"}
+          fontSize={{ md: "80px", lg: "100px", xl: "160px" }}
         >
-          <RiShoppingCartFill fontSize={"160px"} />
+          <RiShoppingCartFill />
         </Box>
       </VStack>
       <VStack
         my={1}
-        flex={"65%"}
+        flex={{ base: "100%", md: "75%", lg: "65%" }}
         gap={4}
         justifyContent={"center"}
-        px={48}
+        px={{ sm: 8, md: 20, lg: 32, xl: 48 }}
         rounded={"xl"}
-        shadow={"lg"}
+        shadow={{ sm: "lg" }}
         color={"gray.600"}
-        backgroundColor={"gray.40"}
+        backgroundColor={{ sm: "gray.40" }}
       >
         <VStack
           width={"100%"}
           gap={6}
           justifyContent={"center"}
           as={"form"}
-          p={10}
+          p={{ base: 8, sm: 10 }}
           rounded={"xl"}
           shadow={"lg"}
-          backgroundColor={"gray.100"}
+          background={"gradientGrayLight"}
           onSubmit={handleSubmit(onLogin)}
         >
-          <Heading fontSize={"xl"}>Welcome to Ecommerce app</Heading>
+          <Heading fontSize={{ base: "lg", sm: "xl" }}>
+            Welcome to Ecommerce app
+          </Heading>
           <FormControl
             inputControl="input"
             name="email"
@@ -98,6 +104,14 @@ function Login() {
               Login
             </Button>
           </Flex>
+          <Text
+            as={Link}
+            textDecoration={"underline"}
+            to={ROUTES.SIGNUP}
+            fontSize={"sm"}
+          >
+            Don't have an account?
+          </Text>
         </VStack>
       </VStack>
     </Flex>
