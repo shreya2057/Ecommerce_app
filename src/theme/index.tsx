@@ -17,7 +17,15 @@ const theme = extendTheme({
           bg: "gray.700",
           color: "brand.100",
           _hover: {
+            _disabled: {
+              bg: "gray.600",
+            },
             bg: "gray.500",
+          },
+          _disabled: {
+            _hover: {
+              bg: "gray.600",
+            },
           },
         },
         light: {
@@ -26,6 +34,12 @@ const theme = extendTheme({
           _hover: {
             bg: "gray.500",
             color: "gray.100",
+          },
+          _disabled: {
+            _hover: {
+              bg: "gray.600",
+              color: "gray.100",
+            },
           },
         },
         iconButton: {

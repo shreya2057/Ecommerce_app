@@ -15,6 +15,16 @@ export type ItemsType = {
   is_featured: boolean;
 };
 
+export type UserStoreType = {
+  email: string;
+  otp: string;
+  updateEmail: (email: string) => void;
+  updateOtp: (otp: string) => void;
+  clearEmail: () => void;
+  clearOtp: () => void;
+  clearUserState: () => void;
+};
+
 export type CartStoreType = {
   items: CartItemsType[];
   orderNumber: number;

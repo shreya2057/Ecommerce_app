@@ -10,28 +10,33 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { RiShoppingCartFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
-import { loginSchema } from "../../schema/loginSchema";
-import { useLoginQuery } from "../../services/auth";
-import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes/routes";
+import { registerSchema } from "../../schema/registerSchema";
+import { useRegisterQuery } from "../../services/auth";
+import { subDays } from "date-fns";
 
 const initialValues = {
+  full_name: "",
   email: "",
+  date_of_birth: "",
+  phone_number: "",
   password: "",
+  confirm_password: "",
 };
 function Signup() {
-  const { control, handleSubmit } = useForm<z.infer<typeof loginSchema>>({
+  const { control, handleSubmit } = useForm<z.infer<typeof registerSchema>>({
     defaultValues: initialValues,
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
   });
 
-  const { mutateAsync: login, isLoading } = useLoginQuery();
+  const { mutateAsync: register, isLoading } = useRegisterQuery();
 
-  const onLogin = (data: z.infer<typeof loginSchema>) => {
-    login(data);
+  const onLogin = (data: z.infer<typeof registerSchema>) => {
+    register(data);
   };
 
   return (
@@ -89,13 +94,13 @@ function Signup() {
           >
             <FormControl
               inputControl="input"
-              name="email"
+              name="full_name"
               control={control}
-              label="Email"
+              label="Full Name"
               bg={"white"}
               shadow={"md"}
               borderWidth={0}
-              placeholder="Enter your email"
+              placeholder="Enter your name"
             />
             <FormControl
               inputControl="input"
@@ -115,22 +120,24 @@ function Signup() {
           >
             <FormControl
               inputControl="input"
-              name="email"
+              name="phone_number"
               control={control}
-              label="Email"
+              label="Mobile number"
               bg={"white"}
               shadow={"md"}
               borderWidth={0}
-              placeholder="Enter your email"
+              placeholder="Enter your number"
             />
             <FormControl
               inputControl="input"
-              name="email"
+              name="date_of_birth"
               control={control}
-              label="Email"
+              label="Date of birth"
               bg={"white"}
               shadow={"md"}
               borderWidth={0}
+              type="date"
+              max={subDays(new Date(), 1).toISOString().split("T")[0]}
               placeholder="Enter your email"
             />
           </HStack>
@@ -139,20 +146,19 @@ function Signup() {
             width={"100%"}
             flexDirection={{ base: "column", md: "row" }}
           >
-            <FormControl
-              inputControl="input"
-              name="email"
-              control={control}
-              label="Email"
-              bg={"white"}
-              shadow={"md"}
-              borderWidth={0}
-              placeholder="Enter your email"
-            />
             <Password
               name="password"
               control={control}
               label="Password"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your password"
+            />
+            <Password
+              name="confirm_password"
+              control={control}
+              label="Confirm Password"
               bg={"white"}
               shadow={"md"}
               borderWidth={0}

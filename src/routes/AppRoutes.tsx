@@ -9,6 +9,8 @@ import Login from "../screen/users/Login";
 import SignUp from "../screen/users/Signup";
 import { ROUTES } from "./routes";
 import Layout from "../components/Layout";
+import Verification from "../screen/users/Verification";
+import EmailVerify from "../screen/users/EmailVerify";
 
 const privateRoutes = [
   {
@@ -78,6 +80,22 @@ const authRoutes = [
     element: (
       <Layout>
         <SignUp />
+      </Layout>
+    ),
+  },
+  {
+    path: ROUTES.VERIFICATION,
+    element: (
+      <Layout>
+        <Verification />
+      </Layout>
+    ),
+  },
+  {
+    path: ROUTES.EMAIL_VERIFY,
+    element: (
+      <Layout>
+        <EmailVerify />
       </Layout>
     ),
   },
