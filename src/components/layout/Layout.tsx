@@ -1,10 +1,10 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
-import { useIsAuthenticated } from "../hooks/useIsAuthencated";
-import Footer from "./Footer";
-import NavBar from "./Navbar";
+import { Footer } from "./Footer";
+import { NavBar } from "./Navbar";
+import { useIsAuthenticated } from "../../hooks";
 
-function Layout({ children }: { children: React.ReactNode }) {
+export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data: isauthenticated } = useIsAuthenticated();
   return (
     <Flex
@@ -19,6 +19,4 @@ function Layout({ children }: { children: React.ReactNode }) {
       <Footer />
     </Flex>
   );
-}
-
-export default Layout;
+};

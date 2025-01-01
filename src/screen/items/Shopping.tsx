@@ -20,7 +20,7 @@ import { parseQueryString } from "../../utils/parseQueryString";
 import { selectOptions } from "../../utils/selectOptions";
 import Banner from "./components/Banner";
 import ItemCard from "./components/ItemCard";
-import { NotFound } from "../../components/NotFound";
+import { NotFound } from "@/components/error";
 
 const initialValues = {
   product: "",

@@ -9,10 +9,11 @@ import {
 import { useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../routes/routes";
 import { Profile } from "./Profile";
+import { ROUTES } from "@/routes/routes";
+import { AppLogo } from "./AppLogo";
 
-function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
+export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   const menuVisibility = useBreakpointValue({ base: !showNavMenu, md: false });
   const buttonVisibility = useBreakpointValue({ base: false, md: true });
@@ -43,15 +44,8 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
           icon={<HamburgerIcon />}
           onClick={toggleMenu}
         />
-        <Link to={"/"}>
-          <Text
-            fontSize={"xl"}
-            fontWeight={"bold"}
-            textColor={"gray.600"}
-            whiteSpace={"nowrap"}
-          >
-            Ecommerce App
-          </Text>
+        <Link to={ROUTES.LANDING}>
+          <AppLogo logoSize="sm" />
         </Link>
       </Flex>
       <Flex
@@ -112,6 +106,4 @@ function NavBar({ isLoggedIn }: { isLoggedIn: boolean }) {
       </Flex>
     </Flex>
   );
-}
-
-export default NavBar;
+};

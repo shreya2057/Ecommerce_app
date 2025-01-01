@@ -31,6 +31,7 @@ const theme = extendTheme({
         light: {
           bg: "gray.200",
           color: "gray.700",
+          rounded: "4px",
           _hover: {
             bg: "gray.500",
             color: "gray.100",

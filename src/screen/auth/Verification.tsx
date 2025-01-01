@@ -16,13 +16,13 @@ import { FormControl } from "../../components/form/FormControl";
 import { useTimer } from "../../hooks/useTimer";
 import { ROUTES } from "../../routes/routes";
 import { otpSchema } from "../../schema/verificationSchema";
-import { useRequestOtp, useVerifyOtp } from "../../services/verification";
+import { useRequestOtp, useVerifyOtp } from "../../services";
 import { useUserStore } from "../../stores/userStore";
 
 const initialValues = {
   otp: "",
 };
-function Verification() {
+export const Verification = () => {
   const { control, handleSubmit } = useForm<z.infer<typeof otpSchema>>({
     defaultValues: initialValues,
     resolver: zodResolver(otpSchema),
@@ -141,6 +141,6 @@ function Verification() {
       </VStack>
     </Flex>
   );
-}
+};
 
 export default Verification;

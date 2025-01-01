@@ -1,16 +1,16 @@
 import { useRoutes } from "react-router-dom";
-import { useIsAuthenticated } from "../hooks/useIsAuthencated";
-import HomeScreen from "../screen/Home";
+import { useIsAuthenticated } from "../hooks";
+import { HomeScreen } from "../screen/Home";
 import Carts from "../screen/items/Cart";
 import { ItemDetail } from "../screen/items/ItemDetail";
 import Orders from "../screen/items/Orders";
 import Shopping from "../screen/items/Shopping";
-import Login from "../screen/users/Login";
-import SignUp from "../screen/users/Signup";
+import Login from "../screen/auth/Login";
+import SignUp from "../screen/auth/Signup";
 import { ROUTES } from "./routes";
-import Layout from "../components/Layout";
-import Verification from "../screen/users/Verification";
-import EmailVerify from "../screen/users/EmailVerify";
+import { Layout } from "../components/layout";
+import Verification from "../screen/auth/Verification";
+import EmailVerify from "../screen/auth/EmailVerify";
 
 const privateRoutes = [
   {

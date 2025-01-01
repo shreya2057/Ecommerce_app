@@ -28,7 +28,7 @@ export const useLoginQuery = () => {
       else {
         TokenService.setToken("access_token", tokens?.access_token);
         TokenService.setToken("refresh_token", tokens?.refresh_token);
-        queryClient.invalidateQueries("isauthenticated");
+        queryClient.invalidateQueries({ queryKey: ["isauthenticated"] });
         navigate(ROUTES.PRODUCTS);
       }
     },

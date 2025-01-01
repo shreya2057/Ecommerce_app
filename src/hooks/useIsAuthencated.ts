@@ -8,7 +8,7 @@ const isAuthenticated = () => {
 
 export const useIsAuthenticated = () => {
   return useQuery({
-    queryKey: "isauthenticated",
+    queryKey: ["isauthenticated"],
     queryFn: isAuthenticated,
   });
 };
