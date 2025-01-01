@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { IoMailUnread } from "react-icons/io5";
-import { useRequestOtp } from "../../services/verification";
+import { useRequestOtp } from "../../services";
 import { useUserStore } from "../../stores/userStore";
 import { ROUTES } from "../../routes/routes";
 import { useNavigate } from "react-router-dom";

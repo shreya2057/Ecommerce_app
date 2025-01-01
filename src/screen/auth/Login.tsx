@@ -6,7 +6,7 @@ import { z } from "zod";
 import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
 import { loginSchema } from "../../schema/loginSchema";
-import { useLoginQuery } from "../../services/auth";
+import { useLoginQuery } from "../../services";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes/routes";
 

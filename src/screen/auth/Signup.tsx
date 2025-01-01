@@ -16,7 +16,7 @@ import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
 import { ROUTES } from "../../routes/routes";
 import { registerSchema } from "../../schema/registerSchema";
-import { useRegisterQuery } from "../../services/auth";
+import { useRegisterQuery } from "../../services";
 import { subDays } from "date-fns";
 
 const initialValues = {

@@ -13,9 +13,9 @@ import { HiOutlineShoppingCart, HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdLogOut, IoMdSettings } from "react-icons/io";
 import { IoHeartCircleOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
-import { TokenService } from "../utils/token";
-import { AlertPage } from "./AlertPage";
-import { useLogout } from "../hooks/useLogout";
+import { TokenService } from "../../utils/token";
+import { AlertPage } from "../AlertPage";
+import { useLogout } from "../../hooks";
 
 export const Profile = () => {
   const tokenDetails = TokenService.getTokenDetails("access_token");

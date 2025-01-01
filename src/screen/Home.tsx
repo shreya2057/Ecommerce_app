@@ -5,7 +5,6 @@ import {
   Heading,
   HStack,
   SimpleGrid,
-  Spinner,
   Text,
   useBreakpointValue,
   VStack,
@@ -17,9 +16,10 @@ import { ROUTES } from "../routes/routes";
 import { useProductQuery } from "../services/product";
 import ItemCard from "./items/components/ItemCard";
 import { ItemsType } from "../type";
-import { NotFound } from "../components/NotFound";
+import { NotFound } from "@/components/error";
+import { Loading } from "@/components/Loading";
 
-function HomeScreen() {
+export const HomeScreen = () => {
   const navigate = useNavigate();
   const { data: products, isLoading } = useProductQuery({ category: "" });
   const columns = useBreakpointValue({
@@ -90,24 +90,13 @@ function HomeScreen() {
           </Box>
         </HStack>
       </Flex>
-      <VStack
-        py={10}
-        px={{ base: 10, md: 40 }}
-        gap={5}
-        alignItems={"start"}
-        bg={"gray.40"}
-      >
-        <Text fontSize={"lg"} fontWeight={"bold"} color={"gray.700"}>
+      <VStack py={10} px={{ base: 10, md: 40 }} gap={5} alignItems={"start"}>
+        <Text fontSize={"xl"} fontWeight={"bold"} color={"gray.600"}>
           Featured products
         </Text>
         <Flex width={"100%"} justifyContent={"start"}>
           {isLoading ? (
-            <HStack gap={2} width={"100%"} justifyContent={"center"}>
-              <Spinner size={"lg"} color="gray.500" />
-              <Text fontWeight={"bold"} textColor={"gray.600"}>
-                Loading...
-              </Text>
-            </HStack>
+            <Loading />
           ) : products?.length ? (
             <SimpleGrid
               templateColumns={columns}
@@ -121,12 +110,10 @@ function HomeScreen() {
               ))}
             </SimpleGrid>
           ) : (
-            <NotFound />
+            <NotFound message="No featured products available at the moment" />
           )}
         </Flex>
       </VStack>
     </Flex>
   );
-}
-
-export default HomeScreen;
+};

@@ -10,7 +10,7 @@ export const useLogout = () => {
     try {
       TokenService.removeToken("access_token");
       TokenService.removeToken("refresh_token");
-      queryClient.invalidateQueries("isauthenticated");
+      queryClient.invalidateQueries({ queryKey: ["isauthenticated"] });
       navigate(ROUTES.LANDING);
     } catch (e) {
       console.log(e);
