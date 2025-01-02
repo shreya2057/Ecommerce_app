@@ -33,12 +33,11 @@ export const ItemCard = ({ items }: { items: ItemsType }) => {
           width={"100%"}
           height={200}
           display={"flex"}
-          bgColor={"gray.200"}
           alignContent={"center"}
           justifyContent={"center"}
           roundedTop={"md"}
         >
-          <Image objectFit={"cover"} rounded={"md"} src={items?.image} />
+          <Image objectFit={"contain"} rounded={"md"} src={items?.image} />
         </Box>
         <Heading
           size={"md"}
@@ -52,13 +51,13 @@ export const ItemCard = ({ items }: { items: ItemsType }) => {
         </Heading>
         <Text
           textColor={"gray.700"}
-          fontSize={"md"}
+          fontSize={"sm"}
           alignSelf={"start"}
           opacity={0.7}
           mx={6}
           mb={1}
         >
-          <b>Price: </b>$ {items?.price}
+          <b>Price: </b>Rs. {items?.price}
         </Text>
       </CardBody>
       <CardFooter
@@ -70,7 +69,7 @@ export const ItemCard = ({ items }: { items: ItemsType }) => {
         pb={4}
       >
         <Button
-          variant={"primary"}
+          variant={"light"}
           size={"sm"}
           fontSize={"sm"}
           px={4}

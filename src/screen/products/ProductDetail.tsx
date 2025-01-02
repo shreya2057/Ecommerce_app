@@ -13,7 +13,7 @@ import { RiAddFill, RiShoppingCartFill, RiSubtractFill } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import { useGetProductDetail } from "../../services/product";
 
-export const ItemDetail = () => {
+export const ProductDetail = () => {
   const { id } = useParams();
   const { data: product, isLoading } = useGetProductDetail({ id: id ?? "" });
   return (
