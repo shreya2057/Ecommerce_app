@@ -3,9 +3,19 @@ import React from "react";
 import { Footer } from "./Footer";
 import { NavBar } from "./Navbar";
 import { useIsAuthenticated } from "../../hooks";
+import { ROUTES } from "@/routes/routes";
+import { useLocation } from "react-router-dom";
+
+const excludeFooter = [
+  ROUTES.LOGIN,
+  ROUTES.SIGNUP,
+  ROUTES.VERIFICATION,
+  ROUTES.EMAIL_VERIFY,
+];
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data: isauthenticated } = useIsAuthenticated();
+  const pathname = useLocation().pathname;
   return (
     <Flex
       direction={"column"}
@@ -16,7 +26,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <Flex flex={1} height={"100%"} pt={{ base: 16, md: 12 }}>
         {children}
       </Flex>
-      <Footer />
+      {!excludeFooter.includes(pathname) && <Footer />}
     </Flex>
   );
 };
