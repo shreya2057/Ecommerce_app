@@ -14,10 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { ROUTES } from "../routes/routes";
 import { useProductQuery } from "../services/product";
-import ItemCard from "./items/components/ItemCard";
 import { ItemsType } from "../type";
 import { NotFound } from "@/components/error";
 import { Loading } from "@/components/Loading";
+import { ItemCard } from "./products/components";
 
 export const HomeScreen = () => {
   const navigate = useNavigate();
@@ -73,7 +73,11 @@ export const HomeScreen = () => {
               Redefine Your World - Because Choices Should Be Boundless, Just
               Like Your Dreams!
             </Text>
-            <Button variant={"light"} onClick={() => navigate(ROUTES.PRODUCTS)}>
+            <Button
+              variant={"light"}
+              fontWeight={"bold"}
+              onClick={() => navigate(ROUTES.PRODUCTS)}
+            >
               Explore our product
             </Button>
           </VStack>

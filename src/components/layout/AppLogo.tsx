@@ -7,13 +7,7 @@ export const AppLogo = ({
   display,
   fontSize,
   padding,
-}: {
-  logoSize: string;
-  fontColor?: string;
-  display?: string | Record<string, string>;
-  fontSize?: string;
-  padding?: number;
-}) => {
+}: AppLogoProps) => {
   return (
     <HStack gap={3}>
       <Box
@@ -36,4 +30,12 @@ export const AppLogo = ({
       </Text>
     </HStack>
   );
+};
+
+type AppLogoProps = {
+  logoSize: string;
+  fontColor?: string;
+  display?: string | Record<string, string>;
+  fontSize?: string;
+  padding?: number;
 };

@@ -56,7 +56,7 @@ function CartItems({
               {brand}
             </Text>
             <Text textColor={"#b87c94"} fontSize={"sm"} mx={6} mb={1}>
-              <b>Price: </b>${price}
+              <b>Price: </b>Rs. {price}
             </Text>
             <Text textColor={"#b87c94"} fontSize={"sm"} mx={6} mb={1}>
               <b>Discount: </b>

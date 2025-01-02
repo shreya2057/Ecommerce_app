@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { CartItemsType } from "../../type";
-import Banner from "./components/Banner";
+import { Banner } from "./components/Banner";
 function Orders() {
   const [orderedProducts, setOrderedProducts] = useState<CartItemsType[]>();
   useEffect(() => {

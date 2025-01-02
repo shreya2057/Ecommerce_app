@@ -11,7 +11,7 @@ import {
 import { ItemsType } from "../../../type";
 import { generatePath, useNavigate } from "react-router-dom";
 
-function ItemCard({ items }: { items: ItemsType }) {
+export const ItemCard = ({ items }: { items: ItemsType }) => {
   const navigate = useNavigate();
   return (
     <Card
@@ -84,6 +84,4 @@ function ItemCard({ items }: { items: ItemsType }) {
       </CardFooter>
     </Card>
   );
-}
-
-export default ItemCard;
+};

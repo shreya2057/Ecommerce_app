@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useCartStore from "../../stores/cartStore";
 import { CartItemsType } from "../../type";
 import CartItems from "./components/CartCards";
-import Banner from "./components/Banner";
+import { Banner } from "./components";
 function Carts() {
   const toast = useToast();
   const { items, clearStates, removeItemFromCart } = useCartStore();
