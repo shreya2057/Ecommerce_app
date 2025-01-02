@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import { colors } from "./colors";
+import { Button } from "./Button";
 
 const theme = extendTheme({
   colors: colors,
@@ -8,47 +9,7 @@ const theme = extendTheme({
     body: `'Nunito-Regular', sans-serif`,
   },
   components: {
-    Button: {
-      baseStyle: {
-        fontWeight: "bold",
-      },
-      variants: {
-        primary: {
-          bg: "gray.700",
-          color: "brand.100",
-          _hover: {
-            _disabled: {
-              bg: "gray.600",
-            },
-            bg: "gray.500",
-          },
-          _disabled: {
-            _hover: {
-              bg: "gray.600",
-            },
-          },
-        },
-        light: {
-          bg: "gray.200",
-          color: "gray.700",
-          rounded: "4px",
-          _hover: {
-            bg: "gray.500",
-            color: "gray.100",
-          },
-          _disabled: {
-            _hover: {
-              bg: "gray.600",
-              color: "gray.100",
-            },
-          },
-        },
-        iconButton: {
-          bgColor: "brand.800",
-          textColor: "brand.100",
-        },
-      },
-    },
+    Button,
   },
 });
 

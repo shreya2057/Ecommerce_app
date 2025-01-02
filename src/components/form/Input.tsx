@@ -27,19 +27,11 @@ export const Input = <TFieldValues extends FieldValues>({
         {leftElement && <InputLeftElement>{leftElement}</InputLeftElement>}
         <ChakraInput
           borderColor={"gray.200"}
-          _active={{
-            borderColor: "gray.300",
-          }}
-          _focusVisible={{ borderColor: "gray.300" }}
-          _hover={{
-            borderColor: "gray.300",
-          }}
           bg={"white"}
           onChange={onChange}
           value={value}
           _placeholder={{
-            color: "gray.500",
-            opacity: 0.5,
+            color: "gray.400",
           }}
           {...restFields}
         />
