@@ -2,7 +2,6 @@ import { useRoutes } from "react-router-dom";
 import { useIsAuthenticated } from "../hooks";
 import { HomeScreen } from "../screen/Home";
 import Carts from "../screen/products/Cart";
-import { ItemDetail } from "../screen/products/ItemDetail";
 import Orders from "../screen/products/Orders";
 import Login from "../screen/auth/Login";
 import SignUp from "../screen/auth/Signup";
@@ -10,7 +9,7 @@ import { ROUTES } from "./routes";
 import { Layout } from "../components/layout";
 import Verification from "../screen/auth/Verification";
 import EmailVerify from "../screen/auth/EmailVerify";
-import { Products } from "@/screen/products";
+import { Products, ProductDetail } from "@/screen/products";
 
 const privateRoutes = [
   {
@@ -52,7 +51,7 @@ const publicRoutes = [
     path: ROUTES.PRODUCT_DETAIL,
     element: (
       <Layout>
-        <ItemDetail />
+        <ProductDetail />
       </Layout>
     ),
   },
