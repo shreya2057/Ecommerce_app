@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { API_ENDPOINTS } from "../api";
-import instance from "../axios/instance";
+import { httpClient } from "../axios";
 import { ROUTES } from "../routes/routes";
 import { loginSchema } from "../schema/loginSchema";
 import { registerSchema } from "../schema/registerSchema";
@@ -13,7 +13,7 @@ import { ErrorType } from "../type";
 import { TokenService } from "../utils/token";
 
 const login = (data: z.infer<typeof loginSchema>) => {
-  return instance.post(API_ENDPOINTS.LOGIN, data);
+  return httpClient.post(API_ENDPOINTS.LOGIN, data);
 };
 
 export const useLoginQuery = () => {
@@ -44,7 +44,7 @@ export const useLoginQuery = () => {
 };
 
 const register = (data: z.infer<typeof registerSchema>) => {
-  return instance.post(API_ENDPOINTS.REGISTER, data);
+  return httpClient.post(API_ENDPOINTS.REGISTER, data);
 };
 
 export const useRegisterQuery = () => {
