@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import instance from "../axios/instance";
+import { httpClient } from "../axios";
 import { API_ENDPOINTS } from "../api";
 import { AxiosError } from "axios";
 import { ErrorType } from "../type";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../routes/routes";
 
 const requestOtp = (data: { email: string }) => {
-  return instance.post(API_ENDPOINTS.REQUEST_OTP, data);
+  return httpClient.post(API_ENDPOINTS.REQUEST_OTP, data);
 };
 
 export const useRequestOtp = () => {
@@ -35,7 +35,7 @@ export const useRequestOtp = () => {
 };
 
 const verifyOtp = (data: { email: string; otp: string }) => {
-  return instance.post(API_ENDPOINTS.VERIFY_OTP, data);
+  return httpClient.post(API_ENDPOINTS.VERIFY_OTP, data);
 };
 
 export const useVerifyOtp = () => {

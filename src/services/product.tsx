@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { API_ENDPOINTS } from "../api";
-import instance from "../axios/instance";
+import { httpClient } from "../axios";
 import { APIResponseType, CategoryType, ItemsType } from "../type";
 import { generateApiPath } from "../utils/generateApiPath";
 
@@ -11,7 +11,7 @@ const getProduct = ({
   category: string;
   title?: string;
 }) => {
-  return instance.get<APIResponseType<ItemsType[]>>(
+  return httpClient.get<APIResponseType<ItemsType[]>>(
     API_ENDPOINTS.GET_PRODUCTS,
     {
       params: { category_id: category, title },
@@ -20,7 +20,7 @@ const getProduct = ({
 };
 
 export const getFeaturedProduct = () => {
-  return instance.get<APIResponseType<ItemsType[]>>(
+  return httpClient.get<APIResponseType<ItemsType[]>>(
     API_ENDPOINTS.FEATURED_PRODUCTS
   );
 };
@@ -41,7 +41,7 @@ export const useProductQuery = ({
 };
 
 const productCategory = () => {
-  return instance.get<APIResponseType<CategoryType[]>>(
+  return httpClient.get<APIResponseType<CategoryType[]>>(
     API_ENDPOINTS.GET_CATEGORIES
   );
 };
@@ -55,7 +55,7 @@ export const useCategoryQuery = () => {
 };
 
 const getProductDetail = ({ id }: { id: string }) => {
-  return instance.get<APIResponseType<ItemsType>>(
+  return httpClient.get<APIResponseType<ItemsType>>(
     generateApiPath(API_ENDPOINTS.GET_PRODUCT_DETAIL, { id })
   );
 };
