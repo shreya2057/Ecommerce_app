@@ -5,35 +5,53 @@ import {
   Heading,
   HStack,
   Image,
-  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { RiAddFill, RiShoppingCartFill, RiSubtractFill } from "react-icons/ri";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductDetail } from "../../services/product";
+import { useState } from "react";
+import { Loading } from "@/components/Loading";
+import { useAddToCart } from "@/services";
+import { useIsAuthenticated } from "@/hooks";
+import { ROUTES } from "@/routes/routes";
 
 export const ProductDetail = () => {
-  const { id } = useParams();
-  const { data: product, isLoading } = useGetProductDetail({ id: id ?? "" });
+  const id = useParams()?.id ?? "";
+  const { data: product, isLoading } = useGetProductDetail({ id: id });
+  const { mutateAsync: addToCart } = useAddToCart();
+  const { data: isAuthenticated } = useIsAuthenticated();
+  const navigate = useNavigate();
+  const [noOfProducts, setNoOfProducts] = useState(0);
+  const increaseNoOfProducts = () => {
+    setNoOfProducts((prev) => prev + 1);
+  };
+  const decreaseNoOfProducts = () => {
+    if (noOfProducts >= 1) {
+      setNoOfProducts((prev) => prev - 1);
+    }
+  };
+
+  const onAddToCart = async () => {
+    if (isAuthenticated) {
+      await addToCart({ product: id, number: noOfProducts });
+      setNoOfProducts(0);
+    } else {
+      navigate(ROUTES.LOGIN);
+    }
+  };
   return (
     <Flex width={"100%"}>
       <VStack
         width={"100%"}
         height={"100%"}
         justifyContent={"center"}
-        background={
-          "linear-gradient(90deg, #FAFCFC 0%, #F0F4F4 50%, #E1E7E7 100%)"
-        }
+        background={"gradient.gray.light"}
       >
         <VStack width={"100%"} px={{ base: 10, sm: 16, xl: 28 }} py={10}>
           {isLoading ? (
-            <HStack gap={2} width={"100%"} justifyContent={"center"}>
-              <Spinner size={"lg"} color="gray.500" />
-              <Text fontWeight={"bold"} textColor={"gray.600"}>
-                Loading...
-              </Text>
-            </HStack>
+            <Loading />
           ) : (
             <HStack
               flexDirection={{ base: "column", lg: "row" }}
@@ -81,6 +99,7 @@ export const ProductDetail = () => {
                     size={"sm"}
                     color={"gray.700"}
                     bg={"gray.100"}
+                    onClick={decreaseNoOfProducts}
                   >
                     <RiSubtractFill />
                   </Button>
@@ -92,7 +111,7 @@ export const ProductDetail = () => {
                     rounded={"md"}
                   >
                     <Text fontSize={"13px"}>
-                      <b>Quantity:</b> 0
+                      <b>Quantity:</b> {noOfProducts}
                     </Text>
                   </Flex>
                   <Button
@@ -100,6 +119,7 @@ export const ProductDetail = () => {
                     size={"sm"}
                     color={"gray.700"}
                     bg={"gray.100"}
+                    onClick={increaseNoOfProducts}
                   >
                     <RiAddFill />
                   </Button>
@@ -115,7 +135,11 @@ export const ProductDetail = () => {
                       Price: ${product?.price}
                     </Text>
                   </Box>
-                  <Button variant={"primary"} leftIcon={<RiShoppingCartFill />}>
+                  <Button
+                    variant={"primary"}
+                    leftIcon={<RiShoppingCartFill />}
+                    onClick={onAddToCart}
+                  >
                     Add to cart
                   </Button>
                 </HStack>

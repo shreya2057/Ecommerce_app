@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-function CartItems({
+export const CartItems = ({
   thumbnail,
   title,
   price,
@@ -25,7 +25,7 @@ function CartItems({
   discount: number;
   quantity: number;
   removeItem: () => void;
-}) {
+}) => {
   return (
     <Card
       width={{ md: "500px" }}
@@ -74,6 +74,6 @@ function CartItems({
       </CardBody>
     </Card>
   );
-}
+};
 
 export default CartItems;

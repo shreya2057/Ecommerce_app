@@ -20,7 +20,7 @@ function EmailVerify() {
       direction={"row"}
       minHeight={"100%"}
       width={"100%"}
-      background={"gradientGray"}
+      background={"gradient.gray.dark"}
       px={{ base: 8, sm: 10, md: 20, lg: 40, xl: 60 }}
       py={10}
     >
@@ -36,7 +36,7 @@ function EmailVerify() {
         backgroundColor={{ sm: "gray.40" }}
       >
         <Box
-          background={"gradientGrayLight"}
+          background={"gradient.gray.normal"}
           p={6}
           rounded={"full"}
           color={"gray.500"}

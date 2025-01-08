@@ -12,8 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { CartItemsType } from "../../type";
-import { Banner } from "./components/Banner";
-function Orders() {
+export const Orders = () => {
   const [orderedProducts, setOrderedProducts] = useState<CartItemsType[]>();
   useEffect(() => {
     const orderData = localStorage.getItem("products");
@@ -30,7 +29,7 @@ function Orders() {
         width={"100%"}
         align={"center"}
       >
-        <Banner />
+        {/* <Banner /> */}
         <Flex direction={"column"} my={4}>
           <Flex
             direction={"row"}
@@ -101,6 +100,4 @@ function Orders() {
       </Flex>
     </Flex>
   );
-}
-
-export default Orders;
+};
