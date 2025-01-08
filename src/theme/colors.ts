@@ -25,7 +25,11 @@ export const colors = {
     800: "#1E292F",
     900: "#0C1417",
   },
-  gradientGray: "linear-gradient(90deg, #90A4AE 0%, #78909C 50%, #455A64 100%)",
-  gradientGrayLight:
-    "linear-gradient(90deg, #ECEFF1 0%, #CFD8DC 50%, #B0BEC5 100%)",
+  gradient: {
+    gray: {
+      dark: "linear-gradient(90deg, #90A4AE 0%, #78909C 50%, #455A64 100%)",
+      normal: "linear-gradient(90deg, #ECEFF1 0%, #CFD8DC 50%, #B0BEC5 100%)",
+      light: "linear-gradient(90deg, #FAFCFC 0%, #F0F4F4 50%, #E1E7E7 100%)",
+    },
+  },
 };

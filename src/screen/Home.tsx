@@ -32,7 +32,7 @@ export const HomeScreen = () => {
   return (
     <Flex direction={"column"} width={"100%"}>
       <Flex
-        bg={"gradientGray"}
+        bg={"gradient.gray.dark"}
         width={"100%"}
         height={"100%"}
         justifyContent={"center"}

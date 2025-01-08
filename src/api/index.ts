@@ -7,4 +7,5 @@ export const API_ENDPOINTS = {
   REGISTER: "/users/registration/",
   REQUEST_OTP: "/users/send-otp/",
   VERIFY_OTP: "/users/verify-otp/",
+  ADD_TO_CART: "/carts/add-to-cart/",
 };

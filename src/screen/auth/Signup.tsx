@@ -44,7 +44,7 @@ function Signup() {
       direction={"row"}
       minHeight={"100%"}
       width={"100%"}
-      background={"gradientGray"}
+      background={"gradient.gray.dark"}
       px={{ base: 5, sm: 16, md: 14, lg: 0 }}
       py={{ base: 10, md: 0 }}
     >
@@ -55,7 +55,7 @@ function Signup() {
         display={{ base: "none", lg: "flex" }}
       >
         <Box
-          background={"gradientGrayLight"}
+          background={"gradient.gray.normal"}
           p={10}
           rounded={"full"}
           color={"gray.600"}
@@ -83,7 +83,7 @@ function Signup() {
           p={10}
           rounded={"xl"}
           shadow={"lg"}
-          background={"gradientGrayLight"}
+          background={"gradient.gray.normal"}
           onSubmit={handleSubmit(onLogin)}
         >
           <Heading fontSize={"xl"}>Create an account</Heading>

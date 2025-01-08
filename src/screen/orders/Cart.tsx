@@ -2,9 +2,8 @@ import { Box, Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../stores/cartStore";
 import { CartItemsType } from "../../type";
-import CartItems from "./components/CartCards";
-import { Banner } from "./components";
-function Carts() {
+import { CartItems } from "./components";
+export const Carts = () => {
   const toast = useToast();
   const { items, clearStates, removeItemFromCart } = useCartStore();
   const naviagte = useNavigate();
@@ -43,7 +42,7 @@ function Carts() {
         width={"100%"}
         align={"center"}
       >
-        <Banner />
+        {/* <Banner /> */}
         <Flex direction={"column"} my={4}>
           <Flex width={"100%"} direction={"column"} gap={5} m={4}>
             <Box
@@ -89,6 +88,4 @@ function Carts() {
       </Flex>
     </Flex>
   );
-}
-
-export default Carts;
+};

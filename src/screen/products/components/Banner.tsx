@@ -9,7 +9,7 @@ export const Banner = () => {
       flexDirection={{ base: "column", lg: "row" }}
       py={20}
       px={{ base: 16, md: 28 }}
-      background={"gradientGray"}
+      background={"gradient.gray.dark"}
       justifyContent={{ base: "center", md: "space-between" }}
       alignItems={"center"}
       gap={{ base: 10, lg: 40 }}

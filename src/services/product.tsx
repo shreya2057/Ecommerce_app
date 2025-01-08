@@ -65,5 +65,6 @@ export const useGetProductDetail = ({ id }: { id: string }) => {
     queryKey: ["product-detail", id],
     queryFn: () => getProductDetail({ id }),
     select: (response) => response?.data?.data,
+    enabled: !!id,
   });
 };

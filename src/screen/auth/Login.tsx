@@ -31,7 +31,7 @@ function Login() {
       direction={"row"}
       minHeight={"100%"}
       width={"100%"}
-      background={"gradientGray"}
+      background={"gradient.gray.dark"}
       p={{ base: 8, sm: 10, md: 0 }}
     >
       <VStack
@@ -41,7 +41,7 @@ function Login() {
         display={{ base: "none", md: "flex" }}
       >
         <Box
-          background={"gradientGrayLight"}
+          background={"gradient.gray.normal"}
           p={10}
           rounded={"full"}
           color={"gray.600"}
@@ -69,7 +69,7 @@ function Login() {
           p={{ base: 8, sm: 10 }}
           rounded={"xl"}
           shadow={"lg"}
-          background={"gradientGrayLight"}
+          background={"gradient.gray.normal"}
           onSubmit={handleSubmit(onLogin)}
         >
           <Heading fontSize={{ base: "lg", sm: "xl" }}>
