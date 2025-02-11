@@ -17,3 +17,7 @@ export type CartPostType = {
   number: number;
   product: string;
 };
+
+export type CartCount = {
+  total_count: number;
+};
