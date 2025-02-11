@@ -11,13 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import { ROUTES } from "../routes/routes";
-import { useProductQuery } from "../services/product";
-import { ItemsType } from "../type";
 import { NotFound } from "@/components/error";
 import { Loading } from "@/components/Loading";
-import { ItemCard } from "./products/components";
 import { EcommerceIllustration } from "@/assets/images";
+import { ROUTES } from "@/routes/routes";
+import { useProductQuery } from "@/services";
+import { ItemCard } from "../products/components";
+import { ItemsType } from "@/type";
 
 export const HomeScreen = () => {
   const navigate = useNavigate();
@@ -29,6 +29,10 @@ export const HomeScreen = () => {
     lg: `repeat(4, 1fr)`,
     "2xl": `repeat(5, 1fr)`,
   });
+
+  const goToProducts = () => {
+    navigate(ROUTES.PRODUCTS);
+  };
   return (
     <Flex direction={"column"} width={"100%"}>
       <Flex
@@ -76,7 +80,7 @@ export const HomeScreen = () => {
             <Button
               variant={"secondary"}
               fontWeight={"bold"}
-              onClick={() => navigate(ROUTES.PRODUCTS)}
+              onClick={goToProducts}
             >
               Explore our product
             </Button>

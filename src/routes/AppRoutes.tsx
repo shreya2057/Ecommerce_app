@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import { useIsAuthenticated } from "../hooks";
-import { HomeScreen } from "../screen/Home";
+import { HomeScreen } from "../screen/home";
 import Login from "../screen/auth/Login";
 import SignUp from "../screen/auth/Signup";
 import { ROUTES } from "./routes";

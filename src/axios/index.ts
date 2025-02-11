@@ -25,45 +25,74 @@ type RefreshQueueItem = {
   resolve: (value: unknown) => void;
   reject: (value: unknown) => void;
 };
-
 let refreshing = false;
 const refreshAndRetryQueue: RefreshQueueItem[] = [];
+
 httpClient.interceptors.response.use(
   (response) => response,
   async (error) => {
+    console.log("Interceptor error:", error);
+
     const refresh = TokenService.getToken("refresh_token");
     if (refresh) {
       const status = error?.response?.status;
-
-      const originalRequest = error?.config as AxiosRequestConfig & {
-        _retry: boolean;
+      const originalRequest = error.config as AxiosRequestConfig & {
+        _retry?: boolean;
       };
 
       // Ensures that same request is not tried multiple times to prevent infinite loop
       if (status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
-        if (!refreshing) {
-          refreshing = true;
-          try {
-            const newToken = await refreshToken(refresh);
-            TokenService.setToken("access_token", newToken);
-            refreshAndRetryQueue.forEach(({ config, resolve, reject }) => {
-              config.headers = {
-                ...config.headers,
-                Authorization: `Bearer ${newToken}`,
-              };
-              axios
-                .request(config)
-                .then((response) => resolve(response))
-                .catch((error) => reject(error));
-            });
-            refreshAndRetryQueue.length = 0; // Clear queue
-          } catch (refreshError) {
-            Promise.reject(refreshError);
+
+        return new Promise((resolve, reject) => {
+          refreshAndRetryQueue.push({
+            config: originalRequest,
+            resolve,
+            reject,
+          });
+
+          if (!refreshing) {
+            refreshing = true;
+
+            refreshToken(refresh)
+              .then((newAccessToken) => {
+                TokenService.setToken("access_token", newAccessToken);
+
+                refreshAndRetryQueue.forEach(({ config, resolve, reject }) => {
+                  config.headers = {
+                    ...config.headers,
+                    Authorization: `Bearer ${newAccessToken}`,
+                  };
+                  axios
+                    .request(config)
+                    .then((response) => {
+                      console.log("Request succeeded:", response);
+                      resolve(response);
+                    })
+                    .catch((err) => {
+                      console.error("Request failed:", err);
+                      reject(err);
+                    });
+                });
+
+                refreshAndRetryQueue.length = 0; // Clear the queue
+              })
+              .catch((refreshError) => {
+                console.error("Refresh token failed:", refreshError);
+                refreshAndRetryQueue.forEach(({ reject }) =>
+                  reject(refreshError)
+                );
+                refreshAndRetryQueue.length = 0; // Clear the queue
+                return Promise.reject(refreshError);
+              })
+              .finally(() => {
+                refreshing = false;
+              });
           }
-        }
+        });
       }
     }
+
     return Promise.reject(error);
   }
 );

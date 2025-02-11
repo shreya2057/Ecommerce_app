@@ -11,11 +11,14 @@ export const refreshToken = async (refresh: string) => {
     );
     const access_token = response?.data?.data.access_token;
     if (access_token) {
-      return Promise.resolve(access_token);
+      return access_token;
     } else {
-      throw new Error("Failed to refresh access token");
+      throw new Error(
+        "Failed to refresh access token: No access token in response"
+      );
     }
   } catch (error) {
-    return Promise.reject(error);
+    console.error("Refresh token error:", error);
+    throw error;
   }
 };

@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Footer } from "./Footer";
 import { NavBar } from "./Navbar";
@@ -20,12 +20,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <Flex
       direction={"column"}
       justifyContent={"space-between"}
-      minHeight={"100vh"}
+      minHeight={"100dvh"}
     >
       <NavBar isLoggedIn={isauthenticated ?? false} />
-      <Flex flex={1} height={"100%"} pt={{ base: 16, md: 12 }}>
+      <VStack flex={1} height={"100%"} pt={{ base: 16, md: 12 }}>
         {children}
-      </Flex>
+      </VStack>
       {!excludeFooter.includes(pathname) && <Footer />}
     </Flex>
   );

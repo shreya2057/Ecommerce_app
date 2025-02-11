@@ -8,16 +8,54 @@ export const Button = defineStyleConfig({
   variants: {
     primary: {
       bg: "primary.500",
-      color: "brand.100",
+      color: "white",
       _hover: {
         _disabled: {
-          bg: "gray.400",
+          bg: "primary.400",
         },
-        bg: "gray.500",
+        bg: "primary.300",
       },
       _disabled: {
         _hover: {
-          bg: "gray.500",
+          bg: "primary.300",
+        },
+      },
+    },
+    primary_outline: {
+      borderColor: "primary.400",
+      borderWidth: 2,
+      color: "primary.500",
+      _hover: {
+        _disabled: {
+          bg: "primary.400",
+        },
+        bg: "primary.300",
+        color: "white",
+      },
+      _disabled: {
+        _hover: {
+          bg: "primary.300",
+          color: "white",
+        },
+      },
+    },
+    primary_outline_rounded: {
+      borderColor: "primary.400",
+      borderWidth: 2,
+      px: 10,
+      rounded: "full",
+      color: "primary.500",
+      _hover: {
+        _disabled: {
+          bg: "primary.400",
+        },
+        bg: "primary.300",
+        color: "white",
+      },
+      _disabled: {
+        _hover: {
+          bg: "primary.300",
+          color: "white",
         },
       },
     },
