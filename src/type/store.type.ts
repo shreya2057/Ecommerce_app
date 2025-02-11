@@ -1,4 +1,4 @@
-import { CartItemsType } from "./Carts";
+import { CartItemsType } from "./cart.type";
 
 export type UserStoreType = {
   email: string;
