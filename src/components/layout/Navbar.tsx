@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { Profile } from "./Profile";
 import { ROUTES } from "@/routes/routes";
 import { AppLogo } from "./AppLogo";
+import { useGetCartCount } from "@/services";
 
 export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -24,6 +25,9 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       setShowNavMenu(true);
     }
   };
+
+  const { data: cartCount } = useGetCartCount();
+  console.log(cartCount);
   return (
     <Flex
       direction={{ base: "column", md: "row" }}

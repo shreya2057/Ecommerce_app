@@ -3,7 +3,7 @@ import { httpClient } from "@/axios";
 import { CartPostType, ErrorType } from "@/type";
 import { useToast } from "@chakra-ui/react";
 import { AxiosError } from "axios";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const addToCart = (data: CartPostType) => {
   return httpClient.post(API_ENDPOINTS.ADD_TO_CART, data);
@@ -30,5 +30,16 @@ export const useAddToCart = () => {
         duration: 2000,
       });
     },
+  });
+};
+
+const getCartCount = () => {
+  return httpClient.get(API_ENDPOINTS.CART_COUNT);
+};
+
+export const useGetCartCount = () => {
+  return useQuery({
+    queryKey: [API_ENDPOINTS.CART_COUNT],
+    queryFn: getCartCount,
   });
 };
