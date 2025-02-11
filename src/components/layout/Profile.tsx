@@ -35,7 +35,7 @@ export const Profile = () => {
             <Box display={"flex"} alignSelf={"center"}>
               <HiOutlineUserCircle />
             </Box>
-            <Text fontSize={"base"}>{tokenDetails?.name ?? "User"}</Text>
+            <Text>{tokenDetails?.name ?? "User"}</Text>
           </Box>
         </MenuButton>
         <MenuList>

@@ -1,6 +1,6 @@
 import { API_ENDPOINTS } from "@/api";
 import { httpClient } from "@/axios";
-import { CartPostType, ErrorType } from "@/type";
+import { APIResponseType, CartCount, CartPostType, ErrorType } from "@/type";
 import { useToast } from "@chakra-ui/react";
 import { AxiosError } from "axios";
 import { useMutation, useQuery } from "react-query";
@@ -34,12 +34,13 @@ export const useAddToCart = () => {
 };
 
 const getCartCount = () => {
-  return httpClient.get(API_ENDPOINTS.CART_COUNT);
+  return httpClient.get<APIResponseType<CartCount>>(API_ENDPOINTS.CART_COUNT);
 };
 
 export const useGetCartCount = () => {
   return useQuery({
     queryKey: [API_ENDPOINTS.CART_COUNT],
     queryFn: getCartCount,
+    select: (response) => response?.data?.data?.total_count,
   });
 };

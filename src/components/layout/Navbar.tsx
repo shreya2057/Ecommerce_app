@@ -5,14 +5,15 @@ import {
   IconButton,
   Text,
   useBreakpointValue,
+  VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { HiOutlineShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { Profile } from "./Profile";
 import { ROUTES } from "@/routes/routes";
 import { AppLogo } from "./AppLogo";
 import { useGetCartCount } from "@/services";
+import { FaCartShopping } from "react-icons/fa6";
 
 export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -30,6 +31,7 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   console.log(cartCount);
   return (
     <Flex
+      h={16}
       direction={{ base: "column", md: "row" }}
       width={"100%"}
       bgColor={"white"}
@@ -84,12 +86,26 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               <Text>Orders</Text>
             </Link>
             <Link to={ROUTES.CARTS}>
-              <Box display={"flex"} gap={2}>
-                <Box display={"flex"} alignSelf={"center"}>
-                  <HiOutlineShoppingCart />
+              <VStack position={"relative"}>
+                <Box alignSelf={"center"} fontSize={"28px"}>
+                  <FaCartShopping />
                 </Box>
-                <Text>Cart</Text>
-              </Box>
+                {cartCount && cartCount > 0 && (
+                  <Box
+                    position={"absolute"}
+                    bg={"red.500"}
+                    py={0.5}
+                    px={1.5}
+                    rounded={"full"}
+                    top={-2}
+                    right={-2}
+                  >
+                    <Text fontSize={"10px"} fontWeight={"bold"} color={"white"}>
+                      {cartCount}
+                    </Text>
+                  </Box>
+                )}
+              </VStack>
             </Link>
             <Profile />
           </Flex>
