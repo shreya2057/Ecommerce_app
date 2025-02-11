@@ -100,6 +100,7 @@ export const ProductDetail = () => {
                     color={"gray.700"}
                     bg={"gray.100"}
                     onClick={decreaseNoOfProducts}
+                    isDisabled={!isAuthenticated}
                   >
                     <RiSubtractFill />
                   </Button>
@@ -120,6 +121,7 @@ export const ProductDetail = () => {
                     color={"gray.700"}
                     bg={"gray.100"}
                     onClick={increaseNoOfProducts}
+                    isDisabled={!isAuthenticated}
                   >
                     <RiAddFill />
                   </Button>
@@ -139,6 +141,7 @@ export const ProductDetail = () => {
                     variant={"primary"}
                     leftIcon={<RiShoppingCartFill />}
                     onClick={onAddToCart}
+                    isDisabled={isAuthenticated && noOfProducts === 0}
                   >
                     Add to cart
                   </Button>
