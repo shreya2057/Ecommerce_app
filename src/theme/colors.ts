@@ -1,4 +1,30 @@
 export const colors = {
+  primary: {
+    50: "#e0e0f5",
+    100: "#c2c2eb",
+    200: "#9595de",
+    300: "#6868d2",
+    400: "#4646c6",
+    500: "#090979",
+    600: "#08086c",
+    700: "#07075f",
+    800: "#060652",
+    900: "#050545",
+    1000: "#030338",
+  },
+  secondary: {
+    50: "#f5f3ff",
+    100: "#e6d9ff",
+    200: "#d0b7ff",
+    300: "#b28dff",
+    400: "#9b6bff",
+    500: "#7c3aed",
+    600: "#6a2dbd",
+    700: "#5a1f8e",
+    800: "#4a1160",
+    900: "#3a0042",
+    1000: "#2c0030",
+  },
   brand: {
     50: "#F9F9FB",
     100: "#FFE8E8",
@@ -26,6 +52,14 @@ export const colors = {
     900: "#0C1417",
   },
   gradient: {
+    purple: {
+      lights:
+        "linear-gradient(90deg, rgba(177,78,255,0.675529586834734) 0%, rgba(57,57,139,1) 83%)",
+      light:
+        " linear-gradient(90deg, rgba(179,103,238,1) 0%, rgba(57,57,139,1) 83%, rgba(80,76,193,1) 100%)",
+      normal:
+        "linear-gradient(90deg, rgba(88,28,135,1) 0%, rgba(9,9,121,1) 96%, rgba(49,46,129,1) 100%)",
+    },
     gray: {
       dark: "linear-gradient(90deg, #90A4AE 0%, #78909C 50%, #455A64 100%)",
       normal: "linear-gradient(90deg, #ECEFF1 0%, #CFD8DC 50%, #B0BEC5 100%)",

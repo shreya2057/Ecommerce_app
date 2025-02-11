@@ -12,8 +12,8 @@ export const AppLogo = ({
     <HStack gap={3}>
       <Box
         rounded={"full"}
-        bgColor={"gray.100"}
-        color={"gray.400"}
+        bgColor={"primary.50"}
+        color={"primary.500"}
         fontSize={logoSize}
         p={padding ?? 2}
         display={display ?? { base: "none", md: "flex" }}
@@ -22,8 +22,8 @@ export const AppLogo = ({
       </Box>
       <Text
         fontSize={fontSize ?? "xl"}
-        fontWeight={"bold"}
-        color={fontColor ?? "gray.600"}
+        fontWeight={800}
+        color={fontColor ?? "primary.600"}
         whiteSpace={"nowrap"}
       >
         Ecommerce App

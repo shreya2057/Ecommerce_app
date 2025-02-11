@@ -7,13 +7,28 @@ export const Button = defineStyleConfig({
   },
   variants: {
     primary: {
-      bg: "gray.500",
+      bg: "primary.500",
       color: "brand.100",
       _hover: {
         _disabled: {
           bg: "gray.400",
         },
         bg: "gray.500",
+      },
+      _disabled: {
+        _hover: {
+          bg: "gray.500",
+        },
+      },
+    },
+    secondary: {
+      bg: "secondary.500",
+      color: "gray.50",
+      _hover: {
+        _disabled: {
+          bg: "secondary.400",
+        },
+        bg: "secondary.700",
       },
       _disabled: {
         _hover: {
