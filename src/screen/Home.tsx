@@ -84,7 +84,7 @@ export const HomeScreen = () => {
           <Image
             src={EcommerceIllustration}
             alt="Ecommerce Illustration"
-            w={{ lg: 80, xl: 96 }}
+            w={{ lg: 60, xl: 96 }}
             display={{ base: "none", lg: "flex" }}
           />
         </HStack>

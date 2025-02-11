@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { useIsAuthenticated } from "../hooks";
 import { HomeScreen } from "../screen/Home";
 import Login from "../screen/auth/Login";
@@ -54,14 +54,6 @@ const publicRoutes = [
       </Layout>
     ),
   },
-  {
-    path: "*",
-    element: (
-      <Layout>
-        <HomeScreen />
-      </Layout>
-    ),
-  },
 ];
 
 const authRoutes = [
@@ -103,7 +95,11 @@ function AppRouter() {
   const { data: isauthenticated } = useIsAuthenticated();
   const router = useRoutes(
     isauthenticated
-      ? [...privateRoutes, ...publicRoutes]
+      ? [
+          ...privateRoutes,
+          ...publicRoutes,
+          { path: "*", element: <Navigate to={ROUTES.LANDING} /> },
+        ]
       : [...publicRoutes, ...authRoutes]
   );
   return router;
