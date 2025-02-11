@@ -45,7 +45,7 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           onClick={toggleMenu}
         />
         <Link to={ROUTES.LANDING}>
-          <AppLogo logoSize="sm" />
+          <AppLogo logoSize="lg" padding={1.5} />
         </Link>
       </Flex>
       <Flex
@@ -54,12 +54,12 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         zIndex={1}
         width={{ base: "100%", md: "unset" }}
         hidden={menuVisibility}
-        background={{ base: "brand.400", md: "transparent" }}
+        background={{ base: "primary.800", md: "transparent" }}
         backdropBlur={"blur(10px)"}
         direction={{ base: "column", md: "row" }}
         gap={{ base: 2, md: 6 }}
         fontWeight={"bold"}
-        textColor={{ base: "brand.800", md: "gray.600" }}
+        textColor={{ base: "brand.800", md: "primary.500" }}
         px={{ base: 10, md: 10 }}
         py={{ base: 3, md: 0 }}
         align={{ base: "start", md: "center" }}

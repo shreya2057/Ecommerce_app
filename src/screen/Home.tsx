@@ -1,9 +1,9 @@
 import {
-  Box,
   Button,
   Flex,
   Heading,
   HStack,
+  Image,
   SimpleGrid,
   Text,
   useBreakpointValue,
@@ -11,13 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-import { RiShoppingCartFill } from "react-icons/ri";
 import { ROUTES } from "../routes/routes";
 import { useProductQuery } from "../services/product";
 import { ItemsType } from "../type";
 import { NotFound } from "@/components/error";
 import { Loading } from "@/components/Loading";
 import { ItemCard } from "./products/components";
+import { EcommerceIllustration } from "@/assets/images";
 
 export const HomeScreen = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export const HomeScreen = () => {
   return (
     <Flex direction={"column"} width={"100%"}>
       <Flex
-        bg={"gradient.gray.dark"}
+        bg={"gradient.purple.normal"}
         width={"100%"}
         height={"100%"}
         justifyContent={"center"}
@@ -54,12 +54,12 @@ export const HomeScreen = () => {
           >
             <Text
               fontWeight={900}
-              fontSize={{ base: "2xl", md: "4xl", lg: "5xl", xl: "6xl" }}
+              fontSize={{ base: "2xl", md: "4xl", xl: "6xl" }}
               as={"i"}
             >
               Ecommerce App
             </Text>
-            <Heading fontSize={{ base: "md", md: "2xl" }}>
+            <Heading fontSize={{ base: "md", xl: "2xl" }}>
               Easy online shopping
             </Heading>
             <Text
@@ -74,24 +74,19 @@ export const HomeScreen = () => {
               Like Your Dreams!
             </Text>
             <Button
-              variant={"light"}
+              variant={"secondary"}
               fontWeight={"bold"}
               onClick={() => navigate(ROUTES.PRODUCTS)}
             >
               Explore our product
             </Button>
           </VStack>
-
-          <Box
-            rounded={"full"}
-            bgColor={"white"}
-            textColor={"gray.400"}
-            fontSize={"160px"}
-            p={10}
+          <Image
+            src={EcommerceIllustration}
+            alt="Ecommerce Illustration"
+            w={{ lg: 80, xl: 96 }}
             display={{ base: "none", lg: "flex" }}
-          >
-            <RiShoppingCartFill />
-          </Box>
+          />
         </HStack>
       </Flex>
       <VStack py={10} px={{ base: 10, md: 40 }} gap={5} alignItems={"start"}>
