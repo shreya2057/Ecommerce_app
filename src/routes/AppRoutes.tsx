@@ -59,11 +59,7 @@ const publicRoutes = [
 const authRoutes = [
   {
     path: ROUTES.LOGIN,
-    element: (
-      <Layout>
-        <Login />
-      </Layout>
-    ),
+    element: <Login />,
   },
   {
     path: ROUTES.SIGNUP,

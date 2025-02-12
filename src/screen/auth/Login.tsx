@@ -1,14 +1,23 @@
-import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { LoginIllustration } from "@/assets/images";
+import { AppLogo } from "@/components/layout/AppLogo";
+import {
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { RiShoppingCartFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import { FormControl } from "../../components/form/FormControl";
 import { Password } from "../../components/form/Password";
+import { ROUTES } from "../../routes/routes";
 import { loginSchema } from "../../schema/loginSchema";
 import { useLoginQuery } from "../../services";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../routes/routes";
 
 const initialValues = {
   email: "",
@@ -27,94 +36,85 @@ function Login() {
   };
 
   return (
-    <Flex
-      direction={"row"}
-      minHeight={"100%"}
+    <VStack
+      height={"100dvh"}
+      justifyContent={"center"}
+      flex={1}
       width={"100%"}
-      background={"gradient.gray.dark"}
       p={{ base: 8, sm: 10, md: 0 }}
     >
-      <VStack
-        flex={{ md: "35%", lg: "45%" }}
-        height={"100%"}
-        justifyContent={"center"}
-        display={{ base: "none", md: "flex" }}
-      >
-        <Box
-          background={"gradient.gray.normal"}
-          p={10}
-          rounded={"full"}
-          color={"gray.600"}
-          fontSize={{ md: "80px", lg: "100px", xl: "160px" }}
-        >
-          <RiShoppingCartFill />
-        </Box>
-      </VStack>
-      <VStack
-        my={1}
-        flex={{ base: "100%", md: "75%", lg: "65%" }}
-        gap={4}
-        justifyContent={"center"}
-        px={{ sm: 8, md: 20, lg: 32, xl: 48 }}
+      <HStack
         rounded={"xl"}
         shadow={{ sm: "lg" }}
-        color={"gray.600"}
-        backgroundColor={{ sm: "gray.40" }}
+        borderWidth={1}
+        borderColor={"gray.50"}
+        p={10}
+        gap={4}
+        width={"60%"}
       >
         <VStack
-          width={"100%"}
-          gap={6}
+          gap={4}
+          flex={1}
+          alignItems={"start"}
           justifyContent={"center"}
-          as={"form"}
-          p={{ base: 8, sm: 10 }}
-          rounded={"xl"}
-          shadow={"lg"}
-          background={"gradient.gray.normal"}
-          onSubmit={handleSubmit(onLogin)}
+          color={"primary.500"}
         >
-          <Heading fontSize={{ base: "lg", sm: "xl" }}>
-            Welcome to Ecommerce app
+          <AppLogo logoSize="md" />
+          <Heading fontSize={{ base: "lg", sm: "xl" }} fontWeight={800}>
+            Welcome Back
           </Heading>
-          <FormControl
-            inputControl="input"
-            name="email"
-            control={control}
-            label="Email"
-            bg={"white"}
-            shadow={"md"}
-            borderWidth={0}
-            placeholder="Enter your email"
-          />
-          <Password
-            name="password"
-            control={control}
-            label="Password"
-            bg={"white"}
-            shadow={"md"}
-            borderWidth={0}
-            placeholder="Enter password"
-          />
-          <Flex width={"100%"}>
-            <Button
-              variant={"primary"}
-              type="submit"
-              isLoading={isLoading}
-              w={"100%"}
-            >
-              Login
-            </Button>
-          </Flex>
-          <Text
-            as={Link}
-            textDecoration={"underline"}
-            to={ROUTES.SIGNUP}
-            fontSize={"sm"}
-          >
-            Don't have an account?
+          <Text color={"primary.300"}>
+            Please login using email and password
           </Text>
+          <VStack
+            width={"100%"}
+            gap={6}
+            justifyContent={"center"}
+            as={"form"}
+            onSubmit={handleSubmit(onLogin)}
+          >
+            <FormControl
+              inputControl="input"
+              name="email"
+              control={control}
+              label="Email"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter your email"
+            />
+            <Password
+              name="password"
+              control={control}
+              label="Password"
+              bg={"white"}
+              shadow={"md"}
+              borderWidth={0}
+              placeholder="Enter password"
+            />
+            <Flex width={"100%"}>
+              <Button
+                variant={"primary"}
+                type="submit"
+                isLoading={isLoading}
+                w={"100%"}
+              >
+                Login
+              </Button>
+            </Flex>
+            <Text
+              as={Link}
+              textDecoration={"underline"}
+              to={ROUTES.SIGNUP}
+              fontSize={"sm"}
+            >
+              Don't have an account?
+            </Text>
+          </VStack>
         </VStack>
-      </VStack>
-    </Flex>
+        <Image src={LoginIllustration} w={96} h={96} />
+      </HStack>
+    </VStack>
   );
 }
 
