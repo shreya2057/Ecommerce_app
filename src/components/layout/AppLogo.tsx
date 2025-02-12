@@ -1,5 +1,7 @@
+import { ROUTES } from "@/routes/routes";
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { RiShoppingCartFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export const AppLogo = ({
   logoSize,
@@ -8,8 +10,12 @@ export const AppLogo = ({
   fontSize,
   padding,
 }: AppLogoProps) => {
+  const navigate = useNavigate();
+  const navigateToHome = () => {
+    navigate(ROUTES.LANDING);
+  };
   return (
-    <HStack gap={3}>
+    <HStack gap={3} cursor={"pointer"} onClick={navigateToHome}>
       <Box
         rounded={"full"}
         bgColor={"primary.50"}
