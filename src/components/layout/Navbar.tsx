@@ -14,6 +14,7 @@ import { ROUTES } from "@/routes/routes";
 import { AppLogo } from "./AppLogo";
 import { useGetCartCount } from "@/services";
 import { FaCartShopping } from "react-icons/fa6";
+import { useIsAuthenticated } from "@/hooks";
 
 export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -27,8 +28,9 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     }
   };
 
-  const { data: cartCount } = useGetCartCount();
-  console.log(cartCount);
+  const { data: isAuthenticated } = useIsAuthenticated();
+
+  const { data: cartCount } = useGetCartCount(isAuthenticated);
   return (
     <Flex
       h={16}

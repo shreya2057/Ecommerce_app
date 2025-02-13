@@ -1,8 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import { useIsAuthenticated } from "../hooks";
 import { HomeScreen } from "../screen/home";
-import Login from "../screen/auth/Login";
-import SignUp from "../screen/auth/Signup";
+import { Login, Signup } from "../screen/auth";
 import { ROUTES } from "./routes";
 import { Layout } from "../components/layout";
 import Verification from "../screen/auth/Verification";
@@ -63,27 +62,15 @@ const authRoutes = [
   },
   {
     path: ROUTES.SIGNUP,
-    element: (
-      <Layout>
-        <SignUp />
-      </Layout>
-    ),
+    element: <Signup />,
   },
   {
     path: ROUTES.VERIFICATION,
-    element: (
-      <Layout>
-        <Verification />
-      </Layout>
-    ),
+    element: <Verification />,
   },
   {
     path: ROUTES.EMAIL_VERIFY,
-    element: (
-      <Layout>
-        <EmailVerify />
-      </Layout>
-    ),
+    element: <EmailVerify />,
   },
 ];
 

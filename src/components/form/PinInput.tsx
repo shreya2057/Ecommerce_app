@@ -39,7 +39,7 @@ export const PinInput = <TFieldValues extends FieldValues>({
             <PinInputField
               key={index}
               borderWidth={1}
-              borderColor={"white"}
+              borderColor={"gray.100"}
               bg={"white"}
               shadow={"md"}
             />

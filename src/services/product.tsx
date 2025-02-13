@@ -3,7 +3,6 @@ import { API_ENDPOINTS } from "../api";
 import { httpClient } from "../axios";
 import { APIResponseType, CategoryType, ItemsType } from "../type";
 import { generateApiPath } from "../utils/generateApiPath";
-import { useLocation } from "react-router-dom";
 
 const getProduct = ({
   category,
@@ -33,8 +32,6 @@ export const useProductQuery = ({
   category: string;
   title?: string;
 }) => {
-  const pathname = useLocation().pathname;
-  console.log(pathname);
   return useQuery({
     queryKey: ["products", category, title],
     queryFn: () =>

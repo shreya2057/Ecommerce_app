@@ -1,9 +1,9 @@
-import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
-import { IoMailUnread } from "react-icons/io5";
+import { VerifyIllustration } from "@/assets/images";
+import { Button, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/routes";
 import { useRequestOtp } from "../../services";
 import { useUserStore } from "../../stores/userStore";
-import { ROUTES } from "../../routes/routes";
-import { useNavigate } from "react-router-dom";
 
 function EmailVerify() {
   const { mutateAsync: requestOtp, isLoading } = useRequestOtp();
@@ -16,34 +16,26 @@ function EmailVerify() {
   };
 
   return (
-    <Flex
-      direction={"row"}
-      minHeight={"100%"}
+    <VStack
+      height={"100dvh"}
       width={"100%"}
-      background={"gradient.gray.dark"}
       px={{ base: 8, sm: 10, md: 20, lg: 40, xl: 60 }}
       py={10}
+      justifyContent={"center"}
     >
       <VStack
-        my={1}
-        flex={{ base: "100%", md: "75%", lg: "65%" }}
+        width={{ base: "100%", md: "90%" }}
         gap={6}
         justifyContent={"center"}
-        px={{ sm: 8, md: 20, lg: 32, xl: 48 }}
+        py={10}
+        px={20}
         rounded={"xl"}
         shadow={{ sm: "lg" }}
         color={"gray.600"}
-        backgroundColor={{ sm: "gray.40" }}
+        borderWidth={1}
+        borderColor={"gray.50"}
       >
-        <Box
-          background={"gradient.gray.normal"}
-          p={6}
-          rounded={"full"}
-          color={"gray.500"}
-          fontSize={{ md: "80px", lg: "100px", xl: "100px" }}
-        >
-          <IoMailUnread />
-        </Box>
+        <Image src={VerifyIllustration} w={96} />
         <Heading
           fontSize={{ base: "lg", sm: "xl", lg: "2xl" }}
           letterSpacing={1}
@@ -58,7 +50,7 @@ function EmailVerify() {
           Verify Email address
         </Button>
       </VStack>
-    </Flex>
+    </VStack>
   );
 }
 
