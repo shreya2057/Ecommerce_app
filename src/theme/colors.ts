@@ -51,6 +51,16 @@ export const colors = {
     800: "#1E292F",
     900: "#0C1417",
   },
+  error: {
+    100: "#FFF5F5",
+    200: "#FED7D7",
+    300: "#FEB2B2",
+    400: "#FC8181",
+    500: "#F56565",
+    600: "#E53E3E",
+    700: "#C53030",
+    800: "#9B2C2C",
+  },
   gradient: {
     purple: {
       lights:

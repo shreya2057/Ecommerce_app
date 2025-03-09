@@ -94,7 +94,7 @@ export const HomeScreen = () => {
         </HStack>
       </Flex>
       <VStack py={10} px={{ base: 10, md: 40 }} gap={5} alignItems={"start"}>
-        <Text fontSize={"xl"} fontWeight={"bold"} color={"gray.600"}>
+        <Text fontSize={"xl"} fontWeight={"bold"} color={"primary.500"}>
           Featured products
         </Text>
         <Flex width={"100%"} justifyContent={"start"}>

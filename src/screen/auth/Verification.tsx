@@ -1,15 +1,15 @@
+import { OTPIllustration } from "@/assets/images";
 import {
-  Box,
   Button,
   Flex,
   Heading,
   HStack,
+  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { RiShoppingCartFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { FormControl } from "../../components/form/FormControl";
@@ -47,49 +47,28 @@ export const Verification = () => {
   };
 
   return (
-    <Flex
-      direction={"row"}
-      minHeight={"100%"}
+    <VStack
+      height={"100dvh"}
+      justifyContent={"center"}
+      flex={1}
       width={"100%"}
-      background={"gradient.gray.dark"}
       p={{ base: 8, sm: 10, md: 0 }}
     >
-      <VStack
-        flex={{ md: "35%", lg: "45%" }}
-        height={"100%"}
-        justifyContent={"center"}
-        display={{ base: "none", md: "flex" }}
-      >
-        <Box
-          background={"gradient.gray.normal"}
-          p={10}
-          rounded={"full"}
-          color={"gray.600"}
-          fontSize={{ md: "80px", lg: "100px", xl: "160px" }}
-        >
-          <RiShoppingCartFill />
-        </Box>
-      </VStack>
-      <VStack
-        my={1}
-        flex={{ base: "100%", md: "75%", lg: "65%" }}
-        gap={4}
-        justifyContent={"center"}
-        px={{ sm: 8, md: 20, lg: 32, xl: 48 }}
+      <HStack
         rounded={"xl"}
         shadow={{ sm: "lg" }}
-        color={"gray.600"}
-        backgroundColor={{ sm: "gray.40" }}
+        borderWidth={1}
+        borderColor={"gray.50"}
+        p={10}
+        gap={4}
+        width={{ md: "60%" }}
+        color={"primary.500"}
       >
         <VStack
           width={"100%"}
           gap={6}
           justifyContent={"center"}
           as={"form"}
-          p={{ base: 8, sm: 10 }}
-          rounded={"xl"}
-          shadow={"lg"}
-          background={"gradient.gray.normal"}
           onSubmit={handleSubmit(onVerify)}
         >
           <VStack>
@@ -108,14 +87,18 @@ export const Verification = () => {
           />
           {time > 0 ? (
             <HStack gap={2} alignItems={"center"}>
-              <Text>Resend OTP in</Text>
-              <Text color={"red.800"} fontWeight={"bold"}>
+              <Text color={"primary.400"}>Resend OTP in</Text>
+              <Text color={"error.600"} fontWeight={"bold"}>
                 {minutes >= 10 ? minutes : "0" + minutes}:
                 {seconds >= 10 ? seconds : "0" + seconds}
               </Text>
             </HStack>
           ) : (
-            <Button onClick={onResend} isLoading={resendLoading}>
+            <Button
+              onClick={onResend}
+              isLoading={resendLoading}
+              variant={"ghost"}
+            >
               Resend OTP
             </Button>
           )}
@@ -138,8 +121,14 @@ export const Verification = () => {
             Already have an account?
           </Text>
         </VStack>
-      </VStack>
-    </Flex>
+        <Image
+          src={OTPIllustration}
+          w={96}
+          h={80}
+          display={{ base: "none", xl: "block" }}
+        />
+      </HStack>
+    </VStack>
   );
 };
 

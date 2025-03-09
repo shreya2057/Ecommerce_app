@@ -31,8 +31,6 @@ const refreshAndRetryQueue: RefreshQueueItem[] = [];
 httpClient.interceptors.response.use(
   (response) => response,
   async (error) => {
-    console.log("Interceptor error:", error);
-
     const refresh = TokenService.getToken("refresh_token");
     if (refresh) {
       const status = error?.response?.status;
@@ -66,11 +64,9 @@ httpClient.interceptors.response.use(
                   axios
                     .request(config)
                     .then((response) => {
-                      console.log("Request succeeded:", response);
                       resolve(response);
                     })
                     .catch((err) => {
-                      console.error("Request failed:", err);
                       reject(err);
                     });
                 });
@@ -78,7 +74,6 @@ httpClient.interceptors.response.use(
                 refreshAndRetryQueue.length = 0; // Clear the queue
               })
               .catch((refreshError) => {
-                console.error("Refresh token failed:", refreshError);
                 refreshAndRetryQueue.forEach(({ reject }) =>
                   reject(refreshError)
                 );

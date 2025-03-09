@@ -23,7 +23,7 @@ const initialValues = {
   email: "",
   password: "",
 };
-function Login() {
+export const Login = () => {
   const { control, handleSubmit } = useForm<z.infer<typeof loginSchema>>({
     defaultValues: initialValues,
     resolver: zodResolver(loginSchema),
@@ -50,7 +50,7 @@ function Login() {
         borderColor={"gray.50"}
         p={10}
         gap={4}
-        width={"60%"}
+        width={{ md: "60%" }}
       >
         <VStack
           gap={4}
@@ -112,10 +112,13 @@ function Login() {
             </Text>
           </VStack>
         </VStack>
-        <Image src={LoginIllustration} w={96} h={96} />
+        <Image
+          src={LoginIllustration}
+          w={96}
+          h={96}
+          display={{ base: "none", xl: "block" }}
+        />
       </HStack>
     </VStack>
   );
-}
-
-export default Login;
+};

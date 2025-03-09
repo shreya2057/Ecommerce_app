@@ -103,6 +103,15 @@ export const Button = defineStyleConfig({
       bgColor: "gray.800",
       color: "gray.100",
     },
+    ghost: {
+      bg: "transparent",
+      p: 0,
+      color: "primary.500",
+      _hover: {
+        bg: "transparent",
+        color: "primary.400",
+      },
+    },
   },
   defaultProps: {
     variant: "primary",

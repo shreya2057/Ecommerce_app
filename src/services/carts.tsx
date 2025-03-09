@@ -37,10 +37,11 @@ const getCartCount = () => {
   return httpClient.get<APIResponseType<CartCount>>(API_ENDPOINTS.CART_COUNT);
 };
 
-export const useGetCartCount = () => {
+export const useGetCartCount = (enabled?: boolean) => {
   return useQuery({
     queryKey: [API_ENDPOINTS.CART_COUNT],
     queryFn: getCartCount,
     select: (response) => response?.data?.data?.total_count,
+    enabled,
   });
 };
