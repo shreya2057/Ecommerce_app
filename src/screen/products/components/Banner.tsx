@@ -1,5 +1,4 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import { RiShoppingBag2Line } from "react-icons/ri";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export const Banner = () => {
   return (
@@ -7,7 +6,7 @@ export const Banner = () => {
       width={"100%"}
       display={"flex"}
       flexDirection={{ base: "column", lg: "row" }}
-      py={20}
+      py={10}
       px={{ base: 16, md: 28 }}
       background={"gradient.gray.dark"}
       justifyContent={{ base: "center", md: "space-between" }}
@@ -23,23 +22,14 @@ export const Banner = () => {
         gap={3}
         color={"gray.50"}
       >
-        <Heading fontSize={"4xl"} as={"i"}>
-          Ecommerce App
-        </Heading>
         <Box>
           <Text fontSize={"md"} opacity={0.9} textAlign={"left"}>
             Embark on a seamless shopping journey where endless selections meet
             effortless convenience. Discover everything from the latest fashion
-            trends to unique artisanal finds, all just a click away. Enjoy a
-            user-friendly interface, personalized recommendations, and quick,
-            secure transactions. With timely delivery and dedicated support,
-            every purchase enhances your lifestyle. Experience the joy of
-            shopping, where inspiration and convenience come together for a
-            delightful experience.
           </Text>
         </Box>
       </Flex>
-      <Box
+      {/* <Box
         rounded={"full"}
         bgColor={"gray.100"}
         width={"fit-content"}
@@ -48,7 +38,7 @@ export const Banner = () => {
         p={8}
       >
         <RiShoppingBag2Line />
-      </Box>
+      </Box> */}
     </Box>
   );
 };

@@ -2,14 +2,7 @@ import { VStack } from "@chakra-ui/react";
 import { NoItems } from "./components/NoItems";
 export const Carts = () => {
   return (
-    <VStack
-      width={"100%"}
-      flex={1}
-      h={"100%"}
-      justifyContent={"center"}
-      bg={"gray.25"}
-    >
-      {/* <Banner /> */}
+    <VStack width={"100%"} flex={1} h={"100%"} justifyContent={"center"}>
       <NoItems />
       {/* <Box
           display={"flex"}
