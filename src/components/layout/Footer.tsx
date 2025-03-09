@@ -53,14 +53,14 @@ export const Footer = () => {
     <VStack width={"100%"} gap={0}>
       <VStack
         width={"100%"}
-        bgColor={"gray.700"}
+        bgColor={"primary.700"}
         py={6}
-        color={"gray.200"}
+        color={"gray.100"}
         px={10}
         justifyContent={"center"}
         gap={4}
       >
-        <HStack gap={6} color={"gray.600"}>
+        <HStack gap={6} color={"primary.600"}>
           {socialMedia?.map(({ icon, key, path }) => (
             <Link to={path} key={key}>
               <Box
@@ -69,7 +69,7 @@ export const Footer = () => {
                 alignContent={"center"}
                 rounded={"full"}
                 p={2}
-                bg={"gray.200"}
+                bg={"gray.100"}
               >
                 <Text alignSelf={"center"}>{icon}</Text>
               </Box>
@@ -86,8 +86,8 @@ export const Footer = () => {
       </VStack>
       <HStack
         width={"100%"}
-        bg={"gray.800"}
-        color={"gray.400"}
+        bg={"primary.900"}
+        color={"gray.100"}
         justifyContent={"center"}
         py={4}
         fontSize={"sm"}

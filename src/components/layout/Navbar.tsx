@@ -3,6 +3,7 @@ import {
   Box,
   Flex,
   IconButton,
+  Spinner,
   Text,
   useBreakpointValue,
   VStack,
@@ -30,7 +31,7 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   const { data: isAuthenticated } = useIsAuthenticated();
 
-  const { data: cartCount } = useGetCartCount(isAuthenticated);
+  const { data: cartCount, isLoading } = useGetCartCount(isAuthenticated);
   return (
     <Flex
       h={16}
@@ -87,28 +88,36 @@ export const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             <Link to={ROUTES.ORDERS}>
               <Text>Orders</Text>
             </Link>
-            <Link to={ROUTES.CARTS}>
-              <VStack position={"relative"}>
-                <Box alignSelf={"center"} fontSize={"28px"}>
-                  <FaCartShopping />
-                </Box>
-                {cartCount && cartCount > 0 && (
-                  <Box
-                    position={"absolute"}
-                    bg={"red.500"}
-                    py={0.5}
-                    px={1.5}
-                    rounded={"full"}
-                    top={-2}
-                    right={-2}
-                  >
-                    <Text fontSize={"10px"} fontWeight={"bold"} color={"white"}>
-                      {cartCount}
-                    </Text>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Link to={ROUTES.CARTS}>
+                <VStack position={"relative"}>
+                  <Box alignSelf={"center"} fontSize={"28px"}>
+                    <FaCartShopping />
                   </Box>
-                )}
-              </VStack>
-            </Link>
+                  {cartCount && cartCount > 0 && (
+                    <Box
+                      position={"absolute"}
+                      bg={"red.500"}
+                      py={0.5}
+                      px={1.5}
+                      rounded={"full"}
+                      top={-2}
+                      right={-2}
+                    >
+                      <Text
+                        fontSize={"10px"}
+                        fontWeight={"bold"}
+                        color={"white"}
+                      >
+                        {cartCount}
+                      </Text>
+                    </Box>
+                  )}
+                </VStack>
+              </Link>
+            )}
             <Profile />
           </Flex>
         ) : (

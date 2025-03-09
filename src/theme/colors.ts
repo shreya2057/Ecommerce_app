@@ -63,7 +63,9 @@ export const colors = {
   },
   gradient: {
     purple: {
-      lights:
+      lightest:
+        "linear-gradient(90deg, rgba(180,169,254,0.3786108193277311) 0%, rgba(119,119,255,1) 71%, rgba(117,113,255,1) 100%)",
+      lighter:
         "linear-gradient(90deg, rgba(177,78,255,0.675529586834734) 0%, rgba(57,57,139,1) 83%)",
       light:
         " linear-gradient(90deg, rgba(179,103,238,1) 0%, rgba(57,57,139,1) 83%, rgba(80,76,193,1) 100%)",

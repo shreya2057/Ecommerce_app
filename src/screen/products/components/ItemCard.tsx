@@ -69,7 +69,7 @@ export const ItemCard = ({ items }: { items: ItemsType }) => {
         pb={4}
       >
         <Button
-          variant={"light"}
+          variant={"secondary_light"}
           size={"sm"}
           fontSize={"sm"}
           px={4}

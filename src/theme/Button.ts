@@ -74,11 +74,12 @@ export const Button = defineStyleConfig({
         },
       },
     },
-    light: {
-      bg: "gray.200",
-      color: "gray.700",
+    secondary_light: {
+      bg: "secondary.100",
+      color: "secondary.900",
       _hover: {
-        bg: "gray.300",
+        bg: "secondary.700",
+        color: "white",
       },
       _disabled: {
         _hover: {

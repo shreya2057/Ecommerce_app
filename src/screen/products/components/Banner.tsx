@@ -8,7 +8,7 @@ export const Banner = () => {
       flexDirection={{ base: "column", lg: "row" }}
       py={10}
       px={{ base: 16, md: 28 }}
-      background={"gradient.gray.dark"}
+      background={"gradient.purple.lightest"}
       justifyContent={{ base: "center", md: "space-between" }}
       alignItems={"center"}
       gap={{ base: 10, lg: 40 }}
@@ -20,7 +20,7 @@ export const Banner = () => {
         alignItems={{ base: "center", lg: "start" }}
         alignSelf={"center"}
         gap={3}
-        color={"gray.50"}
+        color={"primary.900"}
       >
         <Box>
           <Text fontSize={"md"} opacity={0.9} textAlign={"left"}>
@@ -29,16 +29,6 @@ export const Banner = () => {
           </Text>
         </Box>
       </Flex>
-      {/* <Box
-        rounded={"full"}
-        bgColor={"gray.100"}
-        width={"fit-content"}
-        textColor={"gray.400"}
-        fontSize={{ base: "160px", lg: "150px", xl: "100px" }}
-        p={8}
-      >
-        <RiShoppingBag2Line />
-      </Box> */}
     </Box>
   );
 };
