@@ -1,7 +1,6 @@
 import {
   Button,
   Flex,
-  Heading,
   HStack,
   Image,
   SimpleGrid,
@@ -9,18 +8,16 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
+import { ShoppinSaleIllustration } from "@/assets/images";
 import { NotFound } from "@/components/error";
 import { Loading } from "@/components/Loading";
-import { EcommerceIllustration } from "@/assets/images";
-import { ROUTES } from "@/routes/routes";
 import { useProductQuery } from "@/services";
-import { ItemCard } from "../products/components";
 import { ItemsType } from "@/type";
+import { ItemCard } from "../products/components";
+import { Landing } from "./components/Landing";
 
 export const HomeScreen = () => {
-  const navigate = useNavigate();
   const { data: products, isLoading } = useProductQuery({ category: "" });
   const columns = useBreakpointValue({
     base: "repeat(1, 1fr)",
@@ -30,74 +27,40 @@ export const HomeScreen = () => {
     "2xl": `repeat(5, 1fr)`,
   });
 
-  const goToProducts = () => {
-    navigate(ROUTES.PRODUCTS);
-  };
   return (
-    <Flex direction={"column"} width={"100%"}>
-      <Flex
-        bg={"gradient.purple.normal"}
-        width={"100%"}
-        height={"100%"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
+    <Flex direction={"column"} width={"100%"} gap={20}>
+      <Landing />
+      <HStack px={{ base: 10, md: 40 }} width={"100%"}>
         <HStack
-          direction={{ base: "column", md: "row" }}
-          alignItems={"center"}
-          gap={20}
           width={"100%"}
-          px={{ base: 10, md: 40 }}
-          py={32}
+          bg={"pink.50"}
+          justifyContent={"space-between"}
+          borderRadius={"16px"}
+          gap={16}
+          px={20}
         >
-          <VStack
-            alignItems={"start"}
-            width={"100%"}
-            gap={5}
-            textColor={"white"}
-          >
-            <Text
-              fontWeight={900}
-              fontSize={{ base: "2xl", md: "4xl", xl: "6xl" }}
-              as={"i"}
-            >
-              Ecommerce App
+          <Image src={ShoppinSaleIllustration} w={"400px"} />
+          <VStack p={10} flex={1} alignItems={"start"} gap={3}>
+            <Text fontSize={"xl"} fontWeight={"bold"}>
+              Start Shopping Now!
             </Text>
-            <Heading fontSize={{ base: "md", xl: "2xl" }}>
-              Easy online shopping
-            </Heading>
-            <Text
-              fontSize={{ base: "sm", md: "md" }}
-              textColor={"white"}
-              textAlign={"justify"}
-            >
-              Navigate the Universe of Fashion, Tech, and Lifestyle: From
-              Trendsetting Designs to Cutting-Edge Gadgets, Ecommerce App Guides
-              You Through a Seamless Shopping Odyssey. Discover, Click, and
-              Redefine Your World - Because Choices Should Be Boundless, Just
-              Like Your Dreams!
+            <Text fontSize={"sm"}>
+              Dive into endless possibilities with a tap! Whether upgrading your
+              wardrobe, refreshing your home, or finding the perfect gift, our
+              e-commerce app makes it easy to discover what you love.
             </Text>
-            <Button
-              variant={"secondary"}
-              fontWeight={"bold"}
-              onClick={goToProducts}
-            >
-              Explore our product
+
+            <Button variant={"primary_outline"} fontSize={"xs"}>
+              Buy Products
             </Button>
           </VStack>
-          <Image
-            src={EcommerceIllustration}
-            alt="Ecommerce Illustration"
-            w={{ lg: 60, xl: 96 }}
-            display={{ base: "none", lg: "flex" }}
-          />
         </HStack>
-      </Flex>
-      <VStack py={10} px={{ base: 10, md: 40 }} gap={5} alignItems={"start"}>
+      </HStack>
+      <VStack px={{ base: 10, md: 40 }} alignItems={"start"}>
         <Text fontSize={"xl"} fontWeight={"bold"} color={"primary.500"}>
           Featured products
         </Text>
-        <Flex width={"100%"} justifyContent={"start"}>
+        <Flex width={"100%"} justifyContent={"start"} py={6}>
           {isLoading ? (
             <Loading />
           ) : products?.length ? (

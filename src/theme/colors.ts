@@ -61,6 +61,9 @@ export const colors = {
     700: "#C53030",
     800: "#9B2C2C",
   },
+  pink: {
+    50: "#EFF0FB",
+  },
   gradient: {
     purple: {
       lightest:

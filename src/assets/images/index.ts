@@ -5,3 +5,4 @@ export { default as EmptyCart } from "./empty-cart.jpg";
 export { default as LoginIllustration } from "./login-illustration.jpg";
 export { default as VerifyIllustration } from "./verify-illustration.png";
 export { default as OTPIllustration } from "./otp-illustration.jpg";
+export { default as ShoppinSaleIllustration } from "./shopping-sale.png";

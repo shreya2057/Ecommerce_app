@@ -22,14 +22,15 @@ export const Button = defineStyleConfig({
       },
     },
     primary_outline: {
-      borderColor: "primary.400",
-      borderWidth: 2,
-      color: "primary.500",
+      borderColor: "secondary.700",
+      borderWidth: 1,
+      color: "secondary.700",
+      rounded: "full",
       _hover: {
         _disabled: {
           bg: "primary.400",
         },
-        bg: "primary.300",
+        bg: "secondary.700",
         color: "white",
       },
       _disabled: {
@@ -66,7 +67,7 @@ export const Button = defineStyleConfig({
         _disabled: {
           bg: "secondary.400",
         },
-        bg: "secondary.700",
+        bg: "secondary.600",
       },
       _disabled: {
         _hover: {
